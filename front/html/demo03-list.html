@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>HTML 태그 연습하기</h1>
+    <h2>목록을 담는 태그</h2>
+    <h3>순서있는 목록</h3>
+    <!-- 
+        순서가 있는 목록을 담는 태그
+        <ol>, <li>
+        <ol>태그는 <li>태그를 자식태그로 포함한다.
+        <li>컨텐츠</li>
+    -->
+    <!-- <% %> 는 자바코드를 사용하는 곳 -->
+    <!-- <ol>
+        <%
+            MovieDao movieDao = new MovieDao();
+            List<Movie> movieList = movieDao.boxofficeList();
+            for (Movie movie : moiveList) {
+    
+        %>
+            <li><%movie.getName() %></li>
+        <%
+            }
+        %>
+    </ol> -->
+
+
+
+    <ol>
+        <li>이터널스</li>
+        <li>듄</li>
+        <li>베놈2</li>
+        <li>세버그</li>
+        <li>고장난 론</li>
+    </ol>
+    
+    <h3>순서없는 목록</h3>
+    <!-- 
+        순서없는 목록을 담는 태그
+        <ul>, <li>
+        <ul>태그는 <li>태그를 자식태그로 포함한다.
+     -->
+     <ul>
+         <li>아메리카노</li>
+         <li>카푸치노</li>
+         <li>라떼</li>
+         <li>음료수</li>
+         <li>케이크</li>
+     </ul>
+
+    <h3>정의 목록</h3>
+     <!-- 
+         정의목록은 항목명과 항목값이 있는 목록이다.
+         <dl>, <dt>, <dd>
+        <dl>태그는 <dt>와 <dd>태그를 자식 태그로 포함한다.
+     -->
+
+    <!--15시 5분부터 15시 25분까지 -->
+    <dl>
+        <dt>제목</dt><dd>이터널스</dd>
+        <dt>장르</dt><dd>액션/어드벤쳐/드라마</dd>
+        <dt>평점</dt><dd>7.9</dd>
+        <dt>국가</dt><dd>미국</dd>
+        <dt>등급</dt><dd>12세 이상관람가</dd>
+        <dt>러닝타임</dt><dd>155분</dd>
+    </dl>
+
+    <h3>내포된 목록</h3>
+    <ol>
+        <li>자바문법
+            <ol type="A">   <!-- type속성은 순번을 숫자, 영문자, 로마숫자로 지정할 때 사용한다.-->
+                <li>변수</li>
+                <li>연산자</li>
+                <li>제어문</li>
+                <li>반목문</li>
+            </ol>
+        </li>
+        <li>객체지향
+            <ol type="I">
+                <li>클래스와 객체</li>
+                <li>필드와 메소드</li>
+                <li>생성자</li>
+                <li>상속과 형변환</li>
+                <li>추상화</li>
+                <li>인터페이스와 다형성</li>
+            </ol>
+        </li>
+    </ol>
+
+    <ul>
+        <li>라면류
+            <ul style="list-style-type: circle;">
+                <li>신라면</li>
+                <li>진라면</li>
+                <li>불닭볶음면</li>
+            </ul>
+        </li>
+        <li>김밥류
+            <ul style="list-style-type: disc;">
+                <li>삼각김밥</li>
+                <li>야채김밥</li>
+                <li>참치김밥</li>
+            </ul>
+        </li>
+        <li>음료수
+            <ul style="list-style-type: square;">
+                <li>아메리카노</li>
+                <li>카푸치노</li>
+                <li>콜라</li>
+                <li>사이다</li>
+                <li>과일주스</li>
+            </ul>
+        </li>
+    </ul>
+</body>
+</html>

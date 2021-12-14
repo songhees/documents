@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box-1 {  /* 실제 div크기 500+100+100+100 = 800 */
+            background-color: lightgrey;
+            width: 500px;
+            border: 50px solid green;
+            padding: 50px;
+            margin:  50px 50px 50px -200px;
+        }
+        #box-2 {   
+            background-color: lightgrey;
+            width: 500px;                 /* content의 길이*/
+            
+            border-width: 20px 50px;      /*20px는 top과 bottom에 적용, 50px는 right와 left에 적용된다. */
+            border-color: green;
+            border-style: solid;
+            
+            padding: 10px 20px 40px 60px; /*top right bottom left의 순으로 padding을 지정한다.*/
+            margin:  50px;                /*top right bottom left에 같은 값이 지정된다. */
+        }
+        #box-3 {
+            background-color: lightgrey;
+            border: 50px solid green;
+            padding: 50px;
+            margin: 50px auto; /* auto = left right 크기를 알아서 맞추는것(가운데)*/
+        }
+    </style>
+</head>
+<body>
+    <h1>박스모델</h1>
+    <div id="wrapper">
+        <div id="box-1">
+            현재 상용화된 코로나19 치료제는 모두 '주사'를 통해 맞는 형태인데, 먹는(경구용) 알약 형태의 치료제가 상용화된다면 보관과 운송 등의 편의성이 급격히 증가하고 안전성과 투약의 편리함도 월등히 높아질 것으로 기대된다.
+            현재 상용화된 코로나19 치료제는 모두 '주사'를 통해 맞는 형태인데, 먹는(경구용) 알약 형태의 치료제가 상용화된다면 보관과 운송 등의 편의성이 급격히 증가하고 안전성과 투약의 편리함도 월등히 높아질 것으로 기대된다.
+            현재 상용화된 코로나19 치료제는 모두 '주사'를 통해 맞는 형태인데, 먹는(경구용) 알약 형태의 치료제가 상용화된다면 보관과 운송 등의 편의성이 급격히 증가하고 안전성과 투약의 편리함도 월등히 높아질 것으로 기대된다.
+        </div>
+        <div id="box-2">
+            현재 상용화된 코로나19 치료제는 모두 '주사'를 통해 맞는 형태인데, 먹는(경구용) 알약 형태의 치료제가 상용화된다면 보관과 운송 등의 편의성이 급격히 증가하고 안전성과 투약의 편리함도 월등히 높아질 것으로 기대된다.
+            현재 상용화된 코로나19 치료제는 모두 '주사'를 통해 맞는 형태인데, 먹는(경구용) 알약 형태의 치료제가 상용화된다면 보관과 운송 등의 편의성이 급격히 증가하고 안전성과 투약의 편리함도 월등히 높아질 것으로 기대된다.
+        </div>
+        <div id="box-3">
+            현재 상용화된 코로나19 치료제는 모두 '주사'를 통해 맞는 형태인데, 먹는(경구용) 알약 형태의 치료제가 상용화된다면 보관과 운송 등의 편의성이 급격히 증가하고 안전성과 투약의 편리함도 월등히 높아질 것으로 기대된다.
+            현재 상용화된 코로나19 치료제는 모두 '주사'를 통해 맞는 형태인데, 먹는(경구용) 알약 형태의 치료제가 상용화된다면 보관과 운송 등의 편의성이 급격히 증가하고 안전성과 투약의 편리함도 월등히 높아질 것으로 기대된다.
+        </div>
+    </div>
+</body>
+</html>

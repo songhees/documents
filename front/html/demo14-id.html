@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .news {margin-top: 10px; padding: 10px; font-weight: bold;}
+        #hot-section {background-color: brown; color: white;}
+        #news-section {background-color: royalblue; color: white;}
+        #sports-section {background-color: lightseagreen; color: white;}
+        #ent-section {background-color: blueviolet; color: white;}
+    </style>
+</head>
+<body>
+    <h1>id 속성의 사용</h1>
+    <!-- 
+        스타일 관점
+             .은 클래스 선택자
+             #은 아이디 선택자 = id속성이 해당하는 태그를 찾아서 스타일을 적용한다.
+             .를 사용하는 경우 문서에서 똑같은 스타일이 반복될 때
+             #를 따로 지정해서 사용하는 경우 해당 스타일이 고유한 스타일일 때
+     -->
+    <div>
+        <h2>스타일 적용을 위한 id 속성값 부여하기</h2>
+        <div class="news" id="hot-section">
+            <h3>속보</h3>
+            <p>(서산=뉴스1) 김태완 기자 = 충남 서산 가로림만에 멸종위기 해양보호생물이자 천연기념물 제331호 점박이물범의 노니는 모습이 서산태안환경운동연합의 가로림만 점박이물범 시민모니터링단에 포착됐다.</p>
+            <p>(서산=뉴스1) 김태완 기자 = 충남 서산 가로림만에 멸종위기 해양보호생물이자 천연기념물 제331호 점박이물범의 노니는 모습이 서산태안환경운동연합의 가로림만 점박이물범 시민모니터링단에 포착됐다.</p>
+        </div>
+        <div class="news" id="news-section">
+            <h3>뉴스</h3>
+            <p>(서산=뉴스1) 김태완 기자 = 충남 서산 가로림만에 멸종위기 해양보호생물이자 천연기념물 제331호 점박이물범의 노니는 모습이 서산태안환경운동연합의 가로림만 점박이물범 시민모니터링단에 포착됐다.</p>
+            <p>(서산=뉴스1) 김태완 기자 = 충남 서산 가로림만에 멸종위기 해양보호생물이자 천연기념물 제331호 점박이물범의 노니는 모습이 서산태안환경운동연합의 가로림만 점박이물범 시민모니터링단에 포착됐다.</p>
+        </div>
+        <div class="news" id="sports-section">
+            <h3>스포츠</h3>
+            <p>(서산=뉴스1) 김태완 기자 = 충남 서산 가로림만에 멸종위기 해양보호생물이자 천연기념물 제331호 점박이물범의 노니는 모습이 서산태안환경운동연합의 가로림만 점박이물범 시민모니터링단에 포착됐다.</p>
+            <p>(서산=뉴스1) 김태완 기자 = 충남 서산 가로림만에 멸종위기 해양보호생물이자 천연기념물 제331호 점박이물범의 노니는 모습이 서산태안환경운동연합의 가로림만 점박이물범 시민모니터링단에 포착됐다.</p>
+        </div>
+        <div class="news" id="ent-section">
+            <h3>연예</h3>
+            <p>(서산=뉴스1) 김태완 기자 = 충남 서산 가로림만에 멸종위기 해양보호생물이자 천연기념물 제331호 점박이물범의 노니는 모습이 서산태안환경운동연합의 가로림만 점박이물범 시민모니터링단에 포착됐다.</p>
+            <p>(서산=뉴스1) 김태완 기자 = 충남 서산 가로림만에 멸종위기 해양보호생물이자 천연기념물 제331호 점박이물범의 노니는 모습이 서산태안환경운동연합의 가로림만 점박이물범 시민모니터링단에 포착됐다.</p>
+        </div>
+    </div>
+    <div>
+        <h2>태그, 컨텐츠, 값 조작을 위한 id 속성값 부여하기</h2>
+        <div>
+            <h3>태그(엘리먼트) 조작(추가/삭제/변경)하기</h3>
+            <p id="content-1">첫번째 내용입니다.</p>
+            <p id="content-2">두번째 내용입니다.</p>
+            <p id="content-3">세번째 내용입니다.</p>
+            <div>
+                <!--onclick = 버튼을 클릭했을 때 function removeConetet를 실행 -->
+                <button onclick="removeContent('content-1')">삭제하기</button>
+                <button onclick="removeContent('content-2')">삭제하기</button>
+                <button onclick="removeContent('content-3')">삭제하기</button>
+            </div>
+        </div>
+        <div>
+            <h3>태그의 컨텐츠 변경하기</h3>
+            <p id="name-1">홍길동</p>
+            <p id="name-2">김유신</p>
+        <div>
+            <button onclick="readContent()">컨텐츠 읽어오기</button>
+            <button onclick="changeContent()">컨텐츠 변경하기</button>
+        </div>
+        </div>
+        <div>
+            <h3>폼 입력요소의 값 체크하기</h3>
+            <div>
+                <form>
+                    <label>검색어</label> <input type="text" name="keyword" id="search-keyword"><button type="button" onclick="checkKeyword()">검색</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- 자바스크립트 정의하기 
+        HTML 문서 전체를 담는 객체  =  document
+    -->
+    <script>
+        function removeContent(id) {
+            //document.getElementById("아이디속성값")은 HTML문서안에서 지정된 아이디 속성값을 가지고 있는 태그정보를 표현하는 엘리먼트 객체를 반환한다.
+            document.getElementById(id).remove();
+        }
+        function readContent() {
+            // document.querySelector("선택자표현식")은 HTML문서 안에서 선택자표현식에 해당하는 태그정보를 표현하는 엘리먼트객체를 반환한다. 
+            // 아래의 실행결과 이 태그 <p id="name-1">홍길동</p>를 표현하는 엘리먼트 객체가 획득된다.
+            // document.querySelector("#name-1").textContent의 실행결과는 위에서 찾은 엘리먼트의 textContent 필드에 저장된 값을 반환한다. // 태그사이의 텍스트 값 반환
+            // 엘리먼트 객체의 textContent 필드에는 태그가 가지고 있는 텍스트가 저장되어 있다.
+
+            // var name은 변수를 선언하는 것이다.
+            // 자바스크립트에서 모든 변수는 별도의 타입지정없이 var 변수명; 으로 변수를 선언한다.
+            // 동적 바뀌는 데이터 타입을 사용. 담기는 값에 따라 타입이 변함, 타입을 지정할 필요가 없다.
+            var name = document.querySelector("#name-1").textContent;
+            // 경고창을 표시
+            alert(name);
+        }
+        // 자바 스크립트 오류 확인하기 f12의 console로 가서 페이지 조작시 오류가 발생하면 표시해준다.
+        // source에서는 오류가 발생한 지점을 알려줌
+        function changeContent() {
+            document.querySelector("#name-2").textContent = "강감찬, 이순신, 류관순, 안중근";
+        }
+        // querySelector와 달리 #을 안붙여도 된다.
+        function checkKeyword() {
+            // document.getElementById("search-keyword")는 <input type="text" name="keyword" id="search-keyword"> 태그를 표현하는 엘리먼트 객체를 반환한다.
+            // document.getElementById("search-keyword").value의 실행결과는 입력요소에 입력된 값을 반환한다.
+            var searchKeyword = document.getElementById("search-keyword").value;
+            if (searchKeyword == "") {
+                alert("입력필드에 검색어를 입력하세요");
+            } else {
+                alert("[" + searchKeyword + "]로 검색을 실시합니다.")
+            }
+        }
+    </script>
+</body>
+</html>
