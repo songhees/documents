@@ -15,12 +15,8 @@ public class Math2869 {
 		int b = Integer.parseInt(st.nextToken()); 
 		int v = Integer.parseInt(st.nextToken()); 
 		
-		int n = 1;
+		int n = (int)Math.ceil((double)(v-a)/(a-b));
 		
-		while (n*(a-b) < v) {
-			n++;
-		}
-		
-		System.out.println(n);
+		System.out.println(n+1);
 	}
 }
