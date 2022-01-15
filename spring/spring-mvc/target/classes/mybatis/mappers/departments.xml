@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sample.dao.DepartmentDao">
+	 
+	 <select id="getAllDepartments" resultType="com.sample.dto.DepartmentListDto">
+	 	select d.department_id 						as id, 
+	 			d.department_name 					as name, 
+	 			e.first_name || ' ' || e.last_name 	as managerName, 
+	 			l.city 								as city, 
+	 			l.street_address 					as streetAddress
+		from departments d, employees e, locations l
+		where d.manager_id = e.employee_id(+)
+		and d.location_id = l.location_id
+		order by d.department_id
+	 </select>
+	 <select id="getDepartmentById" parameterType="int" resultType="com.sample.vo.Department">
+	 	select  department_id				as id, 
+	 			department_name 			as name, 
+	 			manager_id					as managerId, 
+	 			location_id					as locationId
+		from departments
+		where department_id = #{value}
+	 </select>
+	 <insert id="insertDepartment" parameterType="com.sample.vo.Department">
+	 	insert into departments
+	 	(department_id, department_name, location_id)
+	 	values
+	 	(departments_seq.nextval, #{name}, #{locationId})
+	 </insert>
+	 
+	 <update id="updateDepartment" parameterType="com.sample.vo.Department">
+	 	update departments
+	 	set
+	 		department_name = #{name},
+	 		manager_id = #{managerId},
+	 		location_id = #{locationId}
+	 	where department_id = #{id}
+	 </update>
+</mapper>

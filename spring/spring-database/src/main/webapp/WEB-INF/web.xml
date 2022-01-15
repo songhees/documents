@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app.xsd">
+	<!-- spring의 container은 두종류가 있다. -->
+	<!--  
+		요청객체에 대한 캐릭터 인코딩 방식을 UTF-8로 지정하는 필터다.
+		클라이언트의 요청이 올때마다 이 필터의 doFilter() 메소드가 실행되고,
+		doFilter()메소드에서 request.setCharacterEncoding("utf-8")를 실행한다.
+		
+		요청파라미터에 포함된 값을 조회했을 때 한글이 깨지지 않게 한다.
+		
+		요청 받기 전 응답 보낸 후 실행할 작업을 정의하는것
+		전처리 후처리를 담당하는 것 (두번다 반드시 해야되는 것은 아니다.)
+		아래 적는 순서가 실행순서
+		filterChain에는 실행순서 정보가 있다.
+	-->
+	<filter>
+		<!-- 아래의 해당 url이 접속되면 CharacterEncodingFilter의 dofilter가 실행 -->
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+    </filter>
+    <!-- url과 filter를 연결 -->
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+    <!-- Root Spring Container 생성을 위한 설정 시작 
+    	 - Root Spring Container에서 관리하는 주요 객체
+    		+ Connection Pool
+    		+ Database Access에 필요한 객체(JdbcTemplate, xxxDaoImpl)
+    		+ 업무로직 실행에 필요한 객체(xxxServiceImpl)
+    		+ 선언적 트랜잭션처리를 지원하는 객체
+    		+ HTTP 요청을 직접 처리하지 않는 객체들이 생성/조립/보관된다.
+    	 - Root Spring Container를 생성하는 주체
+    		+ ContextLoaderListener
+    		+ ContextLoaderListener은 ServletContextListener 인터페이스를 구현한 클래스다.
+    		+ ServletContextListener의 인터페이스의 메소드(contextInitialized메소드, contextDestroyed메소드)들은 
+    		  각각 서버가 시작될 때, 서버가 종료될 때 실행된다.
+    		+ ContextLoaderListener가 재정의한 contextInitialized메소드에서는 
+    		 <context-param /> 태그에 설정된 스프링 빈 설정파일을 읽어서
+    		 Root Spring Container를 생성하고, 스프링 빈 설정파일을 읽어서 객체를 생성/조립/보관한다.
+    		 
+	    	 클라이언트와 직접적으로 통신하지 않는 것들
+    		 Root Container에 없는 객체를 찾을 수 없다.
+    -->
+    <!-- ServletContext에 담기는 값 <context-param> -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			/WEB-INF/context-root.xml
+		</param-value>
+	</context-param>
+	<!-- Servlet 초기화완료시(웹서버가 켜질 때) 실행될 메소드가 정의됨 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<!-- Root Spring Container 생성을 위한 설정 끝 -->
+	
+    <!-- Child Spring Container 생성을 위한 설정 시작 
+    	 웹과 관련된것 클라이언트와 직접적으로 통신하는 것들
+    	 Child Container에 없는 객체를 Root Container에서 검색해서 찾아올 수 있다.
+    -->
+	<servlet>
+		<servlet-name>action</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/context-web.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>action</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+    <!-- Child Spring Container 생성을 위한 설정 끝 -->
+	
+	
+</web-app>
