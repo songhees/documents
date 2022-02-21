@@ -1,0 +1,31 @@
+server:
+  port: 80
+
+# properties와 달리 간편하게 적을 수 있다.
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: 
+    
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+
+
+      
