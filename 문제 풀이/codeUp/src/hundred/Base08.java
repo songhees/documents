@@ -1,6 +1,6 @@
 package hundred;
 
-public class Base8 {
+public class Base08 {
 	public static void main(String[] args) {
 		//유니코드 표현하기
 //		System.out.println((char)0x250C);

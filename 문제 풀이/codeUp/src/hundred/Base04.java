@@ -1,7 +1,7 @@
 package hundred;
 
-public class Base6 {
+public class Base04 {
 	public static void main(String[] args) {
-		System.out.println("\"!@#$%^&*()\"");
+		System.out.println("\'Hello\'");
 	}
 }
