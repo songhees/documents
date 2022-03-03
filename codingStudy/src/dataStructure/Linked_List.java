@@ -35,7 +35,7 @@ public class Linked_List {
 
 class Node {
 	int data;
-	Node next = null;	// 해당 노드의 그 다음 node 객체
+	Node next = null;	// 해당 노드의 그 다음 node 객체(주소)
 	
 	Node(int d) {	// 생성자
 		this.data = d;
@@ -45,7 +45,7 @@ class Node {
 		Node end = new Node(d);		// 넣을 노드
 		Node n = this;				// pointer 첫번째 노드
 		while (n.next != null) {	// null이면 마지막 노드라는 뜻
-			n = n.next;
+			n = n.next;				// 주소값 교체 (다음 노드로 교체)
 		}
 		
 		n.next = end; // 마지막 노드의 next에 새로 생성한 노드를 넣어준다.
