@@ -42,7 +42,9 @@
                                 <tr>
                                     <td><c:out value="${board.bno}"/></td>
                                     <td><a class="move" href="<c:out value='${board.bno}'/>">
-                                    <c:out value="${board.title}"/></a></td>
+                                    <c:out value="${board.title}"/> <b>[ <c:out value="${board.replyCnt}"/> ]</b>
+
+                                    </a></td>
                                     <td><c:out value="${board.writer}"/></td>
                                     <td><fmt:formatDate value="${board.regdate}" pattern="yyyy-MM-dd"/></td>
                                     <td><fmt:formatDate value="${board.updateDate}" pattern="yyyy-MM-dd"/></td>
@@ -158,6 +160,7 @@
 
             $(".move").on("click", function(e) {
                 e.preventDefault();
+                // 뒤로 가기 누르면 input이 추가된 상태가 유지된다.
                 actionForm.append("<input type='hidden' name='bno' value='"+$(this).attr("href")+"'/>")
                 actionForm.attr("action", "/board/get");
                 actionForm.submit();

@@ -38,4 +38,11 @@ public interface ReplyMapper {
      * @return 댓글 목록
      */
     public List<ReplyVO> getListWithPaging(@Param("cri") Criteria cri, @Param("bno") Long bno);
+
+    /**
+     * 게시글 번호에 해당하는 댓글 수
+     * @param bno 게시글 번호
+     * @return 댓글 수
+     */
+    public int getCountByBno(Long bno);
 }
