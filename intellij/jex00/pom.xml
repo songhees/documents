@@ -15,7 +15,7 @@
         <org.springframework-version>5.2.3.RELEASE</org.springframework-version>
         <java-version>1.8</java-version>
         <org.aspectj-version>1.9.0</org.aspectj-version>
-        <org.slf4j-version>1.6.6</org.slf4j-version>
+        <org.slf4j-version>1.7.25</org.slf4j-version>
     </properties>
 
     <dependencies>
@@ -153,6 +153,12 @@
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
             <version>1.4</version>
+        </dependency>
+        <!-- 섬네일 제작 라이브러리 -->
+        <dependency>
+            <groupId>net.coobird</groupId>
+            <artifactId>thumbnailator</artifactId>
+            <version>0.4.17</version>
         </dependency>
     </dependencies>
 
