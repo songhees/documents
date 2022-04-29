@@ -1,5 +1,6 @@
 package org.zerock.service;
 
+import org.zerock.domain.BoardAttachVO;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 
@@ -13,6 +14,8 @@ public interface BoardService {
     public void register(BoardVO board);
 
     public BoardVO get(Long bno);
+
+    public List<BoardAttachVO> getAttachList(Long bno);
 
     public boolean remove(Long bno);
 
