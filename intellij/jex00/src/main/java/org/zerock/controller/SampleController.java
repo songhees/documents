@@ -6,6 +6,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.zerock.domain.SampleDTO;
@@ -86,6 +88,18 @@ public class SampleController {
     @GetMapping("/member")
     public void doMemeber() {
         log.info("logined member");
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER')")
+    @GetMapping("/annoMember")
+    public void doMemeber2() {
+        log.info("logined annotation member");
+    }
+
+    @Secured({"ROLE_ADMIN"})
+    @GetMapping("/annoAdmin")
+    public void doAdmin2() {
+        log.info("admin annotation only");
     }
 
     @GetMapping("/admin")

@@ -9,13 +9,21 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.zerock.security.CustomAccessDeniedHandler;
 import org.zerock.security.CustomLoginSuccessHandler;
 import org.zerock.security.CustomNoOpPasswordEncoder;
+import org.zerock.security.CustomUserDetailsService;
 
 import javax.sql.DataSource;
+import java.sql.ResultSet;
 
 @Configuration
 @EnableWebSecurity
@@ -29,8 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/sample/all").permitAll()
-                        .antMatchers("/sample/admin").access("hasRole('ROLE_ADMIN')")
-                        .antMatchers("/sample/member").access("hasRole('ROLE_MEMBER')");
+                        .antMatchers("/sample/member").access("hasRole('ROLE_MEMBER')")
+                        .antMatchers("/sample/admin").access("hasRole('ROLE_ADMIN')");
 
         http.formLogin().loginPage("/customLogin").loginProcessingUrl("/login").successHandler(loginSuccessHandler());
 
@@ -38,6 +46,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/customLogout")
                 .invalidateHttpSession(true)
                 .deleteCookies("remember-me", "JSESSION_ID");
+
+        http.rememberMe()
+                .key("zerock")
+                .tokenRepository(persistentTokenRepository())
+                .tokenValiditySeconds(604800);
+    }
+
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl repo = new JdbcTokenRepositoryImpl();
+        repo.setDataSource(dataSource);
+        return repo;
     }
 
     @Bean
@@ -46,9 +66,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
+    public AccessDeniedHandler deniedHandler() {return new CustomAccessDeniedHandler();}
+
+    @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+    @Bean
+    public UserDetailsService userDetailsService() {return new CustomUserDetailsService(); }
 
 /*    @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -64,10 +90,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         String queryUser = "select userid, userpw, enabled from tbl_member where userid = ? ";
         String queryDetail = "select userid, auth from tbl_member_auth where userid = ? ";
 
-        auth.jdbcAuthentication()
-                .dataSource(dataSource)
-                .passwordEncoder(passwordEncoder())
-                .usersByUsernameQuery(queryUser)
-                .authoritiesByUsernameQuery(queryDetail);
+//        auth.jdbcAuthentication()
+//                .dataSource(dataSource)
+//                .passwordEncoder(passwordEncoder())
+//                .usersByUsernameQuery(queryUser)
+//                .authoritiesByUsernameQuery(queryDetail);
+
+        auth.userDetailsService(userDetailsService())
+                .passwordEncoder(passwordEncoder());
     }
 }
