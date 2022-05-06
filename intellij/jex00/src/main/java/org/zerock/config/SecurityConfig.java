@@ -17,6 +17,8 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.zerock.security.CustomAccessDeniedHandler;
 import org.zerock.security.CustomLoginSuccessHandler;
 import org.zerock.security.CustomNoOpPasswordEncoder;
@@ -35,12 +37,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().ignoringAntMatchers("/customLogout");
         http.authorizeRequests()
                 .antMatchers("/sample/all").permitAll()
                         .antMatchers("/sample/member").access("hasRole('ROLE_MEMBER')")
                         .antMatchers("/sample/admin").access("hasRole('ROLE_ADMIN')");
 
-        http.formLogin().loginPage("/customLogin").loginProcessingUrl("/login").successHandler(loginSuccessHandler());
+        http.formLogin().loginPage("/customLogin").loginProcessingUrl("/login");
+                //.successHandler(loginSuccessHandler());
+        http.exceptionHandling().accessDeniedHandler(deniedHandler());
 
         http.logout()
                 .logoutUrl("/customLogout")
@@ -51,6 +56,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .key("zerock")
                 .tokenRepository(persistentTokenRepository())
                 .tokenValiditySeconds(604800);
+
+        // security 설정 후 인코딩 필터 설정
+        CharacterEncodingFilter filter = new CharacterEncodingFilter();
+        filter.setEncoding("UTF-8");
+        filter.setForceEncoding(true);
+        http.addFilterBefore(filter, CsrfFilter.class);
     }
 
     @Bean

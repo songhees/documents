@@ -13,4 +13,7 @@
   <body>
   $END$
   </body>
+<script type="text/javascript">
+  self.location="/board/list";
+</script>
 </html>

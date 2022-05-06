@@ -6,43 +6,36 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <style>
-        .uploadResult {
-            width:100%;
-            background-color: gray;
-        }
-
-        .uploadResult ul {
-            display:flex;
-            flex-flow: row;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .uploadResult ul li {
-            list-style: none;
-            padding:10px;
-            align-content: center;
-            text-align: center;
-        }
-
-        .uploadResult ul li img {
-            width: 100px;
-        }
-
-        .uploadResult ul li span {
-            color:white;
-        }
-    </style>
-</head>
-<body>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@include file="../includes/header.jsp"%>
+<style>
+    .uploadResult {
+        width:100%;
+        background-color: gray;
+    }
+
+    .uploadResult ul {
+        display:flex;
+        flex-flow: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .uploadResult ul li {
+        list-style: none;
+        padding:10px;
+        align-content: center;
+        text-align: center;
+    }
+
+    .uploadResult ul li img {
+        width: 100px;
+    }
+
+    .uploadResult ul li span {
+        color:white;
+    }
+</style>
 
 <div class="row">
     <div class="col-lg-12">
@@ -60,6 +53,7 @@
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <form role="form" action="/board/register" method="post">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                     <div class="form-group">
                         <label>Title</label>
                         <input class="form-control" name="title">
@@ -70,7 +64,7 @@
                     </div>
                     <div class="form-group">
                         <label>Writer</label>
-                        <input class="form-control" name="writer">
+                        <input class="form-control" name="writer" value="<sec:authentication property='principal.username' />" readonly>
                     </div>
                     <button type="submit" class="btn btn-default">Submit Button</button>
                     <button type="reset" class="btn btn-default">Reset Button</button>
@@ -114,6 +108,9 @@
 
         var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
         var maxSize = 5242880; // 5MB
+
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
 
         function checkExtension(fileName, fileSize) {
 
@@ -170,6 +167,9 @@
                 url:"/deleteFile",
                 type:"POST",
                 data:{fileName:targetFile, type:type},
+                beforeSend:function (xhr) {
+                    xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+                },
                 dataType:'text',
                 success:function(result) {
                     alert(result);
@@ -214,6 +214,9 @@
                 type:"post",
                 processData:false,
                 contentType:false,
+                beforeSend:function (xhr) {
+                    xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+                },
                 data:formData,
                 dataType:'json',
                 success:function(result) {

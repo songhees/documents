@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * 권한에 맞지 않는 url접근 시 발생
+ */
 @Log4j
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 

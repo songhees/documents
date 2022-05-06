@@ -6,8 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
 
@@ -264,7 +267,13 @@
                     <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <sec:authorize access="isAuthenticated()">
+
+                        <li><a href="/customLogout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </sec:authorize>
+                    <sec:authorize access="isAnonymous()">
+                        <li><a href="/customLogin"><i class="fa fa-sign-out fa-fw"></i>Login</a></li>
+                    </sec:authorize>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -382,6 +391,4 @@
     </nav>
 
     <div id="page-wrapper">
-
-
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

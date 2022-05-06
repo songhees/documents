@@ -6,66 +6,60 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<html>
-<head>
-
-    <style>
-        .uploadResult {
-            width:100%;
-            background-color: gray;
-        }
-
-        .uploadResult ul {
-            display:flex;
-            flex-flow: row;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .uploadResult ul li {
-            list-style: none;
-            padding:10px;
-            align-content: center;
-            text-align: center;
-        }
-
-        .uploadResult ul li img {
-            width: 100px;
-        }
-
-        .uploadResult ul li span {
-            color:white;
-        }
-
-        .bigPictureWrapper {
-            position: absolute;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            top: 0%;
-            width: 100%;
-            height: 100%;
-            background-color: gray;
-            z-index: 100;
-            background: rgba(255,255,255,0.5);
-        }
-
-        .bigPicture {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .bigPicture img {
-            width: 600px;
-        }
-    </style>
-</head>
-<body>
 <%@include file="../includes/header.jsp"%>
+
+<style>
+    .uploadResult {
+        width:100%;
+        background-color: gray;
+    }
+
+    .uploadResult ul {
+        display:flex;
+        flex-flow: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .uploadResult ul li {
+        list-style: none;
+        padding:10px;
+        align-content: center;
+        text-align: center;
+    }
+
+    .uploadResult ul li img {
+        width: 100px;
+    }
+
+    .uploadResult ul li span {
+        color:white;
+    }
+
+    .bigPictureWrapper {
+        position: absolute;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        top: 0%;
+        width: 100%;
+        height: 100%;
+        background-color: gray;
+        z-index: 100;
+        background: rgba(255,255,255,0.5);
+    }
+
+    .bigPicture {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .bigPicture img {
+        width: 600px;
+    }
+</style>
 
 <div class="row">
     <div class="col-lg-12">
@@ -83,6 +77,7 @@
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <form role="form" action="/board/modify" method="post" >
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                     <input type="hidden" name="pageNum" value="<c:out value='${cri.pageNum}'/>">
                     <input type="hidden" name="amount" value="<c:out value='${cri.amount}'/>">
                     <input type="hidden" name="type" value="<c:out value='${cri.type}'/>">
@@ -112,8 +107,13 @@
                         <label>Update Date</label>
                         <input class="form-control" name="updateDate" value='<fmt:formatDate value="${board.updateDate}" pattern="yyyy/MM/dd" />' readonly>
                     </div>
-                    <button data-oper="modify" class="btn btn-default" type="submit">Modify</button>
-                    <button data-oper="remove" class="btn btn-danger" type="submit">Remove</button>
+                    <sec:authentication property="principal" var="pinfo"/>
+                    <sec:authorize access="isAuthenticated()">
+                        <c:if test="${pinfo.username eq board.writer}">
+                            <button data-oper="modify" class="btn btn-default" type="submit">Modify</button>
+                            <button data-oper="remove" class="btn btn-danger" type="submit">Remove</button>
+                        </c:if>
+                    </sec:authorize>
                     <button data-oper="list" class="btn btn-info" type="submit">List</button>
                 </form>
             </div>
@@ -160,6 +160,9 @@
 </html>
 <script type="text/javascript">
     $(document).ready(function() {
+
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
 
         (function() {
             var bno = '<c:out value="${board.bno}"/>';
@@ -274,6 +277,9 @@
                 type:"POST",
                 contentType:false,
                 processData:false,
+                beforeSend:function (xhr) {
+                    xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+                },
                 data:formData,
                 dataType:'json',
                 success:function(result) {
