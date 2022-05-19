@@ -180,10 +180,16 @@
                 formData.append("uploadFile", files[i]);
             }
 
+            var csrfHeaderName = "${_csrf.headerName}";
+            var csrfToken = "${_csrf.token}";
+
             $.ajax({
                 url:"/uploadAjaxAction",
                 contentType: false,
                 processData: false,
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader(csrfHeaderName, csrfToken);
+                },
                 data: formData,
                 type: 'post',
                 dataType: 'json',
