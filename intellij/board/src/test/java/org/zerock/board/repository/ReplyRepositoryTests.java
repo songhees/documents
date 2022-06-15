@@ -7,6 +7,7 @@ import org.zerock.board.domain.Board;
 import org.zerock.board.domain.Member;
 import org.zerock.board.domain.Reply;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
 @SpringBootTest
@@ -30,6 +31,15 @@ public class ReplyRepositoryTests {
                     .replyer("guest")
                     .build();
             repository.save(reply);
+        });
+    }
+
+    @Test
+    public void testListByBoard() {
+        List<Reply> replyList = repository.getRepliesByBoardOrderByRno(Board.builder()
+                .bno(97L).build());
+        replyList.forEach(reply -> {
+            System.out.println(reply);
         });
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 import org.zerock.board.domain.Board;
 import org.zerock.board.domain.Member;
+import org.zerock.board.domain.Reply;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -22,9 +23,9 @@ public class BoardRepositoryTests {
 
     @Test
     public void insertBoards() {
-        IntStream.rangeClosed(1, 100).forEach(i -> {
+        IntStream.rangeClosed(101, 103).forEach(i -> {
             Member member = Member.builder()
-                    .email("user" + i + "@aaa.com").build();
+                    .email("user" + 4 + "@aaa.com").build();
             Board board = Board.builder()
                     .title("Title....." + i)
                     .content("Content..." + i)
@@ -74,4 +75,18 @@ public class BoardRepositoryTests {
 
         System.out.println(Arrays.toString(arr));
     }
+
+    @Test
+    public void testSearch1() {
+        repository.search1();
+
+    }
+
+    @Test
+    public void testSearchPage() {
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("bno").descending().and(Sort.by("title").ascending()));
+
+        Page<Object[]> result = repository.searchPage("t", "1", pageable);
+    }
+
 }

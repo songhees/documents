@@ -39,7 +39,7 @@ public interface BoardService {
                 .title(entity.getTitle())
                 .writerEmail(member.getEmail())
                 .writerName(member.getName())
-                .redDate(entity.getRedDate())
+                .regDate(entity.getRegDate())
                 .modDate(entity.getModDate())
                 .replyCount(replyCount.intValue())
                 .build();
