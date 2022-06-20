@@ -35,6 +35,7 @@
         <a th:href="@{/board/list(page=${requestDTO.page}, type=${requestDTO.type}, keyword=${requestDTO.keyword})}">
             <button type="button" class="btn btn-info">List</button>
         </a>
+        <!-- 댓글 목록 -->
         <div>
             <div class="mt-4">
                 <h5><span class="badge badge-info addReply">Add Reply</span></h5>
@@ -103,6 +104,7 @@
                 var listGroup = $(".replyList");
 
                 function loadJSONData() {
+                    listGroup.empty();
                     $.getJSON("/replies/board/" + bno, function(arr) {
                         console.log(arr);
                         var str = '';
@@ -110,7 +112,7 @@
                         $(".replyCount").html(" Reply Count " + arr.length);
 
                         $.each(arr, function(idx, reply) {
-                            str += ' <b class="card-body" data-rno="' + reply.rno +'"><b>' + reply.rno + '</b>';
+                            str += ' <div class="card-body" data-rno="' + reply.rno +'"><b>' + reply.rno + '</b>';
                             str += ' <h5 class="card-title">' + reply.text + '</h5>';
                             str += ' <h6 class="card-subtitle mb-2 text-muted">' + reply.replyer + '</h6>';
                             str += ' <p class="card-text">' + formatTime(reply.regDate) + '</p>'
@@ -120,6 +122,7 @@
                         listGroup.append(str);
                     });
                 }
+
                 $(".replyCount").on("click", function() {
                     loadJSONData();
                 })
@@ -148,6 +151,67 @@
                         }
                     })
                 })
+
+                $(".replyList").on("click", ".card-body", function() {
+                    var rno = $(this).data("rno");
+                    /* 댓글을 클릭하면 modal창에 값 넣기*/
+                    $("input[name='replyText']").val($(this).find('.card-title').html());
+                    $("input[name='replyer']").val($(this).find('.card-subtitle').html());
+                    $("input[name='rno']").val(rno);
+
+                    $(".modal-footer .btn").hide();
+                    $(".replyRemove, .replyModify, .replyClose").show();
+
+                    modal.modal('show');
+                })
+
+                $(".replyRemove").on("click", function() {
+                    var rno = $("input[name='rno']").val();
+
+                    $.ajax({
+                        url: '/replies/' + rno,
+                        method: 'delete',
+                        success:function(result) {
+                            console.log("result " + result);
+
+                            if (result === 'success') {
+                                alert("댓글이 삭제되었습니다.");
+                                modal.modal('hide');
+                                loadJSONData();
+                            }
+                        }
+                    })
+                })
+
+                $(".replyModify").on("click", function() {
+                    var rno = $("input[name='rno']").val();
+
+                    var reply = {
+                        rno: rno,
+                        bno: bno,
+                        text: $('input[name="replyText"]').val(),
+                        replyer: $('input[name="replyer"]').val()
+                    }
+
+
+                    $.ajax({
+                        url: '/replies/' + rno,
+                        method: 'put',
+                        data: JSON.stringify(reply),
+                        contentType: "application/json; charset=utf-8",
+                        success:function(result) {
+                            console.log("RESULT: " + result);
+
+                            if(result ==='success') {
+                                alert("댓글이 수정되었습니다.");
+                                modal.modal('hide');
+                                loadJSONData();
+                            }
+
+                        }
+                    })
+                })
+
             })
         </script>
     </th:block>
