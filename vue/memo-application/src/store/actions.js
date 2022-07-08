@@ -1,4 +1,5 @@
-import {FETCH_MEMOS} from './mutations-types';
+import {FETCH_MEMOS, ADD_MEMO, DELETE_MEMO,
+  UPDATE_MEMO} from './mutations-types';
 import axios from 'axios';
 
 const memoAPICore = axios.create({
@@ -12,8 +13,33 @@ export function fetchMemos({commit}) {
   });
 }
 
+// eslint-disable-next-line require-jsdoc
+export function addMemo({commit}, payload) {
+  memoAPICore.post('/', payload).then((res) => {
+    commit(ADD_MEMO, res.data);
+  });
+}
+
+// eslint-disable-next-line require-jsdoc
+export function deleteMemo({commit}, id) {
+  memoAPICore.delete(`/${id}`).then(()=> {
+    commit(DELETE_MEMO, id);
+  });
+}
+
+// eslint-disable-next-line require-jsdoc
+export function updateMemo({commit}, payload) {
+  const {id, content} = payload;
+  memoAPICore.put(`/${id}`, {content}).then(()=> {
+    commit(UPDATE_MEMO, payload);
+  });
+}
+
 export default {
   fetchMemos,
+  addMemo,
+  deleteMemo,
+  updateMemo,
 };
 
 
