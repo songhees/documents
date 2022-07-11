@@ -17,12 +17,20 @@ export default {
   name: 'Memo',
   data() {
     return {
-      isEditing: false,
+    //  isEditing: false,
     };
   },
   props: {
     memo: {
       type: Object,
+    },
+    editingId: {
+      type: Number,
+    },
+  },
+  computed: {
+    isEditing() {
+      return this.memo.id === this.editingId;
     },
   },
   methods: {
@@ -32,6 +40,7 @@ export default {
     },
     handleDblClick() {
       this.isEditing = true;
+      this.$emit('setEditingId', this.memo.id);
       this.$nextTick(() => {
         this.$refs.content.focus();
       });
@@ -43,10 +52,12 @@ export default {
         return false;
       }
       this.$emit('updateMemo', {id, content});
-      this.isEditing = false;
+      // this.isEditing = false;
+      this.$refs.content.blur();
     },
     handleBlur() {
-      this.isEditing = false;
+      // this.isEditing = false;
+      this.$emit('resetEditingId');
     },
   },
 };

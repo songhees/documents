@@ -5,7 +5,9 @@
         <memo v-for="memo in memos"
           :key="memo.id"
           :memo="memo"
-           @deleteMemo="deleteMemo" @updateMemo="updateMemo" />
+          @deleteMemo="deleteMemo" @updateMemo="updateMemo"
+          :editingId="editingId"
+          @setEditingId="SET_EDITING_ID" @resetEditingId="RESET_EDITING_ID"/>
       </ul>
     </div>
 </template>
@@ -13,12 +15,12 @@
 <script>
 import Memo from './Memo.vue';
 import MemoForm from './MemoForm.vue';
-import axios from 'axios';
-import {mapActions, mapState} from 'vuex';
+// import axios from 'axios';
+import {mapActions, mapState, mapMutations} from 'vuex';
 
-const memoAPICore = axios.create({
-  baseURL: 'http://localhost:8000/api/memos',
-});
+// const memoAPICore = axios.create({
+//   baseURL: 'http://localhost:8000/api/memos',
+// });
 
 export default {
   name: 'MemoApp',
@@ -30,6 +32,7 @@ export default {
   computed: {
     ...mapState([
       'memos',
+      'editingId',
     ]),
   },
   created() {
@@ -49,6 +52,10 @@ export default {
       'addMemo',
       'deleteMemo',
       'updateMemo',
+    ]),
+    ...mapMutations([
+      'SET_EDITING_ID',
+      'RESET_EDITING_ID',
     ]),
     // addMemo(payload) {
     //  this.memos.push(payload);
