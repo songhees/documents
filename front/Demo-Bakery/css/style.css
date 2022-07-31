@@ -1,0 +1,40 @@
+section {
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.hero {
+  background-image: url(../images/morning-g13a1a7d48_1920.jpg);
+  text-align: center;
+  padding-top: 10vh;
+}
+
+.flowers {
+  background-image: url(../images/dandelion-gbcefe514b_1920.jpg), url(../images/blue-flower-g4da9d9c8c_1920.jpg);
+  background-size: 50vw 100vh, 50vw 100vh;
+  background-position: left, right;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
+.flowers_title {
+  padding-top: 10vh;
+  margin: 0;
+  color: white;
+  font-size: 20px;
+}
+
+body {
+  margin: 0;
+}
+
+[href] {
+  color: black;
+  text-decoration: none;
+}
+
+p {
+  font-family: 'Gowun Batang', serif;
+}
