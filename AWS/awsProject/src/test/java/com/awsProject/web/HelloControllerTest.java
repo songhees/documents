@@ -1,4 +1,4 @@
-package com.awsProject;
+package com.awsProject.web;
 
 import com.awsProject.web.HelloController;
 import org.junit.Test;

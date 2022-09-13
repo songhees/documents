@@ -1,2 +1,6 @@
-package com.awsProject.domain.posts;public interface PostsRepository {
+package com.awsProject.domain.posts;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PostsRepository extends JpaRepository<Posts, Long> {
 }
