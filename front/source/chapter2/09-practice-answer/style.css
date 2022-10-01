@@ -19,7 +19,7 @@ p {
 .container {
     /* 스크롤 스냅 설정 */
     overflow: auto;
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: y proximity;
     height: 100vh;
 }
 .area {

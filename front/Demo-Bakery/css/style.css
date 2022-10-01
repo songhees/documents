@@ -1,7 +1,27 @@
+
+body {
+  margin: 0;
+}
+
+[href] {
+  color: black;
+  text-decoration: none;
+  width: 100px;
+}
+
+p {
+  font-family: 'Gowun Batang', serif;
+  margin: 0;
+  font-size: 44px;
+}
+
 .container {
   overflow: auto;
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
   height: 100vh;
+}
+.container h1 {
+  font-size: 46px;
 }
 
 section {
@@ -9,14 +29,115 @@ section {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-
   scroll-snap-align: start;
 }
+section p:not(.main p) {
+  padding-top: 20vh;
+}
 
-.hero {
-  background-image: url(../images/morning-g13a1a7d48_1920.jpg);
+.main {
+  background-color: white;
   text-align: center;
   padding-top: 10vh;
+  height: 100vh;
+}
+li {
+  padding-top: 10px;
+}
+.main li::before {
+  font-family: "Font Awesome 5 Free"; 
+  content: "\f00c";
+  font-weight: 900;
+  margin: 0 8px 2px 0;
+}
+.explanationBtn {
+  padding: 1rem;
+  font-family: 'Gowun Batang', serif;
+  border-radius: 5px;
+  border: 2px solid black;
+  box-shadow: 2px 3px rgb(156, 156, 156);
+  top: -1px;
+  position: relative;
+
+}
+.explanationBtn:hover {
+  box-shadow: 0 1px rgb(156, 156, 156);
+  top: 2px;
+}
+
+.sub1 {
+  background-color: black;  
+  text-align: center;
+  color: white;
+}
+.sub1 ul {
+  counter-reset: chater 0;
+}
+.sub1 li {
+  counter-increment: list;
+  padding-top: 30px;
+}
+.sub1 li::before {
+  content: counter(list) '.';
+  margin: 0 8px 2px 0;
+  padding: 4px;
+  background-color: white;
+  color: black;
+  border-radius: 25%;
+}
+
+ul {
+  font-family: 'Gowun Batang', serif;
+  margin: auto;
+  text-align: start;
+  display: table;
+  padding: 0;
+  font-size: 20px;
+  list-style: none;
+}
+
+
+
+.sub2 {
+  background-color: white;
+  text-align: center;
+}
+
+/* sidebar css */
+header {
+  padding: 1.5rem;
+  position: fixed;
+  background-color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  border: 1px solid black;
+  z-index: 100;
+}
+header h1 {
+  color: white;
+}
+.sideMenuBtn {
+  border: 3px solid black;
+  box-shadow: 0 0 0 5px white;
+  background-color: white;
+  height: 6vh;
+  width: 15%;
+  border-radius: 9px;
+  color: black;
+  font-weight: 400;
+  cursor: pointer;
+  padding: 0;
+}
+
+@media (max-height: 420px) {
+  header {
+    padding: 1rem;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
 }
 
 .flowers {
@@ -32,17 +153,4 @@ section {
   margin: 0;
   color: white;
   font-size: 20px;
-}
-
-body {
-  margin: 0;
-}
-
-[href] {
-  color: black;
-  text-decoration: none;
-}
-
-p {
-  font-family: 'Gowun Batang', serif;
 }

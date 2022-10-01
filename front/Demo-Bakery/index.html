@@ -10,6 +10,8 @@
       .title {
         font-family: 'Dancing Script', cursive;
         font-size: 2.4rem;
+        position: relative;
+        margin-top: 20vh;
       }
 
       @media (max-width: 700px) {
@@ -23,7 +25,7 @@
       }
       .footer {
         position: relative;
-        top: 62vh;
+        top: 20vh;
       }
       .snsIcon {
         margin-right: 10px;
@@ -31,16 +33,30 @@
     </style>
 </head>
 <body>
+  <header >
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h1 style="display: inline; margin: 0;">side bar</h1>
+      <button type="button" class="sideMenuBtn">button</button>
+    </div>
+  </header>
 <div class="container">
-  <section class="hero">
-    <h1 class="title">OSH flower</h1>
-    <a href="flowers.html">
-      <p class="content">
+  <section class="main">
+    <h1 class="title">Main Menu</h1>
+    <a class="explanationBtn" href="flowers.html">
+      Web Explanation
+      <!-- <p class="content">
         아름다운 꽃. <br>
         여러 모습의 사진 <br>
         함께 알아보는 시간을 만끽해보세요. 
-      </p>
+      </p> -->
     </a>
+    <div style="margin-top: 40px;">
+      <ul>
+        <li>Hello</li>
+        <li>this is</li>
+        <li>just practice</li>
+      </ul>
+    </div>
     <div class="footer">
       <span class="snsIcon fa-stack">
         <a>
@@ -62,12 +78,27 @@
       </span>
       </div>
   </section>
-  <section class="inst">
+  <section class="sub1">
     <div>
-      <p>안녕하세요</p>
+      <p>sub content</p>
+    </div>
+    <div style="margin-top: 20px;">
+      <ul>
+        <li>number1 content</li>
+        <li>number2 content</li>
+        <li>number3 content</li>
+      </ul>
+    </div>
+  </section>
+  <section class="sub2">
+    <div>
+      <p>sub content</p>
     </div>
   </section>
 </div>
 </body>
 <script src="https://kit.fontawesome.com/2dd5a5b03c.js" crossorigin="anonymous"></script>
+<script type="text/javascript">
+  
+</script>
 </html>
