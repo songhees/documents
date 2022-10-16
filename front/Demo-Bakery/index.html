@@ -44,11 +44,6 @@
     <h1 class="title">Main Menu</h1>
     <a class="explanationBtn" href="flowers.html">
       Web Explanation
-      <!-- <p class="content">
-        아름다운 꽃. <br>
-        여러 모습의 사진 <br>
-        함께 알아보는 시간을 만끽해보세요. 
-      </p> -->
     </a>
     <div style="margin-top: 40px;">
       <ul>
@@ -94,11 +89,67 @@
     <div>
       <p>sub content</p>
     </div>
+    <div style="margin-top: 10vh;">
+      <blockquote style="display: inline-block">
+        인터넷 서비스의 하나인 월드 와이드 웹을 통해 볼 수 있는 문서를 만들 때 사용하는 프로그래밍 언어의 한 종류이다.
+        인터넷 서비스의 하나인 월드 와이드 웹을 통해 볼 수 있는 문서를 만들 때 사용하는 프로그래밍 언어의 한 종류이다.
+        인터넷 서비스의 하나인 월드 와이드 웹을 통해 볼 수 있는 문서를 만들 때 사용하는 프로그래밍 언어의 한 종류이다.
+      </blockquote>
+      <blockquote>
+        CSS 는 규칙 기반 언어입니다 — 웹 페이지의 특정 요소 또는 요소 그룹에 적용할 스타일 그룹을 지정하는 규칙을 정의합니다. 
+        CSS 는 규칙 기반 언어입니다 — 웹 페이지의 특정 요소 또는 요소 그룹에 적용할 스타일 그룹을 지정하는 규칙을 정의합니다. 
+        CSS 는 규칙 기반 언어입니다 — 웹 페이지의 특정 요소 또는 요소 그룹에 적용할 스타일 그룹을 지정하는 규칙을 정의합니다. 
+      </blockquote>
+      <blockquote>
+        인터넷 서비스의 하나인 월드 와이드 웹을 통해 볼 수 있는 문서를 만들 때 사용하는 프로그래밍 언어의 한 종류이다.
+        인터넷 서비스의 하나인 월드 와이드 웹을 통해 볼 수 있는 문서를 만들 때 사용하는 프로그래밍 언어의 한 종류이다.
+        인터넷 서비스의 하나인 월드 와이드 웹을 통해 볼 수 있는 문서를 만들 때 사용하는 프로그래밍 언어의 한 종류이다.
+      </blockquote>
+    </div>
+    <div class="pagination" style="margin-top: 20vh;">
+      <ul id="pagination">
+      </ul>
+    </div>
   </section>
 </div>
 </body>
 <script src="https://kit.fontawesome.com/2dd5a5b03c.js" crossorigin="anonymous"></script>
 <script type="text/javascript">
+  let list = document.querySelectorAll("blockquote");
+  let pagination = document.getElementById("pagination");
+  let page;
+  for (let i = 0; i < list.length; i++) {
+    pagination.innerHTML += '<li class="page active'+ (i+1) +'">' + (i+1) + '</li>'
+  }
+  list.forEach((el, index) => {
+    el.classList.add('active' + (index+1));
+  })
   
+  // showQuote("active1");
+  let clickPage = document.querySelector("ul#pagination")
+  let listPage = document.querySelectorAll(".page")
+  document.querySelector("li.active1").setAttribute("data", "current");
+  let quoteList = document.querySelectorAll("blockquote");
+  clickPage.addEventListener('click', showQuote);
+
+  function showQuote(event) {
+    console.log(event.target)
+    if (event.target.tagName == 'UL') {
+      return;
+    }
+    listPage.forEach(el => {
+      el.removeAttribute("data", "current")
+    })
+    quoteList.forEach(el => {
+      el.style.display = 'none';
+    })
+    let target = event.target.classList[1];
+    document.querySelector("li." + target).setAttribute("data","current")
+    let quote = document.querySelector("blockquote." + target);
+    quote.style.display = 'inline-block';
+  }
+
+
+
 </script>
 </html>

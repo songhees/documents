@@ -29,7 +29,7 @@ section {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  scroll-snap-align: start;
+  /* scroll-snap-align: end; */
 }
 section p:not(.main p) {
   padding-top: 20vh;
@@ -103,6 +103,34 @@ ul {
   text-align: center;
 }
 
+blockquote {
+  position: relative;
+  width: 50vw;
+  padding: 1rem;
+  display: none;
+}
+
+blockquote::before,
+blockquote::after {
+  content: '';
+  width: 40px;
+  height: 40px;
+  position: absolute;
+}
+
+blockquote::before {
+  border-top: 2px solid #ccc;
+  border-left: 2px solid #ccc;
+  top: 0px;
+  left: 0px;
+}
+blockquote::after {
+  border-bottom: 2px solid #ccc;
+  border-right: 2px solid #ccc;
+  right: 0px;
+  bottom: 0px;
+}
+
 /* sidebar css */
 header {
   padding: 1.5rem;
@@ -153,4 +181,31 @@ header h1 {
   margin: 0;
   color: white;
   font-size: 20px;
+}
+
+#pagination {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+}
+
+#pagination li {
+  width: 36px;
+  height: 36px;
+  text-align: center;
+  padding: 0 !important;
+  line-height: 36px;
+}
+
+#pagination li:hover {
+  background-color: #ccc;
+  border-radius: 80%;
+  color: white;
+}
+
+#pagination li[data='current'] {
+  background-color: rgb(138, 207, 206);
+  border-radius: 80%;
+  color: white;
 }
