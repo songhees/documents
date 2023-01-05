@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings:CannedTemplate xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:settings="kr.co.tomatosystem.exbuilder.model.ui.settings" uuid="3f3be6a1-5416-4b9a-a38f-8f0fe492ba08" name="폼 레이아웃" preferredWidth="984" preferredHeight="300">
+  <control xsi:type="cl:Group" sid="group-333013f5" class="cl-form-group">
+    <layoutData xsi:type="cl:XYLayoutData" sid="xyl-data-9f42e348" top="20px" right="20px" left="20px" height="300px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
+    <controls xsi:type="cl:Output" sid="output-c8b62a8a" value="OutputOutputOutputOutputOutputOutputOutputOutputOutputOutputOutputOutputOutputOutputOutputOutputOutputOutputOutput">
+      <layoutData xsi:type="cl:FormData" sid="f-data-3f99d132" rowIndex="0" colIndex="0"/>
+    </controls>
+    <controls xsi:type="cl:Output" sid="output-e61d5cf9" value="OutputOutputOutputOutputOutputOutputOutputOutputOutputOutputOutputOutputOutputOutputOutputOutputOutputOutputOutput">
+      <layoutData xsi:type="cl:FormData" sid="f-data-dd607a05" horizontalAlign="FILL" verticalAlign="FILL" rowIndex="4" colIndex="0" rowSpan="2" colSpan="1"/>
+    </controls>
+    <layout xsi:type="cl:FormLayout" sid="f-layout-fbc4b546" scrollable="true" userResizingMode="standard" horizontalSpacing="15px" verticalSpacing="15px" topMargin="5px" rightMargin="5px" bottomMargin="5px" leftMargin="5px" horizontalSeparatorWidth="1" horizontalSeparatorType="BY_CLASS" verticalSeparatorWidth="1" verticalSeparatorType="BY_CLASS">
+      <rows length="25" unit="PIXEL" autoSizing="true"/>
+      <rows length="25" unit="PIXEL"/>
+      <rows length="25" unit="PIXEL"/>
+      <rows length="25" unit="PIXEL"/>
+      <rows length="25" unit="PIXEL"/>
+      <rows length="1" unit="FRACTION" minLength="100"/>
+      <columns length="100" unit="PIXEL" shadeType="BY_CLASS"/>
+      <columns length="1" unit="FRACTION"/>
+      <columns length="100" unit="PIXEL" shadeType="BY_CLASS"/>
+      <columns length="1" unit="FRACTION"/>
+    </layout>
+  </control>
+</settings:CannedTemplate>
