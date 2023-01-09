@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-98ef3bde" version="1.0.4167">
+  <head std:sid="head-a6350a9e">
+    <screen std:sid="screen-25f66627" id="default" name="default" width="1024px" height="768px" active="false"/>
+    <screen std:sid="screen-24975e8a" id="tablet" name="tablet" width="500px" height="667px" active="false"/>
+    <screen std:sid="screen-d7a9975a" id="mobile" name="mobile" width="350px" height="525px" active="true"/>
+    <cl:model std:sid="model-74e56802"/>
+    <cl:appspec/>
+  </head>
+  <body std:sid="body-a78e2aef">
+    <cl:button std:sid="button-526b425c" value="1">
+      <cl:responsivexylayoutdata std:sid="rxyl-data-6a5ddadd">
+        <cl:xylayoutdata std:sid="sxyl-data-2084bb2c" top="20px" left="20px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-fadc3e85" top="20px" left="10px" width="49px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="tablet"/>
+        <cl:xylayoutdata std:sid="sxyl-data-ba577423" top="20px" left="3px" width="17px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="mobile"/>
+      </cl:responsivexylayoutdata>
+    </cl:button>
+    <cl:button std:sid="button-d50e2bb0" value="2">
+      <cl:responsivexylayoutdata std:sid="rxyl-data-1c434f0d">
+        <cl:xylayoutdata std:sid="sxyl-data-f2091db7" top="20px" width="100px" height="20px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-780163b7" top="20px" width="49px" height="20px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="tablet"/>
+        <cl:xylayoutdata std:sid="sxyl-data-1bd7293c" top="20px" width="17px" height="20px" horizontalAnchor="CENTER" verticalAnchor="TOP" screenid="mobile"/>
+      </cl:responsivexylayoutdata>
+    </cl:button>
+    <cl:button std:sid="button-70252357" value="3">
+      <cl:responsivexylayoutdata std:sid="rxyl-data-5438d70c">
+        <cl:xylayoutdata std:sid="sxyl-data-c9653878" top="20px" right="20px" width="100px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-ca8d246a" top="20px" right="10px" width="49px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="tablet"/>
+        <cl:xylayoutdata std:sid="sxyl-data-c6e9504b" top="20px" right="3px" width="17px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="TOP" screenid="mobile"/>
+      </cl:responsivexylayoutdata>
+    </cl:button>
+    <cl:button std:sid="button-4b25b7cd" value="4">
+      <cl:responsivexylayoutdata std:sid="rxyl-data-17b6d18f">
+        <cl:xylayoutdata std:sid="sxyl-data-8feaf71d" left="20px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="CENTER" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-f79856da" left="10px" width="49px" height="20px" horizontalAnchor="LEFT" verticalAnchor="CENTER" screenid="tablet"/>
+        <cl:xylayoutdata std:sid="sxyl-data-870638e4" left="3px" width="17px" height="20px" horizontalAnchor="LEFT" verticalAnchor="CENTER" screenid="mobile"/>
+      </cl:responsivexylayoutdata>
+    </cl:button>
+    <cl:button std:sid="button-584aa572" value="5">
+      <cl:responsivexylayoutdata std:sid="rxyl-data-00110aef">
+        <cl:xylayoutdata std:sid="sxyl-data-e01c0638" width="100px" height="20px" horizontalAnchor="CENTER" verticalAnchor="CENTER" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-6f4d0f81" width="153px" height="154px" horizontalAnchor="CENTER" verticalAnchor="CENTER" screenid="tablet"/>
+        <cl:xylayoutdata std:sid="sxyl-data-e39af5aa" width="17px" height="20px" horizontalAnchor="CENTER" verticalAnchor="CENTER" screenid="mobile" hidden="true"/>
+      </cl:responsivexylayoutdata>
+    </cl:button>
+    <cl:button std:sid="button-8756e4a1" value="6">
+      <cl:responsivexylayoutdata std:sid="rxyl-data-640d4760">
+        <cl:xylayoutdata std:sid="sxyl-data-47448cf8" right="20px" width="100px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="CENTER" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-24fd598c" right="10px" width="49px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="CENTER" screenid="tablet"/>
+        <cl:xylayoutdata std:sid="sxyl-data-34fc7721" right="3px" width="17px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="CENTER" screenid="mobile"/>
+      </cl:responsivexylayoutdata>
+    </cl:button>
+    <cl:button std:sid="button-671f5339" value="7">
+      <cl:responsivexylayoutdata std:sid="rxyl-data-67e3f65d">
+        <cl:xylayoutdata std:sid="sxyl-data-71deaa2c" bottom="20px" left="20px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="BOTTOM" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-0e2ba87a" bottom="20px" left="10px" width="49px" height="20px" horizontalAnchor="LEFT" verticalAnchor="BOTTOM" screenid="tablet"/>
+        <cl:xylayoutdata std:sid="sxyl-data-3ed1b0a6" bottom="20px" left="3px" width="17px" height="20px" horizontalAnchor="LEFT" verticalAnchor="BOTTOM" screenid="mobile"/>
+      </cl:responsivexylayoutdata>
+    </cl:button>
+    <cl:button std:sid="button-b6fc8978" value="8">
+      <cl:responsivexylayoutdata std:sid="rxyl-data-3dc80873">
+        <cl:xylayoutdata std:sid="sxyl-data-39ceba8b" bottom="20px" width="100px" height="20px" horizontalAnchor="CENTER" verticalAnchor="BOTTOM" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-fe1a09dc" bottom="20px" width="49px" height="20px" horizontalAnchor="CENTER" verticalAnchor="BOTTOM" screenid="tablet"/>
+        <cl:xylayoutdata std:sid="sxyl-data-1e2c7f0d" bottom="20px" width="17px" height="20px" horizontalAnchor="CENTER" verticalAnchor="BOTTOM" screenid="mobile"/>
+      </cl:responsivexylayoutdata>
+    </cl:button>
+    <cl:button std:sid="button-4587f066" value="9">
+      <cl:responsivexylayoutdata std:sid="rxyl-data-ad93a8dc">
+        <cl:xylayoutdata std:sid="sxyl-data-6f47319e" right="20px" bottom="20px" width="100px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="BOTTOM" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-96538a24" right="10px" bottom="20px" width="49px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="BOTTOM" screenid="tablet"/>
+        <cl:xylayoutdata std:sid="sxyl-data-c8268abf" right="3px" bottom="20px" width="17px" height="20px" horizontalAnchor="RIGHT" verticalAnchor="BOTTOM" screenid="mobile"/>
+      </cl:responsivexylayoutdata>
+    </cl:button>
+    <cl:responsivexylayout std:sid="r-xylayout-973faacd"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>
