@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-65a6c799" version="1.0.4167">
+  <head std:sid="head-52b3ce59">
+    <screen std:sid="screen-4974a017" id="default" name="default" width="1024px" height="768px"/>
+    <screen std:sid="screen-f71bc2fe" id="tablet" name="tablet" width="500px" height="667px"/>
+    <screen std:sid="screen-d5c1952f" id="mobile" name="mobile" width="350px" height="525px"/>
+    <cl:model std:sid="model-a7514fd0">
+      <cl:dataset comment="데이터셋1" std:sid="d-set-d7549bcf" id="ds1" sortcondition="" filtercondition="column2 != 'column6'">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-613eb50e" name="name"/>
+          <cl:datacolumn comment="" std:sid="d-column-2c175aa6" info="" name="column1" datatype="string" displayonly="false" expression="column2 + column3"/>
+          <cl:datacolumn std:sid="d-column-c62c8250" name="column2"/>
+          <cl:datacolumn std:sid="d-column-84873412" name="column3"/>
+          <cl:datacolumn std:sid="d-column-82f74afa" name="column4"/>
+        </cl:datacolumnlist>
+        <cl:dataview std:sid="d-view-60091840" id="dv1"/>
+        <cl:datarowlist>
+          <cl:datarow>
+            <cl:datavalue columnname="name"><![CDATA[Tomato]]></cl:datavalue>
+            <cl:datavalue columnname="column1"><![CDATA[column11]]></cl:datavalue>
+            <cl:datavalue columnname="column2"><![CDATA[21]]></cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="name"><![CDATA[eXbuilder6]]></cl:datavalue>
+            <cl:datavalue columnname="column1">column12</cl:datavalue>
+            <cl:datavalue columnname="column2"><![CDATA[22]]></cl:datavalue>
+          </cl:datarow>
+        </cl:datarowlist>
+      </cl:dataset>
+      <cl:datamap std:sid="d-map-677744e2" id="dm1">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-6388c9f5" name="color" defaultvalue="blue"/>
+        </cl:datacolumnlist>
+      </cl:datamap>
+    </cl:model>
+    <cl:appspec title="태그에 데이터 바인딩">
+      <cl:property name="name" type="string" default="appProperty"/>
+    </cl:appspec>
+  </head>
+  <body std:sid="body-df2ac26a">
+    <cl:group std:sid="group-089a2792" style="border-right-style:solid; border-radius:1px; border-bottom-color:#d2d2d2; border-left-style:solid; border-left-color:#d2d2d2; border-top-color:#d2d2d2; border-right-color:#d2d2d2; border-bottom-style:solid; background-image:none; border-top-style:solid;" class="cl-form-group">
+      <cl:verticaldata std:sid="v-data-61f8a68d" width="1003px" height="215px"/>
+      <cl:output std:sid="output-049d8998" style="font-size:12px;" value="속성 바인딩 예시">
+        <cl:formdata std:sid="f-data-2707c1d1" row="0" col="1"/>
+      </cl:output>
+      <cl:output std:sid="output-1779ae0e" style="font-size:12px;" value="바인딩 유형">
+        <cl:listener std:sid="listener-858942c6" name="value-change" handler="onOutputValueChange"/>
+        <cl:formdata std:sid="f-data-7d3fec9d" row="0" col="0"/>
+      </cl:output>
+      <cl:output std:sid="output-7f4ae702" style="font-size:12px;" value="데이터 셋">
+        <cl:listener std:sid="listener-0b3e4a44" name="value-change" handler="onOutputValueChange2"/>
+        <cl:formdata std:sid="f-data-18cb84cf" row="1" col="0" rowspan="1" colspan="1"/>
+      </cl:output>
+      <cl:output std:sid="output-d553476e" style="font-size:12px;" value="표현식">
+        <cl:formdata std:sid="f-data-49be24da" row="5" col="0"/>
+      </cl:output>
+      <cl:output std:sid="output-e7bd46c0" style="font-size:12px;" value="다국어">
+        <cl:formdata std:sid="f-data-98cbb12c" row="4" col="0"/>
+      </cl:output>
+      <cl:output std:sid="output-7302acf8" style="font-size:12px;" value="앱 속성">
+        <cl:formdata std:sid="f-data-02b5e67e" row="3" col="0"/>
+      </cl:output>
+      <cl:output std:sid="output-c0786967" style="font-size:12px;" value="데이터 맵">
+        <cl:listener std:sid="listener-9184d37d" name="value-change" handler="onOutputValueChange3"/>
+        <cl:listener std:sid="listener-b99b6aac" name="value-change" handler="onOutputValueChange4"/>
+        <cl:formdata std:sid="f-data-2cd8a4cc" row="2" col="0"/>
+      </cl:output>
+      <cl:inputbox std:sid="i-box-aa9c0356" id="ipb1" style="border-radius:2px; background-color:#ffffff; box-shadow:none; border-bottom-color:#d2d2d2; padding-left:5px; border-left-color:#d2d2d2; font-size:12px; border-top-color:#d2d2d2; border-right-color:#d2d2d2; background-image:none;">
+        <cl:datasetbind property="value" category="PROPERTY" datacontrolid="ds1" columnname="name"/>
+        <cl:formdata std:sid="f-data-44f01c14" row="1" col="1"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-c3cbb7f3" id="ipb2" style="border-radius:2px; background-color:#ffffff; box-shadow:none; border-bottom-color:#d2d2d2; padding-left:5px; border-left-color:#d2d2d2; font-size:12px; border-top-color:#d2d2d2; border-right-color:#d2d2d2; background-image:none;">
+        <cl:datamapbind property="value" category="PROPERTY" datacontrolid="dm1" columnname="color"/>
+        <cl:formdata std:sid="f-data-271b2d12" row="2" col="1"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-d9ffd7b2" id="ipb3" style="border-radius:2px; background-color:#ffffff; box-shadow:none; border-bottom-color:#d2d2d2; padding-left:5px; border-left-color:#d2d2d2; font-size:12px; border-top-color:#d2d2d2; border-right-color:#d2d2d2; background-image:none;">
+        <cl:apppropbind property="value" category="PROPERTY" app-property="name"/>
+        <cl:formdata std:sid="f-data-8da5fb29" row="3" col="1"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-f8e886f2" id="ipb4" style="border-radius:2px; background-color:#ffffff; box-shadow:none; border-bottom-color:#d2d2d2; padding-left:5px; border-left-color:#d2d2d2; font-size:12px; border-top-color:#d2d2d2; border-right-color:#d2d2d2; background-image:none;">
+        <cl:langbind property="value" category="PROPERTY" keypath="gretting"/>
+        <cl:formdata std:sid="f-data-9feb1706" row="4" col="1"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-f390cdd1" id="ipb5" style="border-right-style:solid; border-top-width:1px; border-bottom-color:#d2d2d2; white-space:normal; border-right-width:1px; padding-left:5px; border-left-color:#d2d2d2; font-size:12px; border-right-color:#d2d2d2; border-left-width:1px; border-top-style:solid; border-radius:2px; background-color:#ffffff; box-shadow:none; border-left-style:solid; border-bottom-width:1px; border-top-color:#d2d2d2; border-bottom-style:solid; background-image:none;">
+        <cl:expbind property="value" category="PROPERTY" expression="&quot;2 * 3 = &quot; + 2*3"/>
+        <cl:formdata std:sid="f-data-47664db3" row="5" col="1"/>
+      </cl:inputbox>
+      <cl:formlayout std:sid="f-layout-4a6b07cb" scrollable="true" hspace="10px" vspace="10px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px" hseparatorwidth="1" hseparatortype="BY_CLASS" vseparatorwidth="1" vseparatortype="BY_CLASS">
+        <cl:rows length="25" unit="PIXEL" shadetype="CUSTOM" shadecolor="#f3f1ff"/>
+        <cl:rows length="25" unit="PIXEL"/>
+        <cl:rows length="25" unit="PIXEL"/>
+        <cl:rows length="25" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
+        <cl:rows length="25" unit="PIXEL"/>
+        <cl:rows length="25" unit="PIXEL"/>
+        <cl:columns length="100" unit="PIXEL" shadetype="CUSTOM" shadecolor="#f3f1ff"/>
+        <cl:columns length="1" unit="FRACTION"/>
+      </cl:formlayout>
+    </cl:group>
+    <cl:group std:sid="group-d7bd94c6" style="background-color:#ffffff; border-radius:2px; border-bottom-color:#d8d8d8; border-left-color:#d8d8d8; border-top-color:#d8d8d8; border-right-color:#d8d8d8; background-image:none;" class="cl-form-group">
+      <cl:verticaldata std:sid="v-data-16afa2e5" width="1014px" height="277px"/>
+      <cl:output std:sid="output-76b75f15" style="font-size:12px;" value="상대 칼럼">
+        <cl:formdata std:sid="f-data-5ba3ec88" row="1" col="0" rowspan="3" colspan="1"/>
+      </cl:output>
+      <cl:output std:sid="output-6a8154db" style="font-size:12px;" value="바인딩 유형">
+        <cl:formdata std:sid="f-data-7e292d51" row="0" col="0"/>
+      </cl:output>
+      <cl:output std:sid="output-e7ffe581" style="font-size:12px;" value="상대 칼럼 바인딩 예시">
+        <cl:formdata std:sid="f-data-e4c58213" row="0" col="1" rowspan="1" colspan="3"/>
+      </cl:output>
+      <cl:inputbox std:sid="i-box-c1ba9d93" id="ipb6" style="background-color:#ffffff; border-radius:2px; border-bottom-color:#d8d8d8; border-left-color:#d8d8d8; font-size:12px; border-top-color:#d8d8d8; border-right-color:#d8d8d8; background-image:none;" value="데이터 로우 컨텍스트">
+        <cl:formdata std:sid="f-data-09d18811" row="1" col="1"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-2f4ae99c" id="ipb7" style="background-color:#ffffff; border-radius:2px; border-bottom-color:#d8d8d8; padding-left:5px; border-left-color:#d8d8d8; font-size:12px; border-top-color:#d8d8d8; border-right-color:#d8d8d8; background-image:none;">
+        <cl:relativebind property="value" category="PROPERTY" columnname="column1"/>
+        <cl:datarowcontext datacontrolid="ds1"/>
+        <cl:formdata std:sid="f-data-9ac4c071" row="2" col="1"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-ae7a6bcf" id="ipb8" style="background-color:#ffffff; border-radius:2px; border-bottom-color:#d8d8d8; border-left-color:#d8d8d8; font-size:12px; border-top-color:#d8d8d8; border-right-color:#d8d8d8; background-image:none;" value="데이터 맵 컨텍스트">
+        <cl:listener std:sid="listener-1cb7817e" name="value-change" handler="onIpb8ValueChange"/>
+        <cl:formdata std:sid="f-data-a168a6f6" row="1" col="2"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-1ab60d97" id="ipb9" style="background-color:#ffffff; border-radius:2px; border-bottom-color:#d8d8d8; padding-left:5px; border-left-color:#d8d8d8; font-size:12px; border-top-color:#d8d8d8; border-right-color:#d8d8d8; background-image:none;">
+        <cl:relativebind property="value" category="PROPERTY" columnname="color"/>
+        <cl:datamapcontext datacontrolid="dm1"/>
+        <cl:formdata std:sid="f-data-df13970c" row="2" col="2"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-135b71d4" id="ipb10" style="background-color:#ffffff; border-radius:2px; border-bottom-color:#d8d8d8; border-left-color:#d8d8d8; font-size:12px; border-top-color:#d8d8d8; border-right-color:#d8d8d8; background-image:none;" value="선택형 컨텍스트">
+        <cl:formdata std:sid="f-data-34c54957" row="1" col="3"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-2da25c9a" id="ipb11" style="background-color:#ffffff; border-radius:2px; border-bottom-color:#d8d8d8; padding-left:5px; border-left-color:#d8d8d8; font-size:12px; border-top-color:#d8d8d8; border-right-color:#d8d8d8; background-image:none;">
+        <cl:relativebind property="value" columnname="name"/>
+        <cl:selectioncontext selectionProvider="#grid-2131ad6b"/>
+        <cl:formdata std:sid="f-data-b9c25066" row="2" col="3"/>
+      </cl:inputbox>
+      <cl:grid std:sid="grid-2131ad6b" id="grd1" style="border-radius:2px; border-bottom-color:#d8d8d8; border-left-color:#d8d8d8; font-size:12px; border-top-color:#d8d8d8; border-right-color:#d8d8d8;" readonly="true" datasetid="ds1">
+        <cl:formdata std:sid="f-data-2415429c" row="3" col="3"/>
+        <cl:gridcolumn std:sid="g-column-b202ec55"/>
+        <cl:gridheader std:sid="gh-band-74c6bb0f">
+          <cl:gridrow std:sid="g-row-cc74b87a"/>
+          <cl:gridcell std:sid="gh-cell-4bd6e1b8" rowindex="0" colindex="0" style="background-color:#f3f1ff; border-right-style:none;" targetcolumnname="name" sortable="false" filterable="false" text="name"/>
+        </cl:gridheader>
+        <cl:griddetail std:sid="gd-band-a30a8481">
+          <cl:gridrow std:sid="g-row-d9a0718e"/>
+          <cl:gridcell std:sid="gd-cell-c9ef1e03" rowindex="0" colindex="0" style="border-right-style:none;" columnname="name">
+            <cl:inputbox std:sid="i-box-3a61104f" id="ipb12" style="padding-left:10px;">
+              <cl:celldata std:sid="c-data-81414ccb"/>
+            </cl:inputbox>
+          </cl:gridcell>
+        </cl:griddetail>
+      </cl:grid>
+      <cl:formlayout std:sid="f-layout-ce4d4594" scrollable="true" hspace="10px" vspace="10px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px" hseparatorwidth="1" hseparatortype="BY_CLASS" vseparatorwidth="1" vseparatortype="BY_CLASS">
+        <cl:rows length="25" unit="PIXEL" shadetype="CUSTOM" shadecolor="#f3f1ff"/>
+        <cl:rows length="25" unit="PIXEL"/>
+        <cl:rows length="25" unit="PIXEL"/>
+        <cl:rows length="1" unit="FRACTION"/>
+        <cl:columns length="100" unit="PIXEL" shadetype="CUSTOM" shadecolor="#f3f1ff"/>
+        <cl:columns length="1" unit="FRACTION"/>
+        <cl:columns length="1" unit="FRACTION" shadetype="NONE"/>
+        <cl:columns length="1" unit="FRACTION"/>
+      </cl:formlayout>
+    </cl:group>
+    <cl:group std:sid="group-6b83ec51">
+      <cl:verticaldata std:sid="v-data-44c83033" width="1014px" height="76px"/>
+      <cl:inputbox std:sid="i-box-be33999e" id="ipb13" style="border-radius:2px; color:#afafaf; padding-left:10px; background-image:none;">
+        <cl:relativebind property="value" columnname="name"/>
+        <cl:xylayoutdata std:sid="xyl-data-461ec8df" left="20px" width="274px" height="36px" horizontalAnchor="LEFT" verticalAnchor="CENTER"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-e30498d5" id="ipb14" style="border-radius:2px; color:#afafaf; padding-left:10px; background-image:none;">
+        <cl:relativebind property="value" columnname="column1"/>
+        <cl:xylayoutdata std:sid="xyl-data-5f656dfb" width="274px" height="36px" horizontalAnchor="CENTER" verticalAnchor="CENTER"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-4c0d9fcd" id="ipb15" style="border-radius:2px; color:#afafaf; padding-left:10px; background-image:none;">
+        <cl:relativebind property="value" columnname="column2"/>
+        <cl:xylayoutdata std:sid="xyl-data-b3aba26f" right="20px" width="289px" height="36px" horizontalAnchor="RIGHT" verticalAnchor="CENTER"/>
+      </cl:inputbox>
+      <cl:xylayout std:sid="xylayout-72fc46c9"/>
+    </cl:group>
+    <cl:verticallayout std:sid="v-layout-0677aeb9" distribution="center"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-bd228e38" version="1.0.4167">
+  <head std:sid="head-d8645fb7">
+    <screen std:sid="screen-9845f44d" id="default" name="default" width="1024px" height="768px"/>
+    <screen std:sid="screen-63fe994c" id="tablet" name="tablet" width="500px" height="667px"/>
+    <screen std:sid="screen-0b1ca754" id="mobile" name="mobile" width="350px" height="525px"/>
+    <cl:model std:sid="model-03ddf8e2"/>
+    <cl:appspec title="컨트롤 종류"/>
+  </head>
+  <body std:sid="body-6c43383b">
+    <cl:group std:sid="group-ec7a4301" style="border-right-style:solid; border-top-width:1px; border-bottom-color:#bbbbbb; border-left-style:solid; border-right-width:1px; border-bottom-width:1px; border-left-color:#bbbbbb; border-top-color:#bbbbbb; border-bottom-style:solid; border-right-color:#bbbbbb; border-left-width:1px; border-top-style:solid;">
+      <cl:verticaldata std:sid="v-data-670051b0" width="1014px" height="127px"/>
+      <cl:output std:sid="output-619bc84d" style="font-size:12px;" value="아웃풋 계열">
+        <cl:verticaldata std:sid="v-data-9b2659ca" width="986px" height="18px"/>
+      </cl:output>
+      <cl:group std:sid="group-d7bd94c6" style="background-color:#ffffff; border-radius:2px; border-bottom-color:#d8d8d8; border-left-color:#d8d8d8; border-top-color:#d8d8d8; border-right-color:#d8d8d8; background-image:none;" class="cl-form-group">
+        <cl:verticaldata std:sid="v-data-a22700c1" width="986px" height="76px"/>
+        <cl:output std:sid="output-76b75f15" style="font-size:12px;" value="아웃풋">
+          <cl:formdata std:sid="f-data-5ba3ec88" row="0" col="0" rowspan="2" colspan="1"/>
+        </cl:output>
+        <cl:inputbox std:sid="i-box-c1ba9d93" id="ipb6" style="background-color:#ffffff; border-radius:2px; border-right-style:none; border-bottom-color:#d8d8d8; border-left-style:none; border-left-color:#d8d8d8; font-size:12px; border-top-color:#d8d8d8; border-right-color:#d8d8d8; border-bottom-style:none; background-image:none; border-top-style:none;" value="String">
+          <cl:formdata std:sid="f-data-09d18811" row="0" col="1"/>
+        </cl:inputbox>
+        <cl:inputbox std:sid="i-box-ae7a6bcf" id="ipb8" style="background-color:#ffffff; border-radius:2px; border-right-style:none; border-bottom-color:#d8d8d8; border-left-style:none; border-left-color:#d8d8d8; font-size:12px; border-top-color:#d8d8d8; border-right-color:#d8d8d8; border-bottom-style:none; background-image:none; border-top-style:none;" value="Number">
+          <cl:formdata std:sid="f-data-a168a6f6" row="0" col="2"/>
+        </cl:inputbox>
+        <cl:inputbox std:sid="i-box-135b71d4" id="ipb10" style="background-color:#ffffff; border-radius:2px; border-right-style:none; border-bottom-color:#d8d8d8; border-left-style:none; border-left-color:#d8d8d8; font-size:12px; border-top-color:#d8d8d8; border-right-color:#d8d8d8; border-bottom-style:none; background-image:none; border-top-style:none;" value="Date">
+          <cl:formdata std:sid="f-data-34c54957" row="0" col="3"/>
+        </cl:inputbox>
+        <cl:output std:sid="output-1f24836f" value="20220202" datatype="date" dateValueFormat="YYYY-MM-DD&#xA;" format="YYYY-MM-DD">
+          <cl:formdata std:sid="f-data-90f417c3" row="1" col="3"/>
+        </cl:output>
+        <cl:output std:sid="output-1cc89970" value="exbuilder6">
+          <cl:formdata std:sid="f-data-c2a13cb5" row="1" col="1"/>
+        </cl:output>
+        <cl:output std:sid="output-f3e3bd9d" value="31405926" datatype="number" format="s#,##0">
+          <cl:formdata std:sid="f-data-0e4e50dd" row="1" col="2"/>
+        </cl:output>
+        <cl:formlayout std:sid="f-layout-ce4d4594" scrollable="true" hspace="10px" vspace="10px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px" hseparatorwidth="1" hseparatortype="BY_CLASS" vseparatorwidth="1" vseparatortype="BY_CLASS">
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
+          <cl:columns length="150" unit="PIXEL" shadetype="CUSTOM" shadecolor="#f3f1ff"/>
+          <cl:columns length="1" unit="FRACTION" shadetype="NONE" shadecolor="transparent"/>
+          <cl:columns length="1" unit="FRACTION" shadetype="NONE"/>
+          <cl:columns length="1" unit="FRACTION"/>
+        </cl:formlayout>
+      </cl:group>
+      <cl:verticallayout std:sid="v-layout-31d1edee" distribution="center" topmargin="13" bottommargin="13"/>
+    </cl:group>
+    <cl:group std:sid="group-6c3c988c" style="border-right-style:solid; border-top-width:1px; border-bottom-color:#bbbbbb; border-left-style:solid; border-right-width:1px; border-bottom-width:1px; border-left-color:#bbbbbb; border-top-color:#bbbbbb; border-bottom-style:solid; border-right-color:#bbbbbb; border-left-width:1px; border-top-style:solid;">
+      <cl:verticaldata std:sid="v-data-2a9e652a" width="1014px" height="376px" autosize="height"/>
+      <cl:output std:sid="output-2af4cf2f" style="font-size:12px;" value="인풋 계열">
+        <cl:verticaldata std:sid="v-data-8ec9ba84" width="988px" height="18px"/>
+      </cl:output>
+      <cl:group std:sid="group-411d3235" class="cl-form-group">
+        <cl:verticaldata std:sid="v-data-a793a9a5" width="986px" height="325px"/>
+        <cl:output std:sid="output-ed390934" style="color:#7a7a7a; font-weight:bold; font-size:12px;" value="인풋박스">
+          <cl:formdata std:sid="f-data-e5a71430" row="0" col="0"/>
+        </cl:output>
+        <cl:output std:sid="output-42c8c388" style="color:#7a7a7a; font-weight:bold; font-size:12px;" value="서치인풋">
+          <cl:listener std:sid="listener-125f59ba" name="value-change" handler="onOutputValueChange"/>
+          <cl:formdata std:sid="f-data-47d3c3f2" row="1" col="0"/>
+        </cl:output>
+        <cl:output std:sid="output-c36aa954" style="color:#7a7a7a; font-weight:bold; font-size:12px;" value="넘버에디터">
+          <cl:formdata std:sid="f-data-e68e873d" row="2" col="0"/>
+        </cl:output>
+        <cl:output std:sid="output-561b35ab" style="color:#7a7a7a; font-weight:bold; font-size:12px;" value="데이트인풋">
+          <cl:formdata std:sid="f-data-db1b6f30" row="3" col="0"/>
+        </cl:output>
+        <cl:output std:sid="output-dfa9b508" style="color:#7a7a7a; font-weight:bold; font-size:12px;" value="마스크에디터">
+          <cl:formdata std:sid="f-data-24d9150c" row="4" col="0"/>
+        </cl:output>
+        <cl:output std:sid="output-f1ea11f9" style="color:#7a7a7a; font-weight:bold; font-size:12px;" value="파일인풋">
+          <cl:formdata std:sid="f-data-e67fd81a" row="5" col="0"/>
+        </cl:output>
+        <cl:output std:sid="output-481240e3" style="color:#7a7a7a; font-weight:bold; font-size:12px;" value="텍스트에리어">
+          <cl:formdata std:sid="f-data-ec08c5de" row="6" col="0"/>
+        </cl:output>
+        <cl:inputbox std:sid="i-box-c84641af" id="ipb1" style="border-radius:2px; padding-left:5px; background-image:none;" value="가나">
+          <cl:formdata std:sid="f-data-ca259dbe" halign="LEFT" width="200" row="0" col="1" rowspan="1" colspan="1"/>
+        </cl:inputbox>
+        <cl:searchinput std:sid="s-input-7696ed4e" style="border-radius:2px; padding-left:5px; background-image:none;" value="가나">
+          <cl:formdata std:sid="f-data-bf19d803" halign="LEFT" width="200" row="1" col="1"/>
+        </cl:searchinput>
+        <cl:numbereditor std:sid="n-editor-85cc5ba2" id="nbe1" style="border-radius:2px; color:#5a5a5a; padding-left:5px; font-size:12px; background-image:none;" value="-4">
+          <cl:formdata std:sid="f-data-82613ce9" halign="LEFT" width="200" row="2" col="1"/>
+        </cl:numbereditor>
+        <cl:dateinput std:sid="d-input-3e627274" id="dti1" style="border-radius:2px; color:#5a5a5a; padding-left:5px; font-size:12px; background-image:none;" value="2022.02.02">
+          <cl:formdata std:sid="f-data-53f6e7ee" halign="LEFT" width="200" row="3" col="1"/>
+        </cl:dateinput>
+        <cl:maskeditor std:sid="m-editor-e91729a8" id="mse1" style="border-radius:2px; color:#5a5a5a; padding-left:5px; font-size:12px; background-image:none;" mask="000000-0000000">
+          <cl:formdata std:sid="f-data-b2e33b72" halign="LEFT" width="200" row="4" col="1"/>
+        </cl:maskeditor>
+        <cl:fileinput std:sid="f-input-a2e39891" id="fi1" style="border-radius:2px; color:#5a5a5a; padding-left:5px; font-size:12px; background-image:none;">
+          <cl:formdata std:sid="f-data-73b1000a" halign="LEFT" width="200" row="5" col="1"/>
+        </cl:fileinput>
+        <cl:textarea std:sid="t-area-bd607b13" id="txa1" style="border-radius:2px; padding-top:5px; color:#5a5a5a; padding-left:5px; font-size:12px; background-image:none;" placeholder="Enter Text">
+          <cl:formdata std:sid="f-data-e3703beb" halign="FILL" width="200" row="6" col="1" rowspan="1" colspan="1"/>
+        </cl:textarea>
+        <cl:formlayout std:sid="f-layout-d7eca99f" scrollable="true" hspace="10px" vspace="10px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px" hseparatorwidth="1" hseparatortype="BY_CLASS" vseparatorwidth="1" vseparatortype="BY_CLASS">
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="1" unit="FRACTION"/>
+          <cl:columns length="100" unit="PIXEL" shadetype="CUSTOM" shadecolor="#f3f1ff"/>
+          <cl:columns length="1" unit="FRACTION"/>
+        </cl:formlayout>
+      </cl:group>
+      <cl:verticallayout std:sid="v-layout-a7ea1fc1" distribution="center" topmargin="13" bottommargin="13"/>
+    </cl:group>
+    <cl:group std:sid="group-59e3e4f3" style="border-right-style:solid; border-top-width:1px; border-bottom-color:#bbbbbb; border-left-style:solid; border-right-width:1px; border-bottom-width:1px; border-left-color:#bbbbbb; border-top-color:#bbbbbb; border-bottom-style:solid; border-right-color:#bbbbbb; border-left-width:1px; border-top-style:solid;">
+      <cl:verticaldata std:sid="v-data-95ffe378" width="1014px" height="409px" autosize="height"/>
+      <cl:output std:sid="output-25e16bbf" style="font-size:12px;" value="select 계열">
+        <cl:verticaldata std:sid="v-data-b21160d8" width="988px" height="18px"/>
+      </cl:output>
+      <cl:group std:sid="group-b4362918" class="cl-form-group">
+        <cl:verticaldata std:sid="v-data-b8b993ac" width="986px" height="358px"/>
+        <cl:output std:sid="output-8fa4424e" style="color:#7a7a7a; font-weight:bold; font-size:12px;" value="콤보박스">
+          <cl:formdata std:sid="f-data-60143e8c" row="0" col="0"/>
+        </cl:output>
+        <cl:output std:sid="output-2b6eb118" style="color:#7a7a7a; font-weight:bold; font-size:12px;" value="링크드 콤보박스">
+          <cl:formdata std:sid="f-data-f894fcb4" row="1" col="0"/>
+        </cl:output>
+        <cl:output std:sid="output-3fd30664" style="color:#7a7a7a; font-weight:bold; font-size:12px;" value="리스트 콤보박스">
+          <cl:formdata std:sid="f-data-f2b8a62f" row="2" col="0"/>
+        </cl:output>
+        <cl:output std:sid="output-63de2666" style="color:#7a7a7a; font-weight:bold; font-size:12px;" value="링크드 리스트박스">
+          <cl:formdata std:sid="f-data-f555ae62" row="3" col="0"/>
+        </cl:output>
+        <cl:output std:sid="output-491262f4" style="color:#7a7a7a; font-weight:bold; font-size:12px;" value="체크박스">
+          <cl:formdata std:sid="f-data-6e8444ac" row="4" col="0"/>
+        </cl:output>
+        <cl:output std:sid="output-a43bda26" style="color:#7a7a7a; font-weight:bold; font-size:12px;" value="체크박스그룹">
+          <cl:formdata std:sid="f-data-3a6bfb54" row="5" col="0"/>
+        </cl:output>
+        <cl:output std:sid="output-0ac98744" style="color:#7a7a7a; font-weight:bold; font-size:12px;" value="라디오 버튼">
+          <cl:formdata std:sid="f-data-c3be873f" row="6" col="0"/>
+        </cl:output>
+        <cl:combobox std:sid="c-box-42fecfb1" id="cmb1" style="color:#5a5a5a; font-size:12px;" placeholder="select" multiple="true">
+          <cl:formdata std:sid="f-data-039767aa" halign="LEFT" width="200" row="0" col="1"/>
+          <cl:item std:sid="t-item-d412efb8" label="label1" value="value1"/>
+          <cl:item std:sid="t-item-3f006863" label="label2" value="value2"/>
+          <cl:item std:sid="t-item-ec821c71" label="label3" value="value3"/>
+          <cl:item std:sid="t-item-7226eedb" label="label4" value="value4"/>
+          <cl:item std:sid="t-item-7364ef6d" label="label5" value="value5"/>
+          <cl:item std:sid="t-item-7f8bd4cb" label="label6" value="value6"/>
+        </cl:combobox>
+        <cl:linkedcombobox std:sid="lc-box-d080e9fc" id="lcb1" style="color:#5a5a5a; font-size:12px;">
+          <cl:formdata std:sid="f-data-17133440" halign="LEFT" width="800" row="1" col="1"/>
+          <cl:treeitem std:sid="t-item-fb304547" label="label1" value="value1" parent="" checked="false"/>
+          <cl:treeitem std:sid="t-item-ba1d3b92" label="label2" value="value2" checked="false"/>
+          <cl:treeitem std:sid="t-item-46bffb86" label="label3" value="value3" checked="false"/>
+          <cl:treeitem std:sid="t-item-d34747fb" label="label4" value="value4" parent="value1" checked="false"/>
+          <cl:treeitem std:sid="t-item-33de3b69" label="label5" value="value5" parent="value3" checked="false"/>
+          <cl:treeitem std:sid="t-item-d3bf1fb0" label="label6" value="value6" parent="value3" checked="false"/>
+          <cl:treeitem std:sid="t-item-e48a2855" label="label7" value="value7" parent="value5"/>
+          <cl:treeitem std:sid="t-item-50642051" label="label8" value="value8" parent="value6"/>
+          <cl:placeholder>select</cl:placeholder>
+        </cl:linkedcombobox>
+        <cl:listbox std:sid="l-box-6beb0236" id="lbx1" style="color:#5a5a5a; font-size:14px;">
+          <cl:formdata std:sid="f-data-71e1f126" halign="LEFT" width="200" row="2" col="1"/>
+          <cl:item std:sid="item-7270fa84" label="label1" value="value1"/>
+          <cl:item std:sid="item-5f6c3c42" label="label2" value="value2"/>
+          <cl:item std:sid="item-8824543c" label="label3" value="value3"/>
+          <cl:item std:sid="item-731dc4d3" label="label4" value="value4"/>
+          <cl:item std:sid="item-36d81589" label="label5" value="value5"/>
+          <cl:item std:sid="item-99f0288c" label="label6" value="value6"/>
+          <cl:item std:sid="item-40531d64" label="label7" value="value7"/>
+        </cl:listbox>
+        <cl:linkedlistbox std:sid="ll-box-359cba11" id="llb1" style="color:#5a5a5a;">
+          <cl:formdata std:sid="f-data-b310fadc" halign="LEFT" width="800" row="3" col="1"/>
+          <cl:treeitem std:sid="t-item-fcbc2cb7" label="label1" value="value1"/>
+          <cl:treeitem std:sid="t-item-90afd022" label="label2" value="value2"/>
+          <cl:treeitem std:sid="t-item-672b058f" label="label3" value="value3" parent=""/>
+          <cl:treeitem std:sid="t-item-292b51ed" label="label4" value="value4" parent="value1"/>
+          <cl:treeitem std:sid="t-item-bfbe5b6c" label="label5" value="value5" parent="value1"/>
+          <cl:treeitem std:sid="t-item-dd3efbf8" label="label6" value="value6" parent="value3"/>
+          <cl:treeitem std:sid="t-item-92ba7133" label="label7" value="value7" parent="value5"/>
+          <cl:treeitem std:sid="t-item-28dabb2a" label="label8" value="value8" parent="value5"/>
+          <cl:listboxstyle style="font-size:12px;"/>
+          <cl:itemstyle style="font-size:14px;"/>
+        </cl:linkedlistbox>
+        <cl:checkbox std:sid="c-box-aa871f7f" id="cbx1" style="color:#5a5a5a; font-size:12px;" text="Check">
+          <cl:formdata std:sid="f-data-cf912d6e" halign="LEFT" width="200" row="4" col="1"/>
+        </cl:checkbox>
+        <cl:radiobutton std:sid="r-button-74190bef" id="rdb1" style="color:#5a5a5a; font-size:12px;" value="value1">
+          <cl:formdata std:sid="f-data-f36d01d1" row="6" col="1"/>
+          <cl:item std:sid="item-580be845" label="label1" value="value1"/>
+          <cl:item std:sid="item-88207f99" label="label2" value="value2"/>
+          <cl:item std:sid="item-a5b595e1" label="label3" value="value3"/>
+          <cl:item std:sid="item-b33bef80" label="label4" value="value4"/>
+          <cl:item std:sid="item-a5ecea32" label="label5" value="value5"/>
+        </cl:radiobutton>
+        <cl:checkboxgroup std:sid="cb-group-42127ddd" id="cbg1" style="color:#5a5a5a; font-size:12px;">
+          <cl:formdata std:sid="f-data-30f02bf8" row="5" col="1"/>
+          <cl:item std:sid="item-21864eb9" label="label1" value="value1"/>
+          <cl:item std:sid="item-6504003c" label="label2" value="value2"/>
+          <cl:item std:sid="item-52d48e2d" label="label3" value="value3"/>
+          <cl:item std:sid="item-064075bf" label="label4" value="value4"/>
+          <cl:item std:sid="item-32b5eaf1" label="label5" value="value5"/>
+          <cl:value>value1</cl:value>
+        </cl:checkboxgroup>
+        <cl:formlayout std:sid="f-layout-861f5eb9" scrollable="true" hspace="10px" vspace="10px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px" hseparatorwidth="1" hseparatortype="BY_CLASS" vseparatorwidth="1" vseparatortype="BY_CLASS">
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="80" unit="PIXEL"/>
+          <cl:rows length="80" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:rows length="25" unit="PIXEL"/>
+          <cl:columns length="100" unit="PIXEL" shadetype="CUSTOM" shadecolor="#f3f1ff"/>
+          <cl:columns length="1" unit="FRACTION"/>
+        </cl:formlayout>
+      </cl:group>
+      <cl:verticallayout std:sid="v-layout-272e9521" distribution="center" leftmargin="0" topmargin="13" bottommargin="13"/>
+    </cl:group>
+    <cl:verticallayout std:sid="v-layout-7448f517" distribution="center" spacing="5" topmargin="10" bottommargin="10" maxcontentheight="-1"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>
