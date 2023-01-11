@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-b626d9b0" version="1.0.4167">
+  <head std:sid="head-bb89da14">
+    <screen std:sid="screen-91cd80a0" id="default" name="default" width="1024px" height="768px"/>
+    <screen std:sid="screen-6aa87e3b" id="tablet" name="tablet" width="500px" height="667px"/>
+    <screen std:sid="screen-7b77d23a" id="mobile" name="mobile" width="350px" height="525px"/>
+    <cl:model std:sid="model-c3d55987">
+      <cl:dataset std:sid="d-set-1e44553c" id="dsList">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-a5535d74" name="first_name" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-65428211" name="last_name"/>
+          <cl:datacolumn std:sid="d-column-62deb7c5" name="id" datatype="number"/>
+          <cl:datacolumn std:sid="d-column-348aab7a" name="email"/>
+          <cl:datacolumn std:sid="d-column-19eec7f4" name="gender"/>
+          <cl:datacolumn std:sid="d-column-72b41742" name="ip_address"/>
+          <cl:datacolumn std:sid="d-column-1ac4673c" name="FULL_NAME" datatype="expression" expression="first_name + &quot; &quot; + last_name"/>
+        </cl:datacolumnlist>
+      </cl:dataset>
+      <cl:submission std:sid="submission-6412b5b6" id="subList" action="dev/data/GridExamData.json">
+        <cl:responsedata dataid="dsList"/>
+      </cl:submission>
+    </cl:model>
+    <cl:appspec/>
+  </head>
+  <body std:sid="body-c47a6241">
+    <cl:listener std:sid="listener-5bb98012" name="load" handler="onBodyLoad"/>
+    <cl:grid std:sid="grid-6a610426" id="grd1" readonly="true" datasetid="dsList">
+      <cl:xylayoutdata std:sid="xyl-data-d5f1fd8d" top="20px" left="20px" width="426px" height="357px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:gridcolumn std:sid="g-column-eba19240"/>
+      <cl:gridheader std:sid="gh-band-2015f1bb">
+        <cl:gridrow std:sid="g-row-df9ee32d"/>
+        <cl:gridcell std:sid="gh-cell-bdbc47c9" rowindex="0" colindex="0" targetcolumnname="FULL_NAME" sortable="false" filterable="false" text="FULL_NAME"/>
+      </cl:gridheader>
+      <cl:griddetail std:sid="gd-band-cc839d62">
+        <cl:gridrow std:sid="g-row-557e9e66"/>
+        <cl:gridcell std:sid="gd-cell-edec6a80" rowindex="0" colindex="0" columnname="FULL_NAME"/>
+      </cl:griddetail>
+    </cl:grid>
+    <cl:group std:sid="group-2995ad88" class="cl-form-group">
+      <cl:selectioncontext selectionProvider="#grid-6a610426"/>
+      <cl:xylayoutdata std:sid="xyl-data-e314cb62" top="20px" left="445px" width="559px" height="357px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:output std:sid="output-6521a6f8" value="email">
+        <cl:formdata std:sid="f-data-7b3246ea" row="3" col="0"/>
+      </cl:output>
+      <cl:output std:sid="output-c3f9ce00" value="last_name">
+        <cl:formdata std:sid="f-data-29daf19e" row="2" col="0"/>
+      </cl:output>
+      <cl:output std:sid="output-b6d88b72" value="first_name">
+        <cl:formdata std:sid="f-data-2f6cf73c" row="1" col="0"/>
+      </cl:output>
+      <cl:output std:sid="output-c5d91963" value="id">
+        <cl:formdata std:sid="f-data-3d1ef301" row="0" col="0"/>
+      </cl:output>
+      <cl:output std:sid="output-5fbff7bd" value="gender">
+        <cl:formdata std:sid="f-data-cb6c9f23" row="4" col="0"/>
+      </cl:output>
+      <cl:output std:sid="output-d2cd75ce" value="ip_address">
+        <cl:formdata std:sid="f-data-53633c1a" row="5" col="0"/>
+      </cl:output>
+      <cl:inputbox std:sid="i-box-45fa7b71" id="ipb1">
+        <cl:relativebind property="value" columnname="id"/>
+        <cl:formdata std:sid="f-data-787a5b54" row="0" col="1"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-f82dc0eb" id="ipb2">
+        <cl:relativebind property="value" columnname="first_name"/>
+        <cl:formdata std:sid="f-data-d80caf7f" row="1" col="1"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-3406cfc0" id="ipb3">
+        <cl:relativebind property="value" columnname="last_name"/>
+        <cl:formdata std:sid="f-data-9cebb574" row="2" col="1"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-1d8ae4fd" id="ipb4">
+        <cl:relativebind property="value" columnname="email"/>
+        <cl:formdata std:sid="f-data-c84d0cf3" row="3" col="1"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-7d90b145" id="ipb5">
+        <cl:relativebind property="value" columnname="gender"/>
+        <cl:formdata std:sid="f-data-47d73c46" row="4" col="1"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-c2fec0b2" id="ipb6">
+        <cl:relativebind property="value" columnname="ip_address"/>
+        <cl:formdata std:sid="f-data-b01e1420" row="5" col="1"/>
+      </cl:inputbox>
+      <cl:formlayout std:sid="f-layout-4916597f" scrollable="true" hspace="10px" vspace="10px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px" hseparatorwidth="1" hseparatortype="BY_CLASS" vseparatorwidth="1" vseparatortype="BY_CLASS">
+        <cl:rows length="25" unit="PIXEL"/>
+        <cl:rows length="25" unit="PIXEL"/>
+        <cl:rows length="25" unit="PIXEL"/>
+        <cl:rows length="25" unit="PIXEL"/>
+        <cl:rows length="25" unit="PIXEL"/>
+        <cl:rows length="1" unit="FRACTION"/>
+        <cl:columns length="100" unit="PIXEL" shadetype="BY_CLASS"/>
+        <cl:columns length="1" unit="FRACTION"/>
+      </cl:formlayout>
+    </cl:group>
+    <cl:xylayout std:sid="xylayout-33be3372"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>
