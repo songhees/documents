@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-18e79fc5" version="1.0.4167">
+  <head std:sid="head-3c5dd025">
+    <screen std:sid="screen-cf71d0ac" id="default" name="default" width="1024px" height="768px"/>
+    <screen std:sid="screen-e19e3daf" id="tablet" name="tablet" width="500px" height="667px"/>
+    <screen std:sid="screen-8d3cd7b9" id="mobile" name="mobile" width="350px" height="525px"/>
+    <cl:model std:sid="model-4aeffc4e">
+      <cl:dataset std:sid="d-set-0bdb22fb" id="ds1">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-79c2324d" name="column1"/>
+          <cl:datacolumn std:sid="d-column-390a0f59" name="column2"/>
+          <cl:datacolumn std:sid="d-column-f8705c54" name="column3"/>
+          <cl:datacolumn std:sid="d-column-225cd3ff" name="column4"/>
+          <cl:datacolumn std:sid="d-column-2ca9d964" name="column5"/>
+          <cl:datacolumn std:sid="d-column-06723c4a" name="column6"/>
+          <cl:datacolumn std:sid="d-column-c3801652" name="column7"/>
+        </cl:datacolumnlist>
+        <cl:datarowlist>
+          <cl:datarow>
+            <cl:datavalue columnname="column1">column11</cl:datavalue>
+            <cl:datavalue columnname="column2">column21</cl:datavalue>
+            <cl:datavalue columnname="column3">column31</cl:datavalue>
+            <cl:datavalue columnname="column4">column41</cl:datavalue>
+            <cl:datavalue columnname="column5">column51</cl:datavalue>
+            <cl:datavalue columnname="column6">column61</cl:datavalue>
+            <cl:datavalue columnname="column7">column71</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="column1">column12</cl:datavalue>
+            <cl:datavalue columnname="column2">column22</cl:datavalue>
+            <cl:datavalue columnname="column3">column32</cl:datavalue>
+            <cl:datavalue columnname="column4">column42</cl:datavalue>
+            <cl:datavalue columnname="column5">column52</cl:datavalue>
+            <cl:datavalue columnname="column6">column62</cl:datavalue>
+            <cl:datavalue columnname="column7">column72</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="column1">column13</cl:datavalue>
+            <cl:datavalue columnname="column2">column23</cl:datavalue>
+            <cl:datavalue columnname="column3">column33</cl:datavalue>
+            <cl:datavalue columnname="column4">column43</cl:datavalue>
+            <cl:datavalue columnname="column5">column53</cl:datavalue>
+            <cl:datavalue columnname="column6">column63</cl:datavalue>
+            <cl:datavalue columnname="column7">column73</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="column1">column14</cl:datavalue>
+            <cl:datavalue columnname="column2">column24</cl:datavalue>
+            <cl:datavalue columnname="column3">column34</cl:datavalue>
+            <cl:datavalue columnname="column4">column44</cl:datavalue>
+            <cl:datavalue columnname="column5">column54</cl:datavalue>
+            <cl:datavalue columnname="column6">column64</cl:datavalue>
+            <cl:datavalue columnname="column7">column74</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="column1">column15</cl:datavalue>
+            <cl:datavalue columnname="column2">column25</cl:datavalue>
+            <cl:datavalue columnname="column3">column35</cl:datavalue>
+            <cl:datavalue columnname="column4">column45</cl:datavalue>
+            <cl:datavalue columnname="column5">column55</cl:datavalue>
+            <cl:datavalue columnname="column6">column65</cl:datavalue>
+            <cl:datavalue columnname="column7">column75</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="column1">column16</cl:datavalue>
+            <cl:datavalue columnname="column2">column26</cl:datavalue>
+            <cl:datavalue columnname="column3">column36</cl:datavalue>
+            <cl:datavalue columnname="column4">column46</cl:datavalue>
+            <cl:datavalue columnname="column5">column56</cl:datavalue>
+            <cl:datavalue columnname="column6">column66</cl:datavalue>
+            <cl:datavalue columnname="column7">column76</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="column1">column17</cl:datavalue>
+            <cl:datavalue columnname="column2">column27</cl:datavalue>
+            <cl:datavalue columnname="column3">column37</cl:datavalue>
+            <cl:datavalue columnname="column4">column47</cl:datavalue>
+            <cl:datavalue columnname="column5">column57</cl:datavalue>
+            <cl:datavalue columnname="column6">column67</cl:datavalue>
+            <cl:datavalue columnname="column7">column77</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="column1">column18</cl:datavalue>
+            <cl:datavalue columnname="column2">column28</cl:datavalue>
+            <cl:datavalue columnname="column3">column38</cl:datavalue>
+            <cl:datavalue columnname="column4">column48</cl:datavalue>
+            <cl:datavalue columnname="column5">column58</cl:datavalue>
+            <cl:datavalue columnname="column6">column68</cl:datavalue>
+            <cl:datavalue columnname="column7">column78</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="column1">column19</cl:datavalue>
+            <cl:datavalue columnname="column2">column29</cl:datavalue>
+            <cl:datavalue columnname="column3">column39</cl:datavalue>
+            <cl:datavalue columnname="column4">column49</cl:datavalue>
+            <cl:datavalue columnname="column5">column59</cl:datavalue>
+            <cl:datavalue columnname="column6">column69</cl:datavalue>
+            <cl:datavalue columnname="column7">column79</cl:datavalue>
+          </cl:datarow>
+        </cl:datarowlist>
+      </cl:dataset>
+    </cl:model>
+    <cl:appspec/>
+  </head>
+  <body std:sid="body-59d1c58c">
+    <cl:grid std:sid="grid-6af45b4f" id="grd1" datasetid="ds1" resizablecolumns="all" columnMovable="true">
+      <cl:xylayoutdata std:sid="xyl-data-17054164" top="100px" right="20px" bottom="20px" left="20px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
+      <cl:gridcolumn std:sid="g-column-08a24039" width="25px"/>
+      <cl:gridcolumn std:sid="g-column-f4534d54" width="50px"/>
+      <cl:gridcolumn std:sid="g-column-2557f532"/>
+      <cl:gridcolumn std:sid="g-column-d05f17e1"/>
+      <cl:gridcolumn std:sid="g-column-2cf9074e"/>
+      <cl:gridcolumn std:sid="g-column-318138ea"/>
+      <cl:gridcolumn std:sid="g-column-7d8f8cdf"/>
+      <cl:gridcolumn std:sid="g-column-21f4d3f7"/>
+      <cl:gridcolumn std:sid="g-column-d810c203"/>
+      <cl:gridheader std:sid="gh-band-a36eecde">
+        <cl:gridrow std:sid="g-row-476ff081"/>
+        <cl:gridcell std:sid="gh-cell-a3d8252e" rowindex="0" colindex="0" sortable="false" filterable="false" columntype="checkbox"/>
+        <cl:gridcell std:sid="gh-cell-9a8a0848" rowindex="0" colindex="1" sortable="false" filterable="false"/>
+        <cl:gridcell std:sid="gh-cell-90cd878d" rowindex="0" colindex="2" targetcolumnname="column1" sortable="false" filterable="false" text="column1"/>
+        <cl:gridcell std:sid="gh-cell-a3384748" rowindex="0" colindex="3" targetcolumnname="column2" sortable="false" filterable="false" text="column2"/>
+        <cl:gridcell std:sid="gh-cell-51319e93" rowindex="0" colindex="4" targetcolumnname="column3" sortable="false" filterable="false" text="column3"/>
+        <cl:gridcell std:sid="gh-cell-8b615379" rowindex="0" colindex="5" targetcolumnname="column4" sortable="false" filterable="false" text="column4"/>
+        <cl:gridcell std:sid="gh-cell-f13f63ea" rowindex="0" colindex="6" targetcolumnname="column5" sortable="false" filterable="false" text="column5"/>
+        <cl:gridcell std:sid="gh-cell-093d684b" rowindex="0" colindex="7" targetcolumnname="column6" sortable="false" filterable="false" text="column6"/>
+        <cl:gridcell std:sid="gh-cell-363195bd" rowindex="0" colindex="8" targetcolumnname="column7" sortable="false" filterable="false" text="column7"/>
+      </cl:gridheader>
+      <cl:griddetail std:sid="gd-band-96af40df">
+        <cl:gridrow std:sid="g-row-7aa703b6"/>
+        <cl:gridcell std:sid="gd-cell-dade4aab" rowindex="0" colindex="0" columntype="checkbox"/>
+        <cl:gridcell std:sid="gd-cell-5e143a21" rowindex="0" colindex="1" columntype="rowindex"/>
+        <cl:gridcell std:sid="gd-cell-dbcbf87c" rowindex="0" colindex="2" columnname="column1">
+          <cl:inputbox std:sid="i-box-393de8ef" id="ipb1">
+            <cl:celldata/>
+          </cl:inputbox>
+        </cl:gridcell>
+        <cl:gridcell std:sid="gd-cell-ba8cd3f8" rowindex="0" colindex="3" columnname="column2">
+          <cl:inputbox std:sid="i-box-347f4da5" id="ipb2">
+            <cl:celldata/>
+          </cl:inputbox>
+        </cl:gridcell>
+        <cl:gridcell std:sid="gd-cell-d67bbc07" rowindex="0" colindex="4" columnname="column3">
+          <cl:inputbox std:sid="i-box-6fbb1285" id="ipb3">
+            <cl:celldata/>
+          </cl:inputbox>
+        </cl:gridcell>
+        <cl:gridcell std:sid="gd-cell-9e2aa8d2" rowindex="0" colindex="5" columnname="column4">
+          <cl:inputbox std:sid="i-box-49aa5272" id="ipb4">
+            <cl:celldata/>
+          </cl:inputbox>
+        </cl:gridcell>
+        <cl:gridcell std:sid="gd-cell-14a6e235" rowindex="0" colindex="6" columnname="column5">
+          <cl:inputbox std:sid="i-box-dd181053" id="ipb5">
+            <cl:celldata/>
+          </cl:inputbox>
+        </cl:gridcell>
+        <cl:gridcell std:sid="gd-cell-90cfe3d3" rowindex="0" colindex="7" columnname="column6">
+          <cl:inputbox std:sid="i-box-ae7b420e" id="ipb6">
+            <cl:celldata/>
+          </cl:inputbox>
+        </cl:gridcell>
+        <cl:gridcell std:sid="gd-cell-597fc23a" rowindex="0" colindex="8" columnname="column7">
+          <cl:inputbox std:sid="i-box-5afee24c" id="ipb7">
+            <cl:celldata/>
+          </cl:inputbox>
+        </cl:gridcell>
+      </cl:griddetail>
+    </cl:grid>
+    <cl:group std:sid="group-ba0bd6ac">
+      <cl:xylayoutdata std:sid="xyl-data-7dcf21a9" top="49px" left="20px" width="320px" height="30px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:button std:sid="button-cf0e398d" value="신규">
+        <cl:listener std:sid="listener-5ddf77e3" name="click" handler="onButtonClick"/>
+        <cl:formdata std:sid="f-data-73c707b6" row="0" col="0"/>
+      </cl:button>
+      <cl:button std:sid="button-80296cca" value="저장">
+        <cl:listener std:sid="listener-59e6fca3" name="click" handler="onButtonClick3"/>
+        <cl:formdata std:sid="f-data-312e95b7" row="0" col="2" rowspan="1" colspan="1"/>
+      </cl:button>
+      <cl:button std:sid="button-62b985f4" value="삭제">
+        <cl:listener std:sid="listener-4cb5abfa" name="click" handler="onButtonClick2"/>
+        <cl:formdata std:sid="f-data-9e37eb12" row="0" col="1"/>
+      </cl:button>
+      <cl:formlayout std:sid="f-layout-b1da16f5" scrollable="false" hspace="0px" vspace="0px" top-margin="0px" right-margin="0px" bottom-margin="0px" left-margin="0px">
+        <cl:rows length="1" unit="FRACTION" shadetype="NONE" shadecolor="transparent"/>
+        <cl:columns length="1" unit="FRACTION"/>
+        <cl:columns length="1" unit="FRACTION"/>
+        <cl:columns length="1" unit="FRACTION"/>
+      </cl:formlayout>
+    </cl:group>
+    <cl:udc std:sid="ud-control-598f6ea5" type="udc.UDCcudBtn">
+      <cl:listener std:sid="listener-af80dd80" name="save" handler="onUDCcudBtnSave"/>
+      <cl:xylayoutdata std:sid="xyl-data-92b53753" top="49px" left="704px" width="300px" height="30px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:property name="grid" value="grd1" type="control"/>
+    </cl:udc>
+    <cl:output std:sid="output-cc64fe9e" value="UDC btn">
+      <cl:xylayoutdata std:sid="xyl-data-a8b21d07" top="20px" left="704px" width="300px" height="19px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:output>
+    <cl:output std:sid="output-ad1b8539" value="btn">
+      <cl:xylayoutdata std:sid="xyl-data-8c235950" top="20px" left="20px" width="320px" height="19px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:output>
+    <cl:xylayout std:sid="xylayout-a29b3bc7"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>

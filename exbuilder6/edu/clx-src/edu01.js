@@ -31,3 +31,42 @@ function onGrd1SelectionChange(e){
 	var grd1 = e.control;
 	
 }
+
+/*
+ * "1" 버튼에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onButtonClick2(e){
+	var button = e.control;
+	alertTest1();
+}
+
+/*
+ * "2" 버튼에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onButtonClick3(e){
+	var button = e.control;
+	
+	var moduleVar = cpr.core.Module.require("common");
+	moduleVar.alertTest2();
+}
+
+/*
+ * "3" 버튼에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onButtonClick4(e){
+	var button = e.control;
+	
+	alertTest3().alertTst3();
+}
+
+/*
+ * "4" 버튼에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onButtonClick5(e){
+	var button = e.control;
+	tomatosystem.alertTest4();
+}

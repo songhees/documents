@@ -64,7 +64,7 @@
         <cl:gridcell std:sid="gd-cell-90c4c9a6" rowindex="0" colindex="0" columntype="rowindex"/>
         <cl:gridcell std:sid="gd-cell-4ed99bdc" rowindex="0" colindex="1" columnname="name">
           <cl:output std:sid="output-5e2d24cc" style="text-align:center;">
-            <cl:celldata/>
+            <cl:celldata std:sid="c-data-01b0170f"/>
           </cl:output>
         </cl:gridcell>
       </cl:griddetail>
@@ -104,6 +104,25 @@
     </cl:group>
     <cl:output std:sid="output-8d268b97" style="text-align:center;" value="그리드 바인딩&#xA;input box 와 그리드 연결">
       <cl:xylayoutdata std:sid="xyl-data-cea52289" top="20px" left="604px" width="400px" height="58px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:output>
+    <cl:button std:sid="button-cfbd92cb" value="1">
+      <cl:listener std:sid="listener-990bb90f" name="click" handler="onButtonClick2"/>
+      <cl:xylayoutdata std:sid="xyl-data-41489fc1" top="367px" left="20px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:button>
+    <cl:button std:sid="button-0286f2a4" value="2">
+      <cl:listener std:sid="listener-5e77b0b3" name="click" handler="onButtonClick3"/>
+      <cl:xylayoutdata std:sid="xyl-data-b6e27caa" top="367px" left="151px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:button>
+    <cl:button std:sid="button-c340a649" value="3">
+      <cl:listener std:sid="listener-1fc00530" name="click" handler="onButtonClick4"/>
+      <cl:xylayoutdata std:sid="xyl-data-dda5a910" top="367px" left="289px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:button>
+    <cl:button std:sid="button-dc2d8d26" value="4">
+      <cl:listener std:sid="listener-3e6f4288" name="click" handler="onButtonClick5"/>
+      <cl:xylayoutdata std:sid="xyl-data-3699d466" top="367px" left="430px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:button>
+    <cl:output std:sid="output-2ed2e65b" value="공통 모듈 출판 방법">
+      <cl:xylayoutdata std:sid="xyl-data-73fc65c9" top="332px" left="20px" width="510px" height="25px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
     <cl:xylayout std:sid="xylayout-95d76423"/>
   </body>
