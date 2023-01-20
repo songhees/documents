@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-1223def5" version="1.0.4167">
+  <head std:sid="head-f00c3beb">
+    <screen std:sid="screen-b509b0bc" id="default" name="default" width="1024px" height="768px"/>
+    <screen std:sid="screen-83ea538b" id="tablet" name="tablet" width="500px" height="667px"/>
+    <screen std:sid="screen-fca8b6b8" id="mobile" name="mobile" width="350px" height="525px"/>
+    <cl:model std:sid="model-1b31acb1">
+      <cl:dataset std:sid="d-set-bdb5ec00" id="dsList">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-b8407d1a" name="controlNm"/>
+          <cl:datacolumn std:sid="d-column-7ad6365c" name="name"/>
+        </cl:datacolumnlist>
+        <cl:datarowlist>
+          <cl:datarow>
+            <cl:datavalue columnname="controlNm"><![CDATA[inputbox]]></cl:datavalue>
+            <cl:datavalue columnname="name"><![CDATA[value1]]></cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="controlNm"><![CDATA[button]]></cl:datavalue>
+            <cl:datavalue columnname="name"><![CDATA[value2]]></cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="controlNm"><![CDATA[output]]></cl:datavalue>
+            <cl:datavalue columnname="name"><![CDATA[value3]]></cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="controlNm"><![CDATA[inputbox]]></cl:datavalue>
+            <cl:datavalue columnname="name"><![CDATA[value4]]></cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="controlNm"><![CDATA[button]]></cl:datavalue>
+            <cl:datavalue columnname="name"><![CDATA[value5]]></cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="controlNm"><![CDATA[output]]></cl:datavalue>
+            <cl:datavalue columnname="name"><![CDATA[value6]]></cl:datavalue>
+          </cl:datarow>
+        </cl:datarowlist>
+      </cl:dataset>
+      <cl:dataset std:sid="d-set-8c72edf8" id="dsComboControlNm">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-4efd35c8" name="label"/>
+          <cl:datacolumn std:sid="d-column-dbd9f313" name="value"/>
+        </cl:datacolumnlist>
+        <cl:datarowlist>
+          <cl:datarow>
+            <cl:datavalue columnname="label"><![CDATA[인풋박스]]></cl:datavalue>
+            <cl:datavalue columnname="value"><![CDATA[inputbox]]></cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label"><![CDATA[아웃풋]]></cl:datavalue>
+            <cl:datavalue columnname="value"><![CDATA[output]]></cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label"><![CDATA[버튼]]></cl:datavalue>
+            <cl:datavalue columnname="value"><![CDATA[button]]></cl:datavalue>
+          </cl:datarow>
+        </cl:datarowlist>
+      </cl:dataset>
+    </cl:model>
+    <cl:appspec title="사용자가 선택한 컨트롤 이름에 따라 해당 컨트롤로 변경되는 화면"/>
+  </head>
+  <body std:sid="body-b7878d5e">
+    <cl:group std:sid="group-880fe177">
+      <cl:xylayoutdata std:sid="xyl-data-fa63e664" top="20px" left="20px" width="756px" height="316px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:grid std:sid="grid-58af439c" id="grd1" datasetid="dsList" resizablecolumns="all" columnMovable="true">
+        <cl:formdata std:sid="f-data-6c718570" row="0" col="0"/>
+        <cl:gridcolumn std:sid="g-column-7703e7a5"/>
+        <cl:gridcolumn std:sid="g-column-c8d6c0b8"/>
+        <cl:gridheader std:sid="gh-band-de2268f8">
+          <cl:gridrow std:sid="g-row-4e42c752"/>
+          <cl:gridcell std:sid="gh-cell-fd1fe28e" rowindex="0" colindex="0" targetcolumnname="controlNm" sortable="false" filterable="false" text="controlNm"/>
+          <cl:gridcell std:sid="gh-cell-1950e792" rowindex="0" colindex="1" targetcolumnname="name" sortable="false" filterable="false" text="name"/>
+        </cl:gridheader>
+        <cl:griddetail std:sid="gd-band-04724786">
+          <cl:gridrow std:sid="g-row-f1dbaef3"/>
+          <cl:gridcell std:sid="gd-cell-d3c8c24e" rowindex="0" colindex="0" columnname="controlNm">
+            <cl:combobox std:sid="c-box-3e65637f" id="cmb1">
+              <cl:celldata/>
+              <cl:itemset datasetid="dsComboControlNm" label="label" value="value"/>
+            </cl:combobox>
+          </cl:gridcell>
+          <cl:gridcell std:sid="gd-cell-097ea300" rowindex="0" colindex="1" columnname="name">
+            <cl:udc std:sid="ud-control-edbb054e" type="udc.SCRIPT_CONTROLS_GRID_32_UDC">
+              <cl:expbind property="inputboxVisible" category="PROPERTY" expression="controlNm == &quot;inputbox&quot; ? true : false"/>
+              <cl:expbind property="buttonVisible" category="PROPERTY" expression="controlNm == &quot;button&quot; ? true : false"/>
+              <cl:expbind property="outputVisible" category="PROPERTY" expression="controlNm == &quot;output&quot; ? true : false"/>
+              <cl:relativebind property="cellValue" category="PROPERTY" columnname="name"/>
+              <cl:celldata std:sid="c-data-3c414267"/>
+            </cl:udc>
+          </cl:gridcell>
+        </cl:griddetail>
+      </cl:grid>
+      <cl:formlayout std:sid="f-layout-fe3a1b68" scrollable="false" hspace="0px" vspace="0px" top-margin="0px" right-margin="0px" bottom-margin="0px" left-margin="0px">
+        <cl:rows length="1" unit="FRACTION"/>
+        <cl:columns length="1" unit="FRACTION"/>
+      </cl:formlayout>
+    </cl:group>
+    <cl:xylayout std:sid="xylayout-9a6fb69f"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>

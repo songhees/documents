@@ -1159,6 +1159,9 @@ body.cl-has-modal {
   /* 행 그룹시 그룹의 헤더 */
   /* 행 그룹시 그룹의 푸터 */
 }
+.cl-grid-row.cl-inserted {
+  display: none;
+}
 .cl-grid-row.cl-selected {
   /* 포커스 셀 */
 }
