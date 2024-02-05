@@ -1,9 +1,5 @@
-// import postRouter from "./postRouter"
-// import NewPost from "../../components/NewPost"
+import postRouter from "./postRouter"
 
-// export default [
-//   {
-//     path: '/create-post',
-//     element: <NewPost/>
-//   }
-// ]
+export default [
+  ...postRouter
+]
