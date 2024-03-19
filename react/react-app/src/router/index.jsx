@@ -1,17 +1,23 @@
+import React, { Suspense } from 'react';
 import { createBrowserRouter } from 'react-router-dom'
 import App from '@/App.jsx'
+import BasicLayout from "@layouts/BasicLayout";
+const TodoLayout = React.lazy(() => import("@pages/todo/IndexPage"));
 import MainRouter from '@router/main'
-import Template from '@pages/Template'
+import TodoRouter from '@router/todo'
+let loading = <div style={{backgroundColor: 'black'}}>Loading...</div>
+
 
 const router =  createBrowserRouter([
   {
     path: '/',
-    element: <App/>
+    element: <App/>,
+    children: MainRouter
   },
   {
-    path: '/main',
-    element: <Template/>,
-    children: MainRouter
+    path: '/todo',
+    element: <Suspense fallback={loading}><TodoLayout/></Suspense>,
+    children: TodoRouter,
   }
 ])
 export default router;
