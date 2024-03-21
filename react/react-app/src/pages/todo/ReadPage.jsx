@@ -13,7 +13,7 @@ const ReadPage = () => {
   const size = queryParams.get("size") ? parseInt(queryParams.get("size")) : 10
 
   const queryStr = createSearchParams({page,size}).toString()
-
+  console.log(queryStr)
   const moveToModify = useCallback((tno) => {
 
     navigate({
