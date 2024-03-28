@@ -1,7 +1,6 @@
 import React, { Suspense } from 'react';
 import { createBrowserRouter } from 'react-router-dom'
 import App from '@/App.jsx'
-import BasicLayout from "@layouts/BasicLayout";
 const TodoLayout = React.lazy(() => import("@pages/todo/IndexPage"));
 import MainRouter from '@router/main'
 import TodoRouter from '@router/todo'

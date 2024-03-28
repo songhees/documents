@@ -16,6 +16,8 @@ export default defineConfig({
       '@layouts' : path.join(__dirname, 'src/layouts'),
       '@pages' : path.join(__dirname, 'src/pages'),
       '@store' : path.join(__dirname, 'src/store'),
+      '@api' : path.join(__dirname, 'src/api'),
+      '@hooks' : path.join(__dirname, 'src/hooks'),
     }
   },
 })
