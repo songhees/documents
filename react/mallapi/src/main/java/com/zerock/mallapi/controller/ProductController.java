@@ -34,7 +34,7 @@ public class ProductController {
         List<String> uploadFileNames = fileUtil.saveFiles(files);
         productDTO.setUploadFileNames(uploadFileNames);
 
-        log.info(uploadFileNames.toString());
+//        log.info(uploadFileNames.toString());
 
         //서비스 호출 -> 파일 정보 저장
         Long pno = productService.register(productDTO);
@@ -76,7 +76,7 @@ public class ProductController {
     }
 
     @GetMapping("/{pno}")
-    public ProductDTO read(@PathVariable(name="pno") Long pno) {
+    public ProductDTO read(@PathVariable Long pno) {
 
         return productService.get(pno);
     }

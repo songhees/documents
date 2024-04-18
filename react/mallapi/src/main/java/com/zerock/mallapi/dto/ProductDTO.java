@@ -14,15 +14,10 @@ import java.util.List;
 @Builder
 public class ProductDTO {
     private Long pno;
-
     private String pname;
-
     private int price;
-
     private String pdesc;
-
     private boolean delFlag;
-
     @Builder.Default
     private List<MultipartFile> files = new ArrayList<>();
 
