@@ -1,16 +1,19 @@
 package com.zerock.mallapi.security.filter;
 
 import com.google.gson.Gson;
+import com.zerock.mallapi.dto.MemberDTO;
 import com.zerock.mallapi.util.JWTUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.security.core.parameters.P;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Map;
 
 public class JWTCheckFilter extends OncePerRequestFilter {
@@ -21,7 +24,20 @@ public class JWTCheckFilter extends OncePerRequestFilter {
         try {
             String accessToken = authHeader.substring(7);
             Map<String, Object> claims = JWTUtil.validateToken(accessToken);
-            filterChain.doFilter(request,response);
+
+            String email = (String) claims.get("email");
+            String pw = (String) claims.get("pw");
+            String nickname = (String) claims.get("nickname");
+            Boolean social = (Boolean) claims.get("social");
+            List<String> roleNames = (List<String>) claims.get("roleNames");
+
+            MemberDTO memberDTO = new MemberDTO(email, pw, nickname, social.booleanValue(), roleNames);
+
+            UsernamePasswordAuthenticationToken authenticationToken
+                    = new UsernamePasswordAuthenticationToken(memberDTO, pw, memberDTO.getAuthorities());
+
+            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+            filterChain.doFilter(request, response);
         } catch (Exception e) {
             Gson gson = new Gson();
 
@@ -32,9 +48,6 @@ public class JWTCheckFilter extends OncePerRequestFilter {
             printWriter.println(jsonStr);
             printWriter.close();
         }
-
-
-        filterChain.doFilter(request, response);
     }
 
     @Override

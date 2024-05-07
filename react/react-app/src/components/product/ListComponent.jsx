@@ -2,6 +2,7 @@ import PageComponent from "@components/common/PageComponent";
 import { useEffect, useState } from "react";
 import { getList } from "@api/productApi"
 import useCustomMove from "@hooks/useCustomMove";
+import useCustomLogin from "@hooks/useCustomLogin";
 
 const initList = {
   dtoList:[],
@@ -17,6 +18,7 @@ const initList = {
 
 const ListComponent = () => {
   const {moveToList, page, size, refresh} = useCustomMove();
+  const {exceptionHandle} = useCustomLogin();
   const [result, setResult] = useState(initList);
   const {moveToRead} = useCustomMove();
 
@@ -27,6 +29,7 @@ const ListComponent = () => {
       setResult(result);
     })
     .catch((error) => {
+      exceptionHandle(error);
       console.log(error);
     })
   }, [page, size, refresh])

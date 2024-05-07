@@ -1,17 +1,15 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import "./index.css";
 import { Outlet } from 'react-router-dom';
+import { Provider, useSelector, useDispatch } from 'react-redux';
+import store from '/store';
+import BasicLayout from "@layouts/BasicLayout";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
+    <Provider store={store}>
       <Outlet/>
-    </>
+    </Provider>
   )
 }
 

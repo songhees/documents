@@ -40,7 +40,10 @@ public class JWTUtil {
         try {
             key = Keys.hmacShaKeyFor(JWTUtil.key.getBytes(StandardCharsets.UTF_8));
 
-            claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJwt(token).getBody();
+            claims = Jwts.parserBuilder()
+                    .setSigningKey(key).build()
+                    .parseClaimsJws(token)
+                    .getBody();
         }catch(
             MalformedJwtException malformedJwtException){
             throw new CustomJWTException("MalFormed");
