@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { getOne, deleteOne } from "@api/productApi";
 import FetchingModal from "@components/common/FetchingModal";
 import useCustomMove from "@hooks/useCustomMove"
+import useCustomCart from "@hooks/useCustomCart"
+import useCustomLogin from "@hooks/useCustomLogin"
 
 const initProduct = {
   pno: '',
@@ -17,6 +19,8 @@ const ReadComponent = ({pno}) => {
   const [result, setResult] = useState(initProduct);
   const [fetching, setFetching] = useState(false);
   const {moveToModify, moveToList} = useCustomMove();
+  const {changeCart, cartItems} = useCustomCart();
+  const {loginState} = useCustomLogin();
   useEffect(() => {
     console.log(pno)
     setFetching(true);
@@ -39,6 +43,17 @@ const ReadComponent = ({pno}) => {
       console.log(error)
     })
   }
+  const handleChangeCartItem = () => {
+    let qty = 1;
+    let target = cartItems.filter(item => item.pno == pno)[0];
+    if (target) {
+      if(window.confirm("이미 추가된 상품입니다. 추가하시겠습니까? ") === false) {
+        return 
+      }
+      qty = 1 + target.qty;
+    }
+    changeCart({email: loginState.email, pno:pno, qty:qty})
+  }
   return (
     <div>
       {fetching && <FetchingModal/> }
@@ -55,6 +70,7 @@ const ReadComponent = ({pno}) => {
           })}
         </div>
       }
+      <button type="button" onClick={handleChangeCartItem}>Add</button>
       <button type="button" onClick={() => moveToModify(pno)}>Modify</button>
       <button type="button" onClick={deletePro}>Delete</button>
     </div>

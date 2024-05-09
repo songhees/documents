@@ -3,6 +3,7 @@ package com.zerock.mallapi.service;
 import com.zerock.mallapi.domain.Member;
 import com.zerock.mallapi.domain.MemberRole;
 import com.zerock.mallapi.dto.MemberDTO;
+import com.zerock.mallapi.dto.MemberModifyDTO;
 import com.zerock.mallapi.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -67,6 +68,18 @@ public class MemberServiceImpl implements MemberService {
         repository.save(socialMember);
         MemberDTO memberDTO = entityToDTO(socialMember);
         return memberDTO;
+    }
+
+    @Override
+    public void modifyMember(MemberModifyDTO memberModifyDTO) {
+        Optional<Member> result = repository.findById(memberModifyDTO.getEmail());
+        Member member = result.orElseThrow(); // todo
+
+        member.changeNickname(memberModifyDTO.getNickname());
+        member.changePw(encoder.encode(memberModifyDTO.getPw()));
+        member.changeSocial(false);
+
+        repository.save(member);
     }
 
     private String getEmailFromKakaoAccessToken(String accessToken) {

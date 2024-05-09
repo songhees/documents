@@ -1,6 +1,8 @@
+import { modifyMember } from "@api/memberApi";
 import LoginSlice from "@slice/LoginSlice";
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux";
+import ResultModal from "@components/common/ResultModal";
 
 const initMemberInfo = {
   email: '',
@@ -10,6 +12,7 @@ const initMemberInfo = {
 
 const ModifyComponent = ({email}) => {
   const [member, setMember] = useState(initMemberInfo);
+  const [result, setResult] = useState();
   const loginInfo = useSelector(state => state.loginSlice);
   useEffect(() => {
     setMember({...loginInfo, pw:'ABCD'})
@@ -17,6 +20,17 @@ const ModifyComponent = ({email}) => {
   const handleChange = (e) => {
     member[e.target.name] = e.target.value;
     setMember({...member});
+  }
+  const handleClickModify = () => {
+
+    modifyMember(member).then(result => {
+        setResult('Moodified')  
+    })
+  }
+
+  const colseModal = () => {
+    setResult(null)
+    moveToLogin()
   }
   return (
     <div className="mt-6"> 
