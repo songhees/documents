@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { getList } from "@api/productApi"
 import useCustomMove from "@hooks/useCustomMove";
 import useCustomLogin from "@hooks/useCustomLogin";
+import { useQuery } from "@tanstack/react-query";
+import FetchingModal from "@components/common/FetchingModal";
 
 const initList = {
   dtoList:[],
@@ -18,26 +20,38 @@ const initList = {
 
 const ListComponent = () => {
   const {moveToList, page, size, refresh} = useCustomMove();
-  const {exceptionHandle} = useCustomLogin();
-  const [result, setResult] = useState(initList);
+  const {exceptionHandle, moveToLogin} = useCustomLogin();
   const {moveToRead} = useCustomMove();
 
-  useEffect(() => {
-    getList({page:page, size:size})
-    .then((result) => {
-      console.log(result.dtoList)
-      setResult(result);
-    })
-    .catch((error) => {
-      exceptionHandle(error);
-      console.log(error);
-    })
-  }, [page, size, refresh])
+  const { isError, data, error, isFetching } = useQuery(
+      ['products/list', {page, size}],
+      () => getList({page:page, size:size})
+    )
+  
+  if (isError) {
+    console.log(error)
+    return moveToLogin();
+  }
+
+  const serverData = data || initList;
+  // useEffect(() => {
+  //   getList({page:page, size:size})
+  //   .then((result) => {
+  //     console.log(result.dtoList)
+  //     setResult(result);
+  //   })
+  //   .catch((error) => {
+  //     exceptionHandle(error);
+  //     console.log(error);
+  //   })
+  // }, [page, size, refresh])
 
   return (
-    <div>
-      {result.dtoList.length > 0 &&
-        result.dtoList.map((item, index) => {
+    <div className="border-2 border-blue-100 mt-10 mr-2 ml-2">
+      {isFetching && <FetchingModal/>}
+      <div className="felx flex-wrap mx-auto p-6">
+      {serverData.dtoList.length > 0 &&
+        serverData.dtoList.map((item, index) => {
           return (
             <div key={index} onClick={() => moveToRead(item.pno)}>
               <p>{item.pno}</p>
@@ -50,7 +64,8 @@ const ListComponent = () => {
           )
         })
       }
-      <PageComponent data={result} movePage={moveToList}/>
+      </div>
+      <PageComponent data={serverData} movePage={moveToList}/>
     </div>
   )
 }

@@ -4,6 +4,7 @@ import FetchingModal from "@components/common/FetchingModal";
 import useCustomMove from "@hooks/useCustomMove"
 import useCustomCart from "@hooks/useCustomCart"
 import useCustomLogin from "@hooks/useCustomLogin"
+import { useQuery } from "@tanstack/react-query";
 
 const initProduct = {
   pno: '',
@@ -17,22 +18,30 @@ const initProduct = {
 
 const ReadComponent = ({pno}) => {
   const [result, setResult] = useState(initProduct);
-  const [fetching, setFetching] = useState(false);
   const {moveToModify, moveToList} = useCustomMove();
+  // const [fetching, setFetching] = useState(false);
   const {changeCart, cartItems} = useCustomCart();
   const {loginState} = useCustomLogin();
-  useEffect(() => {
-    console.log(pno)
-    setFetching(true);
-    getOne(pno)
-    .then((response) => {
-      setResult(response);
-      setFetching(false);
-    })
-    .catch((error) => {
-      setFetching(false);
-    })
-  }, [pno])
+
+  const {isFetching, data} = useQuery(
+    ['products', pno],
+    () => getOne(pno),
+    {
+      staleTime: 1000 * 10,
+      retry : 1
+    }
+  ) 
+  // useEffect(() => {
+  //   setFetching(true);
+  //   getOne(pno)
+  //   .then((response) => {
+  //     setResult(response);
+  //     setFetching(false);
+  //   })
+  //   .catch((error) => {
+  //     setFetching(false);
+  //   })
+  // }, [pno])
   const deletePro = () => {
     deleteOne(pno).then((response) => {
       if (response.RESULT == 'SUCCESS') {
@@ -56,7 +65,7 @@ const ReadComponent = ({pno}) => {
   }
   return (
     <div>
-      {fetching && <FetchingModal/> }
+      {isFetching && <FetchingModal/> }
       { result &&
         <div>
           {result.pno}
