@@ -6,6 +6,11 @@ import { useEffect, useMemo } from "react";
 const CartComponent = () => {
   const {isLogin, loginState} = useCustomLogin();
   const {cartItems,  refreshCart, changeCart} = useCustomCart();
+  useEffect(() => {
+    if (isLogin) {
+      refreshCart();
+    }
+  }, [isLogin])
   const total = useMemo(() => {
 
     let total = 0
@@ -17,11 +22,6 @@ const CartComponent = () => {
     return total
 
   },[cartItems])
-  useEffect(() => {
-    if (isLogin) {
-      refreshCart();
-    }
-  }, [isLogin])
   return (
     <div className="w-full">
       {isLogin &&

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { getList } from "@api/productApi"
 import useCustomMove from "@hooks/useCustomMove";
 import useCustomLogin from "@hooks/useCustomLogin";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import FetchingModal from "@components/common/FetchingModal";
 
 const initList = {
@@ -24,9 +24,19 @@ const ListComponent = () => {
   const {moveToRead} = useCustomMove();
 
   const { isError, data, error, isFetching } = useQuery(
-      ['products/list', {page, size}],
-      () => getList({page:page, size:size})
-    )
+      ['products/list', {page, size, refresh}],
+      () => getList({page:page, size:size}),
+      {staleTime: 1000*5}
+  )
+
+  const queryClient = useQueryClient();
+
+  const handleClickPage = (pageParam) => {
+    // if (pageParam.page == page) {
+    //   queryClient.invalidateQueries("products/list");
+    // }
+    moveToList(pageParam);
+  }
   
   if (isError) {
     console.log(error)
@@ -65,7 +75,7 @@ const ListComponent = () => {
         })
       }
       </div>
-      <PageComponent data={serverData} movePage={moveToList}/>
+      <PageComponent data={serverData} movePage={handleClickPage}/>
     </div>
   )
 }

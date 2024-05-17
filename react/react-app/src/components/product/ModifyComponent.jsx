@@ -3,6 +3,7 @@ import { getOne, putOne } from "@api/productApi";
 import FetchingModal from "@components/common/FetchingModal";
 import useCustomMove from "@hooks/useCustomMove"
 import ResultModal from "@components/common/ResultModal";
+import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 
 const initProduct = {
   pno: '',
@@ -16,32 +17,49 @@ const initProduct = {
 
 const ModifyComponent = ({pno}) => {
   const [product, setProduct] = useState(initProduct);
-  const [fetching, setFetching] = useState(false);
+  // const [fetching, setFetching] = useState(false);
   const [result, setResult] = useState(false);
   const {moveToList, moveToRead} = useCustomMove();
   const uploadRef = useRef();
 
+  const query = useQuery(
+    ['products', pno],
+    () => getOne(pno),
+    {
+      staleTime: Infinity
+    }
+  )
+  
   useEffect(() => {
-    console.log(pno)
-    setFetching(true);
-    getOne(pno)
-    .then((response) => {
-      setProduct(response);
-      setFetching(false);
-    })
-    .catch((error) => {
-      setFetching(false);
-    })
-  }, [pno])
+    if(query.isSuccess){
+      setProduct(query.data)
+    }
+  },[pno, query.data, query.isSuccess])
+  // useEffect(() => {
+  //   console.log(pno)
+  //   setFetching(true);
+  //   getOne(pno)
+  //   .then((response) => {
+  //     setProduct(response);
+  //     setFetching(false);
+  //   })
+  //   .catch((error) => {
+  //     setFetching(false);
+  //   })
+  // }, [pno])
+  const delMutation = useMutation((pno) => deleteOne(pno));
+  const modifyMutation = useMutation((pno) => putOne(pno));
+  const queryClient = useQueryClient();
+  const handleClickDelete = () => {
+    delMutation.mutate(pno)
+  }
 
   const handleChangeProduct = (e) => {
     product[e.target.name] = e.target.value;
     setProduct({...product});
   }
   const handleClickModify = (e) => {
-    setFetching(true);
     const files = uploadRef.current.files;
-    console.log(files)
     var formData = new FormData();
 
     for (let i = 0; i < files.length; i++) {
@@ -54,24 +72,30 @@ const ModifyComponent = ({pno}) => {
     formData.append('pname', product.pname);
     formData.append('pdesc', product.pdesc);
     formData.append('price', product.price);
-    putOne(pno, formData)
-    .then((response) => {
-      console.log(response)
-      if (response.RESULT == 'SUCCESS') {
-        setResult('Modify');
-        setFetching(false);
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-      setFetching(false);
-    })
+    modifyMutation.mutate(formData);
+    // .then((response) => {
+    //   console.log(response)
+    //   if (response.RESULT == 'SUCCESS') {
+    //     setResult('Modify');
+    //     setFetching(false);
+    //   }
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    //   setFetching(false);
+    // })
   }
   const closeModal = (e) => {
-    if (result == 'Modify') {
+    if (delMutation.isSuccess) {
+      queryClient.invalidateQueries(['products', pno])
+      queryClient.invalidateQueries(['products/list'])
+      moveToList();
+    }
+    if (modifyMutation.isSuccess) {
+      queryClient.invalidateQueries(['products', pno])
+      queryClient.invalidateQueries(['products/list'])
       moveToRead(pno);
     }
-    setResult(null)
   }
   const deleteOldImages = (fileName) => {
     const resultFileList = product.uploadFileNames.filter(file => file !== fileName);
@@ -81,10 +105,9 @@ const ModifyComponent = ({pno}) => {
   return (
   <div className = "border-2 border-sky-200 mt-10 m-2 p-4"> 
       { 
-        fetching && <FetchingModal/>
+        ( query.isFetching || delMutation.isLoading || modifyMutation.isLoading) && <FetchingModal/>
       }
-      { result && <ResultModal title={'Product Add Result'} content={`New ${result} Added`} callbackFn={closeModal} />
-      }
+      { (delMutation.isSuccess || modifyMutation.isSuccess) && <ResultModal title={'처리 결과'} content={`정상적으로 처리되었습니다.`} callbackFn={closeModal} /> }
     <div className="flex justify-center">
       <div className="relative mb-4 flex w-full flex-wrap items-stretch">
         <div className="w-1/5 p-6 text-right font-bold">Product Name</div>
@@ -170,6 +193,12 @@ const ModifyComponent = ({pno}) => {
       </div>
     </div>
     <div className="flex justify-end p-4">
+      <button type="button" 
+      className="inline-block rounded p-4 m-2 text-xl w-32  text-white bg-orange-500"
+      onClick={handleClickDelete}
+      >
+        Delete
+      </button>
       <button type="button" 
       className="inline-block rounded p-4 m-2 text-xl w-32  text-white bg-orange-500"
       onClick={handleClickModify}

@@ -3,6 +3,7 @@ import ResultModal from "@components/common/ResultModal";
 import {addOne } from "@api/productApi"
 import useCustomMove from "@hooks/useCustomMove";
 import FetchingModal from "@components/common/FetchingModal";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const initProduct = {
   pname: '',
@@ -12,17 +13,21 @@ const initProduct = {
 }
 const Addcomponent = () => {
   const [product, setProduct] = useState(initProduct);
-  const [fetching, setFeching] = useState(false);
+  // const [fetching, setFeching] = useState(false);
   const uploadRef = useRef();
-
-  const [result, setResult] = useState('');
   const {moveToList} = useCustomMove();
+  const queryClient = useQueryClient();
+
+  // const [result, setResult] = useState('');
   const handleChangeProduct = (e) => {
     product[e.target.name] = e.target.value;
     setProduct({...product});
   }
+
+  const addMutation = useMutation( (product) => addOne(product))
+
   const handleClickAdd = (e) => {
-    setFeching(true);
+    // setFeching(true);
     const files = uploadRef.current.files;
     console.log(files)
     var formData = new FormData();
@@ -33,29 +38,33 @@ const Addcomponent = () => {
     formData.append('pname', product.pname);
     formData.append('pdesc', product.pdesc);
     formData.append('price', product.price);
-    addOne(formData)
-    .then((response) => {
-      if (response.result) {
-        setResult(response.result);
-        setFeching(false);
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-      setFeching(false);
-    })
+
+    addMutation.mutate(formData);
+    // addOne(formData)
+    // .then((response) => {
+    //   if (response.result) {
+    //     setResult(response.result);
+    //     setFeching(false);
+    //   }
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    //   setFeching(false);
+    // })
   }
   const closeModal = (e) => {
-    moveToList();
-    setResult(null);
+    queryClient.invalidateQueries('products/list')
+    moveToList({page:1});
+    // setResult(null);
   }
 
   return (
     <div className = "border-2 border-sky-200 mt-10 m-2 p-4"> 
       { 
-        fetching && <FetchingModal/>
+        addMutation.isLoading && <FetchingModal/>
       }
-      { result && <ResultModal title={'Product Add Result'} content={`New ${result} Added`} callbackFn={closeModal} />
+      { 
+        addMutation.isSuccess && <ResultModal title={'Product Add Result'} content={`New ${addMutation.data.result} Added`} callbackFn={closeModal} />
       }
       <div className="flex justify-center">
         <div className="relative mb-4 flex w-full flex-wrap items-stretch">
