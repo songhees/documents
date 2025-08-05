@@ -1,12 +1,32 @@
-import practice2.Q11;
+import practice07.IntSet;
+import practice5.*;
+import practice6.*;
+import practice6.Q1;
+import practice6.Q3;
+import practice6.Q5;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Q11 ymd = new Q11(2025, 11, 12);
-        Q11 result = ymd.after(60);
-        System.out.printf("%d년 %d월 %d일", result.y, result.m, result.d);
+        IntSet result = new IntSet(5);
+
+        result.add(4);
+        result.add(3);
+        result.add(4);
+        result.add(6);
+        result.add(7);
+
+        System.out.println(result.toString());
+        // 4, 3, 5, 6
+
+        IntSet gyo = new IntSet(4);
+        gyo.add(4);
+        gyo.add(7);
+        gyo.add(3);
+        gyo.add(6);
+
+        System.out.println(result.isProperSubsetOf(gyo)); // 4, 3, 6
     }
 }
