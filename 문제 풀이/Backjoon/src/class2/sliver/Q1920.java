@@ -3,18 +3,46 @@ package class2.sliver;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.StringTokenizer;
+import java.util.*;
 
+/**
+ * 1. 4번째 줄의 숫자가 2번째 줄의 숫자에 존재하는지 여부
+ * 2. 존재 = 1, 존재하지 않음 = 0
+ */
 public class Q1920 {
     /**
-     * 1. 4번째 줄의 숫자가 2번째 줄의 숫자에 존재하는지 여부
-     * 2. 존재 = 1, 존재하지 않음 = 0
+     * HashSet을 이용한 검색
      * @param args
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int num = Integer.parseInt(br.readLine());
+
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+
+        Set<String> set = new HashSet<>();
+        for(int i=0; i<num; i++) {
+            set.add(st.nextToken());
+        }
+
+        int num1 = Integer.parseInt(br.readLine());
+
+        StringBuffer sb = new StringBuffer();
+        st = new StringTokenizer(br.readLine(), " ");
+        for(int i=0; i<num1; i++) {
+            sb.append(set.contains(st.nextToken()) ? "1" : "0").append("\n");
+        }
+
+        System.out.println(sb);
+        br.close();
+    }
+    /**
+     * HashMap 을 이용한 검색
+     * @throws IOException
+     */
+    public static void answer() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int num = Integer.parseInt(br.readLine());
@@ -40,4 +68,6 @@ public class Q1920 {
         System.out.println(sb);
         br.close();
     }
+
+
 }

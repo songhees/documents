@@ -8,9 +8,15 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * 단어 정렬
+ * 1. 길이가 짧은것
+ * 2. 길이가 같으면 사전순으로
+ * 3. 중복 없애기
+ */
 public class Q1181 {
     /**
-     *
+     * 중복을 없애는것을 표출할때 없애기
      * @param args
      * @throws IOException
      */
@@ -23,6 +29,7 @@ public class Q1181 {
             node[i] = br.readLine();
         }
 
+        // 중요
         Arrays.sort(node, (o1, o2) -> {
             if (o1.length() == o2.length()) {
                 return o1.compareTo(o2);
@@ -30,6 +37,7 @@ public class Q1181 {
             return o1.length() - o2.length();
         });
 
+        // 중요
         for (int i=0; i<num; i++) {
             if (i == num-1 || !node[i].equals(node[i+1])) {
                 System.out.println(node[i]);
