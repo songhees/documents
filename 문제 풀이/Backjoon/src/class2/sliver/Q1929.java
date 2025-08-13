@@ -24,6 +24,7 @@ public class Q1929 {
 
         for(int i=2; i*i <= end; i++) {
             if (!data[i]) {
+                // i(소수)의 배수인 수를 true(소수가 아님) 로 변경
                 for(int j=i+i; j<=end; j+=i) {
                     data[j] = true;
                 }

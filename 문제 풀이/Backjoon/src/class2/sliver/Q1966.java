@@ -1,15 +1,78 @@
 package class2.sliver;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Q1966 {
+    static class Document {
+        int index;
+        int prio;
+
+        Document(int index, int prio) {
+            this.index = index;
+            this.prio = prio;
+        }
+
+    }
+
     /**
-     * 원 퀵 정렬
-     * 배열이 원으로 존재한다고 가정
+     * 사용자 정의 클래스와 Queue를 이용한 검색
      * @param args
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        int count = read();
+
+        for(int n=0; n<count; n++) {
+            // 어떠한 중요도가 몇개 있는지 카운팅 배열로 넣기
+            int num = read();
+
+            // 내가 찾아야될 문서의 index 위치
+            int target = read();
+            // 문서 배열
+            Queue<Document> que = new LinkedList<>();
+
+            for(int i=0; i<num; i++) {
+                que.add(new Document(i, read()));
+            }
+
+            int output = 0;
+            while (true) {
+
+                Document current = que.poll();
+
+                boolean isOut = true;
+                for(Document doc : que) {
+                    if (current.prio < doc.prio) {
+                        isOut = false;
+                        break;
+                    }
+                }
+
+                if (isOut) {
+                    output++;
+                    // 내가 찾는 문서인지 확인
+                    if (current.index == target) {
+                        break;
+                    }
+                } else {
+                    que.add(current);
+                }
+            }
+            sb.append(output+ "\n");
+        }
+        System.out.println(sb);
+    }
+    /**
+     * 원 퀵 정렬
+     * 1. 배열을 큐 처럼 활용
+     * 2. 중요도 존재 여부를 카운팅 배열로 사용
+     * @param args
+     * @throws IOException
+     */
+    public static void answer1(String[] args) throws IOException {
         StringBuilder sb = new StringBuilder();
         int count = read();
 

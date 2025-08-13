@@ -7,19 +7,47 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+/**
+ * 1. 둘째줄은 가지고 있는 숫자 카드
+ * 2. 넷째줄은 가져야 될 카드
+ */
 public class Q10816 {
     /**
-     * 1. 둘째줄은 가지고 있는 숫자 카드
-     * 2. 넷째줄은 가져야 될 카드
-     */
-
-    private static int[] array = new int[20000001];
-    /**
-     * by counting array
+     * by hashmap2
      * @param args
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuffer sb = new StringBuffer();
+
+        int N = Integer.parseInt(br.readLine());
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+
+        Map<Integer, Integer> hashMap = new HashMap<>();
+        for(int i=0; i<N; i++) {
+            int data = Integer.parseInt(st.nextToken());
+            hashMap.put(data, hashMap.get(data) == null ? 1 : hashMap.get(data)+1);
+        }
+
+        int M = Integer.parseInt(br.readLine());
+        st = new StringTokenizer(br.readLine(), " ");
+
+        for(int i=0; i<M; i++) {
+            int data = Integer.parseInt(st.nextToken());
+            sb.append((hashMap.get(data) == null ? 0 : hashMap.get(data))+" ");
+        }
+
+        System.out.println(sb);
+        br.close();
+    }
+
+    private static int[] array = new int[20000001];
+    /**
+     * by counting array
+     * @throws IOException
+     */
+    public static void find2() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuffer sb = new StringBuffer();
 
@@ -39,6 +67,7 @@ public class Q10816 {
         }
 
         System.out.println(sb);
+        br.close();
     }
 
     /**
@@ -71,5 +100,6 @@ public class Q10816 {
         }
 
         System.out.println(sb);
+        br.close();
     }
 }
