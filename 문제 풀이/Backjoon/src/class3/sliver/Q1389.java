@@ -10,7 +10,6 @@ import java.util.*;
  */
 public class Q1389 {
     static Set<Integer>[] array;
-    static boolean[] isVisited;
 
     public static void main(String[] args) throws IOException {
         int N = read();
@@ -31,8 +30,6 @@ public class Q1389 {
         int isMin = (N*(N-1))/2;
         int result = 0;
         for (int i=1; i<=N; i++) {
-            isVisited = new boolean[N+1];
-            isVisited[i] = true;
             int min = BFS(i, N);
             if (isMin > min) {
                 isMin = min;
@@ -43,26 +40,30 @@ public class Q1389 {
         System.out.println(result);
     }
 
-
     static int BFS(int n, int N) {
         Queue<Integer> queue = new LinkedList<>();
-        queue.add(n);
-        isVisited[n] = true;
         int[] num = new int[N+1];
+        Arrays.fill(num, -1);
+        num[n] = 0;
+
         int min = 0;
+        queue.add(n);
 
         while (!queue.isEmpty()) {
             int node = queue.poll();
-            min += num[node];
 
             for(int data : array[node]) {
-                if (!isVisited[data]) {
+                if (num[data] == -1) {
                     queue.add(data);
-                    isVisited[data] = true;
-                    num[data] += num[node]+1;
+                    num[data] = (num[node]+1);
                 }
             }
         }
+
+        for (int i = 1; i <= N; i++) {
+            min += num[i];
+        }
+
         return min;
     }
 
