@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: SpringCache
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: qwer1234
+    url: jdbc:postgresql://localhost:5433/springCache
+    hikari:
+      connection-test-query: SELECT 1
+      idle-timeout: 30000
+      connection-timeout: 30000
+      schema: cache
+  cache:
+    type: hazelcast
+  hazelcast:
+    config: classpath:hazelcast.yml
+
+logging:
+  config: classpath:log4j2.xml
+
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  config-location: classpath:mybatis/mybatis-config.xml

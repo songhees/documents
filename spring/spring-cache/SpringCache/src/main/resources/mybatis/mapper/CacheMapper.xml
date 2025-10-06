@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springcache.mapper.CacheMapper">
+    <select id="getAllSimpleVO" resultType="SimpleVO">
+        SELECT *
+        FROM sample
+    </select>
+    <select id="modifySimpleVO" parameterType="SimpleVO" resultType="SimpleVO">
+        UPDATE sample
+        SET
+            validation = #{validation}
+        WHERE
+            id = #{id}
+        RETURNING *
+    </select>
+</mapper>

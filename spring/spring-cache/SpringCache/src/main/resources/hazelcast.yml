@@ -1,0 +1,16 @@
+hazelcast:
+  cluster-name: app-cluster
+  network:
+    join:
+      multicast: { enabled: true }        # 운영은 TCP-IP 권장
+#      tcp-ip:
+#        enabled: true
+#        member-list: [10.0.0.11, 10.0.0.12]
+  map:
+    policy:                                 # 전역 테이블 캐시 맵
+      time-to-live-seconds: 1800            # 예) 30분 (안전망; 너무 길게는 X)
+      backup-count: 1
+      eviction:
+        eviction-policy: LRU
+        max-size-policy: PER_NODE
+        size: 10                            # 엔트리 1개만 쓰니 작게 잡아도 OK

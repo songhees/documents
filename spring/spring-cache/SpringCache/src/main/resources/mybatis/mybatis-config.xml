@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+    <settings>
+        <!-- snake to camel -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!--
+            NULL값이 허용된 컬럼에 NULL값을 저장할 때 JDBC 타입을 요구한다.
+            아래와 같이 설정하면 해당 칼럼의 타입에 상관없이 NULL 값을 저장할 수 있다.
+            #{commissionPct, jdbcType=VARCHAR2} 이렇게 적어야 할 것을 안적고 저장가능
+        -->
+        <setting name="jdbcTypeForNull" value="NULL"/>
+        <!--
+            mybatis가 실행하는 SQL 구문 정보 및 실행되는 쿼리문, 파라미터값, 조회결과를 로그로 출력할 때 사용하는 구현체를 저장한다.
+        -->
+        <setting name="logImpl" value="LOG4J2"/>
+    </settings>
+    <!--
+            mapper.xml 에서 사용되는 객체에 대한 alias resultType, parameterType	에서 객체의 location을 나열하지 않아도 된다.		-->
+    <typeAliases>
+        <typeAlias type="com.example.springcache.domain.SimpleVO" alias="SimpleVO" />
+    </typeAliases>
+</configuration>
