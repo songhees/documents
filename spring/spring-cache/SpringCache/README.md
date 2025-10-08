@@ -1,12 +1,12 @@
 # Spring Cache
 
+정의 : 메소드 결과를 캐시에 저장하여 같은 입력으로 반복 실행을 피해 성능을 높이는 추상화 기능 
+
 > 메소드에 캐시를 적용하여 캐시에 있는 정보를 기반으로 메소드 실행 횟수를 줄인다.
 > 
 > 
 > [공지사항, 조회수, 랭킹에 많이 사용됨]
 > 
-
-<br>
 
 ### **공식문서**
 
@@ -20,18 +20,22 @@ Spring boot
 
 [Caching](https://godekdls.github.io/Spring%20Boot/caching/)
 
+[Spring Cacheable의 동작 원리](https://oliviarla.tistory.com/148)
+
 <br>
 
 ## **@EnableCaching**
 
-### default
+> Spring의 어노테이션 기반 캐시 관리 기능을 활성화
+> 
 
-mode = AdviceMode.PROXY
+### option
+
+mode = AdviceMode.PROXY ( default )
 
 - Cache는 프록시가 메소드 호출을 가로채서 캐시 로직을 붙이는 방식
     
     <aside>
-    <img src="https://www.notion.so/icons/drafts_red.svg" alt="https://www.notion.so/icons/drafts_red.svg" width="40px" />
     
     프록시를 거쳐 들어오는 외부 호출만 캐시가 적용
     
@@ -39,13 +43,11 @@ mode = AdviceMode.PROXY
     
     </aside>
     
-    대상 객체 내부에서 자기 자신의 다른 메서드를 호출하는 **자기 호출(self-invocation)** 은, 호출된 메서드에 `@Cacheable`이 붙어 있어도 런타임에 실제 캐싱이 일어나지 않는다.
+    대상 객체 내부에서 자기 자신의 다른 메소드를 호출하는 **자기 호출(self-invocation)** 은, 호출된 메소드에 `@Cacheable`이 붙어 있어도 런타임에 실제 캐싱이 일어나지 않는다.
     
 - public 메소드만 캐싱된다.
 - interface에는 어노테이션을 붙이지 않기
 - @PostConstruct 에서 캐시 메소드 호출하지 않기
-
-<br>
 
 mode = AdviceMode.ASPECTJ
 
@@ -56,32 +58,36 @@ mode = AdviceMode.ASPECTJ
 > Spring Cache는 실제 저장소를 제공하지 않고(추상화) 실제 제공자가 이 인터페이스들을 구현하여 수행한다.
 > 
 
-**CacheManager** : 캐시를 찾아주는 역할
+- **CacheManager** : 캐시를 찾아주는 역할
 
-**Cache** : 공통 캐시 작업을 정의하는 인터페이스 (가져오고, 저장하고, 삭제, 비우기) 등의 표준을 추상화
+- **Cache** : 공통 캐시 작업을 정의하는 인터페이스 (가져오고, 저장하고, 삭제, 비우기) 등의 표준을 추상화
 
-⇒ 구현 : 캐시를 실제 저장소로부터 어떻게 저장,조회,삭제할지 구체화함
+	⇒ 구현 : 캐시를 실제 저장소로부터 어떻게 저장,조회,삭제할지 구체화함
 
-⇒ 주로 캐시 저장소에서 구현체를 제공
+	⇒ 주로 캐시 저장소에서 구현체를 제공
 
-**@Cacheable** : 무엇을, 언제 캐싱 할지 선언
+- **@Cacheable** : 무엇을, 언제 캐싱 할지 선언
 
 <br>
 <br>
 
 # Cache annotation
+
+
 > **캐시 연산 우선 순위**
 > 
-> 1. **메서드**
+> 1. **메소드**
 > 2. **클래스 수준** — `@CacheConfig`
 > 3. **전역 설정** — `CachingConfigurer`
 
+<br>
+
 ## **@Cacheable**
 
-> 캐시 가능(cheachable)한 메서드를 구분
+> 캐시 가능(cheachable)한 메소드를 구분
 > 
 
-결과가 캐시에 저장되어 이후 동일한 key로 다시 호출될 때 메서드를 실제로 실행하지 않고 캐시에 있는 값을 반환하는 메서드
+결과가 캐시에 저장되어 이후 동일한 key로 다시 호출될 때 메소드를 실제로 실행하지 않고 캐시에 있는 값을 반환하는 메소드
 
 ⇒ 캐시에 있는 내용이 반환되고 **메소드는 호출되지 않는다.**
 
@@ -93,145 +99,145 @@ mode = AdviceMode.ASPECTJ
 
 ### **option**
 
-**value** : cache 이름, 속성없이 값이 할당되어 있다면 value 값이다. @Cacheable(”name”)’
+- **value** : cache 이름, 속성없이 값이 할당되어 있다면 value 값이다. @Cacheable(”name”)’
 
-- books, isbns 이름의 두 캐시에 값을 저장 → 호출 시 `books` 확인 → 없으면 `isbns` 확인
+	books, isbns 이름의 두 캐시에 값을 저장 → 호출 시 `books` 확인 → 없으면 `isbns` 확인
 
-  ```java
-  @Cacheable({"books", "isbns"})
-  public Book findBook(ISBN isbn) { ... }
-  ```
+	```java
+	@Cacheable({"books", "isbns"})
+	public Book findBook(ISBN isbn) { ... }
+	```
 
-**key** : 
+- **key** : 
 
-> 캐시는 본질적으로 키-값 저장소
-> 
-- key 를 지정하지 않으면 **메서드 호출 시점의 인수(매개변수에 들어온 실제 값)** 로 기본 키를 만든다.
+	> 캐시는 본질적으로 키-값 저장소
+	> 
+	- key 를 지정하지 않으면 **메소드 호출 시점의 인수(매개변수에 들어온 실제 값)** 로 기본 키를 만든다.
+	
+	- 모든 매개변수가 key값으로 적합하지 않다.
+	    
+	    따라서 key 속성을 통해 키가 생성되는 방식을 지정 ⇒ SpEL을 사용
+	    
+	    ```java
+	    @Cacheable(cacheNames="books", key="#isbn")
+	    public Book findBook(ISBN isbn, boolean checkWarehouse, boolean includeUsed)
+	    
+	    @Cacheable(cacheNames="books", key="#isbn.rawNumber")
+	    public Book findBook(ISBN isbn, boolean checkWarehouse, boolean includeUsed)
+	    
+	    @Cacheable(cacheNames="books", key="T(java.lang.String).format('%s:%s', #userId, #sku)")
+	    // String 타입의 객체의 메소드를 사용해서 userId, sku 값으로 key값을 만든다.
+	    public Book findBook(ISBN isbn, String userId, String sku)
+	    ```
+     
+- **keyGenerator** : 
 
-- 모든 매개변수가 key값으로 적합하지 않다.
+	- CustomKey 를 사용하고 싶을 경우 ⇒ KeyGenerator 를 구현한 빈의 이름을 지정
     
-    따라서 key 속성을 통해 키가 생성되는 방식을 지정 ⇒ SpEL을 사용
-    
-    ```java
-    @Cacheable(cacheNames="books", key="#isbn")
-    public Book findBook(ISBN isbn, boolean checkWarehouse, boolean includeUsed)
-    
-    @Cacheable(cacheNames="books", key="#isbn.rawNumber")
-    public Book findBook(ISBN isbn, boolean checkWarehouse, boolean includeUsed)
-    
-    @Cacheable(cacheNames="books", key="T(java.lang.String).format('%s:%s', #userId, #sku)")
-    // String 타입의 객체의 메소드를 사용해서 userId, sku 값으로 key값을 만든다.
-    public Book findBook(ISBN isbn, String userId, String sku)
-    ```
-    
-
-**keyGenerator** : 
-
-- CustomKey 를 사용하고 싶을 경우 ⇒ KeyGenerator 를 구현한 빈의 이름을 지정
-    
-    
-
-**sync** 
-
-- = true
-    
-    여러 사용자가 요청시 첫번째 요청만 메서드를 실행하고 나머지 사용자는 계산이 끝날 때 까지 대기했다가 캐시 값을 받는다.
-    
-    스레드 1 실행 2, 3 대기 → 1이 캐시에 저장 → 2, 3은 캐시에서 즉시 반환 ✅
-    
-    이 기능은 **캐시 구현체가 지원**해야 한다.
-    
-    스프링이 제공하는 기본 `CacheManager`들은 지원하지만, 사용 중인 외부/서드파티 캐시가 다 지원하는 것은 아니다.
-
-- = false ( default 값 ) : 스레드 1,2,3 → 전부 메서드 실행 → DB 3번 호출
-
-- **sync 로직**
-    
-    SpringCacheAnnotationParser 에서 `parseCacheableAnnotation` 메소드가 실행
-    
-    → CacheableOperation가 생성되고 Cacheable 플래그가 setting된다.
-    
-    sync은 CacheableOperation 에서 아래와 같이 정의되어 있다.
-    
-    ```java
-    public boolean isSync() {    return this.sync;}
-    ```
-    
-    CacheAspectSupport 안의 내부 클래스 CacheOperationContexts
-    
-    ```java
-    	@Nullable
-    	private Object execute(CacheOperationInvoker invoker, Method method, CacheOperationContexts contexts) {
-    		**if (contexts.isSynchronized()) {**
-    			// Special handling of synchronized invocation
-    			return executeSynchronized(invoker, method, contexts);
-    		}
-    
-    		// Process any early evictions
-    		processCacheEvicts(contexts.get(CacheEvictOperation.class), true,
-    				CacheOperationExpressionEvaluator.NO_RESULT);
-    
-    		// Check if we have a cached value matching the conditions
-    		Object cacheHit = findCachedValue(invoker, method, contexts);
-    		if (cacheHit == null || cacheHit instanceof Cache.ValueWrapper) {
-    			return evaluate(cacheHit, invoker, method, contexts);
-    		}
-    		return cacheHit;
-    	}
-    ```
-    
-    에서 sync 여부 판단하여
-    
-    executeSynchronized 를 실행하고 내부에서는
-    
-    `Cache cache = context.getCaches().iterator().next();` 
-    
-    cache값은 CacheOperationContext 에서 getCaches 메소드를 실행하고 
-    
-    `this.caches = CacheAspectSupport.this.getCaches(this, metadata.cacheResolver);` 
-    
-    getCaches ⇒ `Collection<? extends Cache> caches = cacheResolver.resolveCaches(context);` 
-    
-    CacheResolver 의 구현체인 SimpleCacheResolver (AbstractCacheResolver) 의 `resolveCaches`
-    
-    를 통해 CacheManager로 부터 getCache → Cache값 (`Collection<? extends Cache> caches`)을 가져온다.
     
 
-**condition :** 조건부 캐싱하기 위한 옵션
+- **sync** 
 
-`true` 또는 `false`로 평가되는 SpEL 표현식을 받는다.
+	= true
+	
+	여러 사용자가 요청시 첫번째 요청만 메소드를 실행하고 나머지 사용자는 계산이 끝날 때 까지 대기했다가 캐시 값을 받는다.
+	
+	스레드 1 실행 2, 3 대기 → 1이 캐시에 저장 → 2, 3은 캐시에서 즉시 반환 ✅
+	
+	이 기능은 **캐시 구현체가 지원**해야 한다.
+	
+	스프링이 제공하는 기본 `CacheManager`들은 지원하지만, 사용 중인 외부/서드파티 캐시가 다 지원하는 것은 아니다.
+	
+	 = false ( default 값 ) : 스레드 1,2,3 → 전부 메소드 실행 → DB 3번 호출
+	
+	- **sync 로직**
+	    
+	    SpringCacheAnnotationParser 에서 `parseCacheableAnnotation` 메소드가 실행
+	    
+	    → CacheableOperation가 생성되고 Cacheable 플래그가 setting된다.
+	    
+	    sync은 CacheableOperation 에서 아래와 같이 정의되어 있다.
+	    
+	    ```java
+	    public boolean isSync() {    return this.sync;}
+	    ```
+	    
+	    CacheAspectSupport 안의 내부 클래스 CacheOperationContexts
+	    
+	    ```java
+	    	@Nullable
+	    	private Object execute(CacheOperationInvoker invoker, Method method, CacheOperationContexts contexts) {
+	    		**if (contexts.isSynchronized()) {**
+	    			// Special handling of synchronized invocation
+	    			return executeSynchronized(invoker, method, contexts);
+	    		}
+	    
+	    		// Process any early evictions
+	    		processCacheEvicts(contexts.get(CacheEvictOperation.class), true,
+	    				CacheOperationExpressionEvaluator.NO_RESULT);
+	    
+	    		// Check if we have a cached value matching the conditions
+	    		Object cacheHit = findCachedValue(invoker, method, contexts);
+	    		if (cacheHit == null || cacheHit instanceof Cache.ValueWrapper) {
+	    			return evaluate(cacheHit, invoker, method, contexts);
+	    		}
+	    		return cacheHit;
+	    	}
+	    ```
+	    
+	    에서 sync 여부 판단하여
+	    
+	    executeSynchronized 를 실행하고 내부에서는
+	    
+	    `Cache cache = context.getCaches().iterator().next();` 
+	    
+	    cache값은 CacheOperationContext 에서 getCaches 메소드를 실행하고 
+	    
+	    `this.caches = CacheAspectSupport.this.getCaches(this, metadata.cacheResolver);` 
+	    
+	    getCaches ⇒ `Collection<? extends Cache> caches = cacheResolver.resolveCaches(context);` 
+	    
+	    CacheResolver 의 구현체인 SimpleCacheResolver (AbstractCacheResolver) 의 `resolveCaches`
+	    
+	    를 통해 CacheManager로 부터 getCache → Cache값 (`Collection<? extends Cache> caches`)을 가져온다.
+    
 
-- `true` → 캐시 저장
-- `false` → 캐시에 저장 금지, 메소드가 호출된다.
+- **condition :** 조건부 캐싱하기 위한 옵션
+	
+	`true` 또는 `false`로 평가되는 SpEL 표현식을 받는다.
+	
+	- `true` → 캐시 저장
+	- `false` → 캐시에 저장 금지, 메소드가 호출된다.
+	
+	ex) name의 길이가 32 미만이면 캐시됨
+	
+	```java
+	@Cacheable(cacheNames="book", condition="#name.length() < 32") 
+	public Book findBook(String name)
+	```
 
-ex) name의 길이가 32 미만이면 캐시됨
-
-```java
-@Cacheable(cacheNames="book", condition="#name.length() < 32") 
-public Book findBook(String name)
-```
-
-<br>
-
-**unless** : 캐시에 추가하는 것을 거부하는 조건
-
-메서드가 호출된 후에 캐시를 넣을지 말지 결정
-
-- `true` → 캐시에 저장 금지, 결과만 반환
-- `false` → 캐시 저장하고 결과 반환
-
-ex ) #result.hardback ⇒ Book.hardback 값이 true 면 캐시되지 않음
-
-```java
-@Cacheable(cacheNames="book", condition="#name.length() < 32", unless="#result?.hardback") 
-public Book findBook(String name)
-```
-
-#result 는 메서드 호출 결과를 뜻 함
-
-Optional일 때 #result 는 내부 값
-
-null Exception을 방지하기 위해서 **?.** 사용
+- **unless** : 캐시에 추가하는 것을 거부하는 조건
+	
+	메소드가 호출된 후에 캐시를 넣을지 말지 결정
+	
+	- `true` → 캐시에 저장 금지, 결과만 반환
+	    
+	    서비스 메소드가 아무것도 캐시하지 않고 단순히 캐시를 확인하도록 하려면 **unless ="true"를 사용**
+	    
+	- `false` → 캐시 저장하고 결과 반환
+	
+	ex ) #result.hardback ⇒ Book.hardback 값이 true 면 캐시되지 않음
+	
+	```java
+	@Cacheable(cacheNames="book", condition="#name.length() < 32", unless="#result?.hardback") 
+	public Book findBook(String name)
+	```
+	
+	#result 는 메소드 호출 결과를 뜻 함
+	
+	Optional일 때 #result 는 내부 값
+	
+	null Exception을 방지하기 위해서 **?.** 사용
 
 <br>
 
@@ -254,20 +260,22 @@ null Exception을 방지하기 위해서 **?.** 사용
 > 따라서 메소드에 반환값이 없어도됨 (void)
 > 
 
-allEntries=true
+[[입 개발] Spring 의 CacheEvict 에서 allEntries=true 는 Redis에서 어떻게 동작하게 될까?](https://charsyam.wordpress.com/2022/04/18/%EC%9E%85-%EA%B0%9C%EB%B0%9C-spring-%EC%9D%98-cacheevict-%EC%97%90%EC%84%9C-allentriestrue-%EB%8A%94-redis%EC%97%90%EC%84%9C-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%8F%99%EC%9E%91%ED%95%98%EA%B2%8C/)
 
-key값 상관없이 해당 value로 들어간 모든 캐시 데이터를 지운다.
+- allEntries=true
 
-beforeInvocation
+	key값 상관없이 해당 value로 들어간 모든 캐시 데이터를 지운다.
 
-- true → 메소드 호출 전에 발생
-- false (default) → 메소드 완료 후에 동작
+- beforeInvocation
+
+	- true → 메소드 호출 전에 발생
+	- false (default) → 메소드 완료 후에 동작
 
 <br>
 
 ## @Caching
 
-> 하나의 메서드에 중첩된 여러 `@Cacheable`, `@CachePut`, `@CacheEvict` 애노테이션을 사용할 수 있다.
+> 하나의 메소드에 중첩된 여러 `@Cacheable`, `@CachePut`, `@CacheEvict` 애노테이션을 사용할 수 있다.
 > 
 
 ```java
@@ -294,32 +302,208 @@ public class BookRepositoryImpl implements BookRepository {
 <br>
 <br>
 
-# Cache, Transcational
+# Cache + Transactional
 
 
 `@CachePut`도 `@CacheEvict`도 DB 커밋보다 먼저 실행될 수 있다.
 
-- 트랜잭션은 메서드가 정상 반환 된 뒤에 커밋되는데
+`@EnableTransactionManagement` 와 `@EnableCaching` 설정 순서에 따라 다르다.
+
+⇒ 기본 order 값이 동일하므로 순서가 보장되지 않는다.
+
+<br>
+
+CacheInterceptor
+
+└─ TransactionInterceptor
+
+└─ 실제 메소드
+
+```java
+@EnableTransactionManagement(order = 2) 
+@EnableCaching(order = 1)
+// 캐시로직 실행 -> 트랜잭션 시작 -> 커밋 -> 캐시 returning
+```
+
+TransactionalInterceptor
+
+└─ CacheInterceptor
+
+└─ 실제 메소드
+
+```java
+@EnableTransactionManagement(order = 1) 
+@EnableCaching(order = 2) 
+// 트랜잭션을 시작 -> 캐시로직 실행 -> 캐시 returning -> 커밋
+```
+
+order 번호가 높은 순으로 먼저 종료됨
+
+<br>
+
+## Cache → Transaction
+
+TransactionInterceptor 가 더 안쪽에 있다면 커밋 후에 CacheEvict 가 실행된다.
+
+```java
+[DEBUG] 2025-10-08 15:15:43 [Test worker] JdbcTransactionManager - Initiating transaction commit
+[DEBUG] 2025-10-08 15:15:43 [Test worker] JdbcTransactionManager - Committing JDBC transaction on Connection [HikariProxyConnection@1735552465 wrapping org.postgresql.jdbc.PgConnection@6b78cbee]
+[DEBUG] 2025-10-08 15:15:43 [Test worker] PgConnection -   setAutoCommit = true
+[DEBUG] 2025-10-08 15:15:43 [Test worker] JdbcTransactionManager - Releasing JDBC Connection [HikariProxyConnection@1735552465 wrapping org.postgresql.jdbc.PgConnection@6b78cbee] after transaction
+[TRACE] 2025-10-08 15:15:43 [Test worker] CacheInterceptor - Invalidating entire cache for operation Builder[public void com.example.springcache.service.CacheService.removeSimpleVO(com.example.springcache.domain.SimpleVO,java.util.concurrent.CountDownLatch,java.util.concurrent.CountDownLatch)] caches=[test] | key='' | keyGenerator='' | cacheManager='' | cacheResolver='' | condition='',true,false on method public void com.example.springcache.service.CacheService.removeSimpleVO(com.example.springcache.domain.SimpleVO,java.util.concurrent.CountDownLatch,java.util.concurrent.CountDownLatch)
+[TRACE] 2025-10-08 15:15:43 [Test worker] CacheInterceptor - Computed cache key 'test' for operation Builder[public java.util.List com.example.springcache.service.CacheService.getAllSimpleVO()] caches=[test] | key=''test'' | keyGenerator='' | cacheManager='' | cacheResolver='' | condition='' | unless='' | sync='true'
+```
+
+딱히 설정하지 않았지만 커밋 후에 Evict가 실행되는 것으로 동작한다. 
+
+<br>
+
+## Transaction → Cache
+
+CacheInterceptor 가 더 안쪽에 위치 캐시 returning 후에 커밋 실행
+
+**log** 
+
+```java
+[DEBUG] 2025-10-08 16:11:25 [Thread-4] modifySimpleVO - ==>  Preparing: UPDATE sample SET validation = ? WHERE id = ? RETURNING *
+[DEBUG] 2025-10-08 16:11:25 [Thread-4] modifySimpleVO - ==> Parameters: N(String), 1(Integer)
+[DEBUG] 2025-10-08 16:11:25 [Thread-4] modifySimpleVO - <==      Total: 1
+// mybatis 로그
+[DEBUG] 2025-10-08 16:11:25 [Thread-4] SqlSessionUtils - Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6f472b23]
+[TRACE] 2025-10-08 16:11:25 [Thread-4] CacheInterceptor - Invalidating entire cache for operation Builder[public void com.example.springcache.service.CacheService.removeSimpleVO(com.example.springcache.domain.SimpleVO,java.util.concurrent.CountDownLatch,java.util.concurrent.CountDownLatch)] caches=[test] | key='' | keyGenerator='' | cacheManager='' | cacheResolver='' | condition='',true,false on method public void com.example.springcache.service.CacheService.removeSimpleVO(com.example.springcache.domain.SimpleVO,java.util.concurrent.CountDownLatch,java.util.concurrent.CountDownLatch)
+// evict 실행
+[DEBUG] 2025-10-08 16:11:25 [Thread-4] SqlSessionUtils - Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6f472b23]
+[TRACE] 2025-10-08 16:11:25 [Test worker] CacheInterceptor - Computed cache key 'test' for operation Builder[public java.util.List com.example.springcache.service.CacheService.getAllSimpleVO()] caches=[test] | key=''test'' | keyGenerator='' | cacheManager='' | cacheResolver='' | condition='' | unless='' | sync='true'
+// 키 계산 후 cache 찾기
+...
+[DEBUG] 2025-10-08 16:11:25 [Test worker] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2025-10-08 16:11:25 [Test worker] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5896899d] was not registered for synchronization because synchronization is not active
+[DEBUG] 2025-10-08 16:11:25 [Test worker] DataSourceUtils - Fetching JDBC Connection from DataSource
+[DEBUG] 2025-10-08 16:11:25 [HikariPool-1:connection-adder] PgConnection -   setSchema = cache
+[DEBUG] 2025-10-08 16:11:25 [HikariPool-1:connection-adder] PoolBase - HikariPool-1 - Established new connection
+[DEBUG] 2025-10-08 16:11:25 [HikariPool-1:connection-adder] HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4fa4d11f
+/// select 위한 connection 추가
+[DEBUG] 2025-10-08 16:11:25 [Test worker] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1832936189 wrapping org.postgresql.jdbc.PgConnection@4fa4d11f] will not be managed by Spring
+[DEBUG] 2025-10-08 16:11:25 [Test worker] getAllSimpleVO - ==>  Preparing: SELECT * FROM sample
+[DEBUG] 2025-10-08 16:11:25 [Test worker] getAllSimpleVO - ==> Parameters: 
+[DEBUG] 2025-10-08 16:11:25 [Test worker] getAllSimpleVO - <==      Total: 1
+[DEBUG] 2025-10-08 16:11:25 [Test worker] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5896899d]
+...
+[DEBUG] 2025-10-08 16:11:25 [Thread-4] SqlSessionUtils - Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6f472b23]
+[DEBUG] 2025-10-08 16:11:25 [Thread-4] SqlSessionUtils - Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6f472b23]
+[DEBUG] 2025-10-08 16:11:25 [Thread-4] JdbcTransactionManager - Initiating transaction commit
+// 트랜잭션 커밋 시작
+[DEBUG] 2025-10-08 16:11:25 [Thread-4] JdbcTransactionManager - Committing JDBC transaction on Connection [HikariProxyConnection@1051656116 wrapping org.postgresql.jdbc.PgConnection@2fe7f3b2]
+// update 에 사용된 커넥션으로 수행
+[DEBUG] 2025-10-08 16:11:25 [Thread-4] PgConnection -   setAutoCommit = true
+```
+
+- `@Transactional` 메소드(쓰기)가 **커밋되기 전에** 다른 트랜잭션(또는 비트랜잭션)에서
+- `@Cacheable`로 조회하면, 캐시에 값이 없으니 DB로 요청이 되고
+- 대부분의 기본 격리수준(READ_COMMITTED)에서는 커밋 전 값(이전 값)을 보게 된다.
+- 그 조회 결과가 곧바로 캐시에 **채워지면**(put)
+- 쓰기 트랜잭션이 아직 커밋 전이라면 오래된 값이 캐시에 올라갈 수 있다.
+
+- 트랜잭션은 메소드가 정상 반환 된 뒤에 커밋되는데
 - put/evict는 보통 메소드 반환 직후 실행되기 때문
 
-`@Transactional` 메서드(쓰기)가 **커밋되기 전에** 다른 트랜잭션(또는 비트랜잭션)에서 
+<aside>
 
-`@Cacheable`로 조회하면, 캐시에 값이 없으니 **DB로 가고**
+update 메소드  — 메소드 종료 — **evict 실행 — update 커밋**
 
-대부분의 기본 격리수준(READ_COMMITTED)에서는 커밋 전 값(이전 값)을 보게 된다.
+- evict 실행과 update 커밋 사이에 다른 스레드에서 요청이 오면 오래된 값이 캐시에 올라갈 수 있다. **← 오류발생**
 
-그 조회 결과가 곧바로 캐시에 **채워지면**(put)
+</aside>
 
-쓰기 트랜잭션이 아직 커밋 전이라면 오래된 값이 캐시에 올라갈 수 있다.
+<br>
 
-메소드 종료 — 캐시 삭제 — 커밋
+### rollback
 
-ing~~~~~~~~~~~~~~~
+- `@CacheEvict(beforeInvocation=true)`
+    - 캐시 삭제 시점 : 메소드 실행 전
+    - 롤백 시 : DB는 되돌아가지만 캐시는 이미 지워진 상태 → 성능 저하
+- `@CacheEvict(beforeInvocation=false)`(default)
+    - 캐시 삭제 시점 : 메소드 정상 종료 직후
+    - 롤백 시 : DB는 원복되지만 캐시는 지워진 상태 → 성능 저하
+- `@CachePut`
+    - 캐시 갱신 시점 : 메소드 정상 종료 직후
+    - 롤백 시 : DB는 원복되지만 캐시는 업데이트 된 상태 → 불일치 문제
+
+**해결하는 방법**
+
+1. order 설정
+    
+    ```java
+    @EnableTransactionManagement(order = 2) 
+    @EnableCaching(order = 1)
+    // 캐시로직 실행 -> 트랜잭션 시작 -> 커밋 -> 캐시 returning
+    ```
+    
+2. TransactionAwareCacheManagerProxy 설정
+    
+    클래스 내에서 cache를 가져올때 아래 로직을 사용
+    
+    TransactionAwareCacheDecorator : Cache 구현을 감싸고 put, evict 또는 clear 작업이 현재 트랜잭션이 성공적으로 커밋된 후에 실행되도록 한다.
+    
+    ```java
+    	@Override
+    	@Nullable
+    	public Cache getCache(String name) {
+    		Assert.state(this.targetCacheManager != null, "No target CacheManager set");
+    		Cache targetCache = this.targetCacheManager.getCache(name);
+    		return (targetCache != null ? new TransactionAwareCacheDecorator(targetCache) : null);
+    	}
+    ```
+    
+    Custom CacheManager 생성
+    
+    ```java
+    @Configuration
+    @EnableCaching(order = 2)
+    public class CacheConfig {
+    
+        @Bean(name = "delegateCacheManager")
+        public CacheManager delegateCacheManager(HazelcastInstance hz) {
+            return new HazelcastCacheManager(hz);
+        }
+    
+        @Bean
+        @Primary
+        public CacheManager transactionAwareCacheManager(
+                @Qualifier("delegateCacheManager") CacheManager target) {
+            return new TransactionAwareCacheManagerProxy(target);
+        }
+    }
+    ```
+    
+    Hazelcast 에도 되는 건가…..?
+
+<br>
+
+Test Case
+
+- caching → transaction
+    
+    update mybatis → select → 커밋 → evict → select : Y → N 으로 select
+    
+
+- transaction → caching
+    
+    update mybatis → evict → select → 커밋 → select : Y → Y 으로 select (이슈 발생)
+    
+
+- trasaction → caching // TransactionAwareCacheManagerProxy 설정
+    
+    udpate mybatis → select → 커밋 → evict → sellect : Y → N 으로 select
+
 
 <br>
 <br>
+
 
 # Setting
+
+
 ### **dependency**
 
 ```java
@@ -336,6 +520,7 @@ implementation 'org.springframework.boot:spring-boot-starter-cache
 <br>
 
 # 캐시 저장소
+
 
 [[Spring] 캐시란? + Spring Boot 내장 캐시 사용하기](https://hogwart-scholars.tistory.com/entry/Spring-%EC%BA%90%EC%8B%9C%EB%9E%80-Spring-Boot-%EB%82%B4%EC%9E%A5-%EC%BA%90%EC%8B%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0)
 
@@ -465,6 +650,8 @@ hazelcast:
     - 즉,
         - 노드에 11번째 엔트리가 들어오면 Hazelcast가 LRU 정책에 따라 가장 덜 사용된 엔트리를 제거합니다.
         - 클러스터에 3노드 있으면 → 총 30개까지 저장 가능 (노드당 10개).
+
+<br>
 
 ### 2. HazelcastConfig
 
