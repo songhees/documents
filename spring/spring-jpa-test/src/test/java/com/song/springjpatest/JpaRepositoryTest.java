@@ -3,6 +3,8 @@ package com.song.springjpatest;
 
 import com.song.springjpatest.entity.Book;
 import com.song.springjpatest.entity.Review;
+import com.song.springjpatest.repository.book.BookJpaRepository;
+import com.song.springjpatest.repository.review.ReviewJpaRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;

@@ -19,4 +19,9 @@ public class Book {
     private Long id;
 
     private String title;
+
+    @Version
+    private Long version;
+
+    private int count;
 }
