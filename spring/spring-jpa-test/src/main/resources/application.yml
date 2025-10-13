@@ -1,20 +1,11 @@
 spring:
   application:
     name: spring-jpa-test
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    username: postgres
-    password: qwer1234
-    url: jdbc:postgresql://localhost:5433/springJpa
-    hikari:
-      connection-test-query: SELECT 1
-      idle-timeout: 30000
-      connection-timeout: 30000
-      schema: public
-      maximum-pool-size: 5
+  profiles:
+    active: local
   jpa:
-    hibernate:
-      ddl-auto: create-drop
+#    hibernate:
+#      ddl-auto: create
     properties:
       hibernate:
         format_sql: true
@@ -25,3 +16,4 @@ spring:
         bootstrap-mode: deferred
 logging:
   config: classpath:log4j2.xml
+

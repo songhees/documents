@@ -1,5 +1,6 @@
 package com.song.springjpatest.entity;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,16 +11,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "tb_review")
+@Table(name = "tb_region")
 @Entity
-public class Review {
+public class Region {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    private Book book;
+    private String name;
 
-    private String text;
+    @Version
+    private Long version;
+
+    @Column(nullable = true)
+    private int count;
 }

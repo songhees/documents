@@ -1,10 +1,10 @@
 package com.song.springjpatest;
 
 
-import com.song.springjpatest.entity.Book;
-import com.song.springjpatest.entity.Review;
-import com.song.springjpatest.repository.book.BookJpaRepository;
-import com.song.springjpatest.repository.review.ReviewJpaRepository;
+import com.song.springjpatest.entity.Region;
+import com.song.springjpatest.entity.Weather;
+import com.song.springjpatest.repository.region.RegionJpaRepository;
+import com.song.springjpatest.repository.weather.WeatherJpaRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.extern.slf4j.Slf4j;
@@ -23,80 +23,95 @@ import static org.assertj.core.api.Assertions.assertThat;
 class JpaRepositoryTest {
 
     @Autowired
-    private ReviewJpaRepository reviewRepository;
+    private WeatherJpaRepository weatherRepository;
     @Autowired
-    private BookJpaRepository bookRepository;
+    private RegionJpaRepository bookRepository;
 
     @PersistenceContext
     private EntityManager em;
 
+
     @Test
-    @DisplayName("N:1 에러 테스트 all")
+    @DisplayName("Update 테스트")
     void testJpaRepository() {
-        Book book = Book.builder().title("book1")
-                .build();
+        weatherRepository.updateWeathersFlag("PASS");
 
-        bookRepository.save(book);
+        List<Weather> beforeResult = weatherRepository.findAll();
 
-
-        Review review = Review.builder().book(book).text("review1").build();
-        Review review2 = Review.builder().book(book).text("review1-2").build();
-
-        reviewRepository.save(review);
-        reviewRepository.save(review2);
-
-        em.flush();
+        assertThat(beforeResult).isNotEmpty();
         em.clear();
 
-        List<Review> result = reviewRepository.findAll();
+        List<Weather> afterResult = weatherRepository.findAll();
 
-        String test = result.stream().map(review1 -> review1.getBook().getTitle()).collect(Collectors.joining(", "));
-        log.info(test);
-        assertThat(result).isNotEmpty();
+        assertThat(afterResult).isEqualTo(beforeResult);
     }
 
-    @Test
-    @DisplayName("N:1 에러 테스트 all/fetch")
-    void testJpaFetchRepository() {
-        Book book = Book.builder().title("book1")
-                .build();
-        bookRepository.save(book);
-
-        Review review = Review.builder().book(book).text("review1").build();
-        Review review2 = Review.builder().book(book).text("review1-2").build();
-
-        reviewRepository.save(review);
-        reviewRepository.save(review2);
-
-        em.flush();
-        em.clear();
-
-        List<Review> result = reviewRepository.findFetchAll();
-
-        String test = result.stream().map(review1 -> review1.getBook().getTitle()).collect(Collectors.joining(", "));
-        log.info(test);
-        assertThat(result).isNotEmpty();
-    }
-
-    @Test
-    @DisplayName("N:1 에러 테스트 detail")
-    void testJpaDetailRepository() {
-        Book book = Book.builder().title("book1")
-                .build();
-
-        bookRepository.save(book);
-
-        Review review = Review.builder().book(book).text("review1").build();
-
-        reviewRepository.save(review);
-
-        em.flush();
-        em.clear();
-
-        Review result = reviewRepository.findAllAndBook(1L);
-
-        log.info(result.getText());
-        log.info(result.getBook().getTitle());
-        assertThat(result).isNotNull();
-    }
+//    @Test
+//    @DisplayName("N:1 에러 테스트 all")
+//    void testJpaRepository() {
+//        Region region = Region.builder().name("book1")
+//                .build();
+//
+//        bookRepository.save(region);
+//
+//
+//        Weather weather = Weather.builder().region(region).build();
+//        Weather weather2 = Weather.builder().region(region).build();
+//
+//        weatherRepository.save(weather);
+//        weatherRepository.save(weather2);
+//
+//        em.flush();
+//        em.clear();
+//
+//        List<Weather> result = weatherRepository.findAll();
+//
+//        String test = result.stream().map(weather1 -> weather1.getRegion().getTitle()).collect(Collectors.joining(", "));
+//        log.info(test);
+//        assertThat(result).isNotEmpty();
+//    }
+//
+//    @Test
+//    @DisplayName("N:1 에러 테스트 all/fetch")
+//    void testJpaFetchRepository() {
+//        Region region = Region.builder().title("book1")
+//                .build();
+//        bookRepository.save(region);
+//
+//        Weather weather = Weather.builder().region(region).build();
+//        Weather weather2 = Weather.builder().region(region).build();
+//
+//        weatherRepository.save(weather);
+//        weatherRepository.save(weather2);
+//
+//        em.flush();
+//        em.clear();
+//
+//        List<Weather> result = weatherRepository.findFetchAll();
+//
+//        String test = result.stream().map(weather1 -> weather1.getRegion().getTitle()).collect(Collectors.joining(", "));
+//        log.info(test);
+//        assertThat(result).isNotEmpty();
+//    }
+//
+//    @Test
+//    @DisplayName("N:1 에러 테스트 detail")
+//    void testJpaDetailRepository() {
+//        Region region = Region.builder().title("book1")
+//                .build();
+//
+//        bookRepository.save(region);
+//
+//        Weather weather = Weather.builder().region(region).build();
+//
+//        weatherRepository.save(weather);
+//
+//        em.flush();
+//        em.clear();
+//
+//        Weather result = weatherRepository.findAllAndBook(1L);
+//
+//        log.info(result.getRegion().getTitle());
+//        assertThat(result).isNotNull();
+//    }
 }

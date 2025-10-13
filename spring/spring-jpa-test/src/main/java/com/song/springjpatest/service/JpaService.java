@@ -1,4 +1,4 @@
-package com.song.springjpatest;
+package com.song.springjpatest.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
