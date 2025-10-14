@@ -1,12 +1,9 @@
 package com.song.springjpatest.entity;
 
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+@ToString
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,6 +20,5 @@ public class Region {
     @Version
     private Long version;
 
-    @Column(nullable = true)
-    private int count;
+    private Integer count;
 }

@@ -20,4 +20,5 @@ public interface WeatherJpaRepository extends JpaRepository<Weather, Long>, Weat
 
     @Query("select r, r.weatherId from Weather r where r.weatherId.region = :id")
     Weather findAllAndBook(@Param("id") Long id);
+
 }

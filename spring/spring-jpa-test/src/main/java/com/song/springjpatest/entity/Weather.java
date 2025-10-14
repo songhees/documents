@@ -1,13 +1,11 @@
 package com.song.springjpatest.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 
+@ToString
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor

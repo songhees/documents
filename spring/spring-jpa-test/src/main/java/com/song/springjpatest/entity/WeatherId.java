@@ -1,12 +1,9 @@
 package com.song.springjpatest.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
 @Embeddable
-record WeatherId(@JoinColumn(name = "region_id") @ManyToOne Region region,
-                 @Column LocalDateTime time) {}
+public record WeatherId(@JoinColumn(name = "region_id") @ManyToOne(fetch = FetchType.LAZY) Region region,
+                        @Column LocalDateTime time) {}
