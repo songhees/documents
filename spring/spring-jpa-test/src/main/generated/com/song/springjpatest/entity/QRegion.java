@@ -9,6 +9,7 @@ import com.querydsl.core.types.dsl.StringTemplate;
 import com.querydsl.core.types.PathMetadata;
 import com.querydsl.core.annotations.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -29,6 +30,8 @@ public class QRegion extends EntityPathBase<Region> {
     public final StringPath name = createString("name");
 
     public final NumberPath<Long> version = createNumber("version", Long.class);
+
+    public final SetPath<Weather, QWeather> weathers = this.<Weather, QWeather>createSet("weathers", Weather.class, QWeather.class, PathInits.DIRECT2);
 
     public QRegion(String variable) {
         super(Region.class, forVariable(variable));

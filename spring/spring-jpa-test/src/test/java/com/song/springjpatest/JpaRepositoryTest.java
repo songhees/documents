@@ -2,6 +2,7 @@ package com.song.springjpatest;
 
 
 import com.song.springjpatest.config.JpaTestConfig;
+import com.song.springjpatest.entity.Region;
 import com.song.springjpatest.entity.Weather;
 import com.song.springjpatest.repository.region.RegionJpaRepository;
 import com.song.springjpatest.repository.weather.WeatherJpaRepository;
@@ -28,7 +29,7 @@ class JpaRepositoryTest {
     @Autowired
     private WeatherJpaRepository weatherRepository;
     @Autowired
-    private RegionJpaRepository bookRepository;
+    private RegionJpaRepository regionJpaRepository;
 
     @PersistenceContext
     private EntityManager em;
@@ -98,5 +99,54 @@ class JpaRepositoryTest {
         assertThat(result).isNotEmpty();
 
         log.info(result.get(0).getWeatherId().region().toString());
+    }
+
+    @Test
+    @DisplayName("toMany를 fetch join시 중복 row 확인")
+    void testJpaFetchJoinInOneToMany() {
+        List<Region> result = regionJpaRepository.findAll();
+        assertThat(result).isNotEmpty();
+
+        List<Region> resultFetch = regionJpaRepository.findAllFetch();
+        assertThat(resultFetch).isNotEmpty();
+
+        result.forEach(region -> { log.info(region.toString());});
+        log.info("restult size : {}", result.size());
+        log.info("fetch join in OneToMany test");
+        log.info("restultFetch size : {}", resultFetch.size());
+        resultFetch.forEach(region -> { log.info(region.toString());});
+    }
+
+    @Test
+    @DisplayName("N:1 에러 테스트 all + @BatchSize")
+    void testBatchSizeRepository() {
+        List<Region> regions = regionJpaRepository.findAll();
+
+        assertThat(regions).isNotNull();
+
+        // id 하나만 조회해도 BatchSize 만큼 조회됨
+        regions.get(0).getWeathers().forEach(
+                weather -> {
+                    log.info(weather.toString());
+                });
+
+        List<Weather> result = weatherRepository.findAll();
+
+        assertThat(result).isNotEmpty();
+        log.info(result.get(0).getWeatherId().region().toString());
+    }
+
+    @Test
+    @DisplayName("N:1 에러 테스트 all + @EntityGraph ToOne")
+    void entityGraphToOneRepository() {
+        List<Weather> target = weatherRepository.findAllEntityGraph();
+        assertThat(target).isNotEmpty();
+    }
+
+    @Test
+    @DisplayName("N:1 에러 테스트 all + @EntityGraph toMany")
+    void entityGraphToManyRepository() {
+        List<Region> target = regionJpaRepository.findEntityGraphAll();
+        assertThat(target).isNotEmpty();
     }
 }

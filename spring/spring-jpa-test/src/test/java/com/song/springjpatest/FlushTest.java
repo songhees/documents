@@ -35,13 +35,13 @@ class FlushTest {
     @DisplayName("JpaRepository flush 테스트")
     void testJpaUpdateRepository() {
         // 테스트 용 엔티티 생성
-        Region saved = regionJpaRepository.save(new Region(297L, "test", null, 0));
+        Region saved = regionJpaRepository.save(new Region(297L, "test", 0));
         em.flush();
         em.clear();
 
         // 영속성 컨텍스트에 update
         Region newRegion = regionJpaRepository.save(
-                new Region(saved.getId(), saved.getName(), saved.getVersion(), saved.getCount()+1));
+                new Region(saved.getId(), saved.getName(), saved.getCount()+1));
 
         log.info("count : {}", newRegion.getCount());
 

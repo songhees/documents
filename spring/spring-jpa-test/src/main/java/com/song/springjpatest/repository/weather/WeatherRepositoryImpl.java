@@ -1,11 +1,12 @@
 package com.song.springjpatest.repository.weather;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.song.springjpatest.entity.QRegion;
-import com.song.springjpatest.entity.QWeather;
-import com.song.springjpatest.entity.QcFlag;
-import com.song.springjpatest.entity.Weather;
+import com.song.springjpatest.entity.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -27,6 +28,22 @@ public class WeatherRepositoryImpl implements WeatherRepository {
     @Override
     public List<Weather> getWeatherAllFetch() {
         return jpaQueryFactory.selectFrom(weather).join(weather.weatherId.region, region).fetchJoin().fetch();
+    }
+
+    /**
+     * toOne fetch join + paging처리
+     */
+    @Override
+    public Page<Weather> findAllPaging(Pageable pageable) {
+        List<Weather> result = jpaQueryFactory.selectFrom(weather)
+                .leftJoin(weather.weatherId.region, region).fetchJoin()
+                .offset(pageable.getOffset()).limit(pageable.getPageSize()).fetch();
+
+        Long total = jpaQueryFactory
+                .select(weather.weatherId.count())
+                .from(weather)
+                .fetchOne();
+        return new PageImpl<>(result, pageable, total == null ? 0 : total);
     }
 
     @Override

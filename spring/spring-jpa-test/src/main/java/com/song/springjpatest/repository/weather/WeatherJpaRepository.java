@@ -2,9 +2,9 @@ package com.song.springjpatest.repository.weather;
 
 import com.song.springjpatest.entity.Weather;
 import jakarta.annotation.Nonnull;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -15,10 +15,8 @@ public interface WeatherJpaRepository extends JpaRepository<Weather, Long>, Weat
     @Query("select r from Weather r")
     List<Weather> findAll();
 
-    @Query("select r from Weather r  JOIN FETCH r.weatherId")
-    List<Weather> findFetchAll();
-
-    @Query("select r, r.weatherId from Weather r where r.weatherId.region = :id")
-    Weather findAllAndBook(@Param("id") Long id);
-
+    @Nonnull
+    @EntityGraph(attributePaths = {"weatherId.region"}, type = EntityGraph.EntityGraphType.FETCH)
+    @Query("select r from Weather r")
+    List<Weather> findAllEntityGraph();
 }
