@@ -34,6 +34,12 @@ public class CacheService {
         return list;
     }
 
+    /**
+     * hazelcast, spring cache 분산 서버 적용 test 용 함수
+     * @param simpleVO
+     * @param ready
+     * @param beforeCommitBlocker
+     */
     @Transactional
     @CacheEvict(allEntries = true)
     public void removeSimpleVO(SimpleVO simpleVO, CountDownLatch ready, CountDownLatch beforeCommitBlocker) {

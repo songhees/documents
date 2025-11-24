@@ -1,0 +1,36 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      - IMAGE_TAG=1.0.0
+      - REPOSITORY_URI=$ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/pipline
+      - echo REPOSITORY_URI=$REPOSITORY_URI
+      - echo IMAGE_TAG=$IMAGE_TAG
+  build:
+    commands:
+      - echo Build started on $(date)
+      - chmod +x ./gradlew
+      - ./gradlew clean bootWar -x test
+      - ls -al build/libs
+      - mkdir -p build/docker
+      - cp build/libs/*.war build/docker/app.war
+      - docker build --build-arg ACCOUNT_ID=$ACCOUNT_ID -t $REPOSITORY_URI:$IMAGE_TAG -f Dockerfile .
+      - docker tag $REPOSITORY_URI:$IMAGE_TAG $REPOSITORY_URI:latest
+  post_build:
+    commands:
+      - echo Pushing Docker images...
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - docker push $REPOSITORY_URI:latest
+      - echo Writing imagedefinitions.json for ECS CodeDeploy...
+      - printf '[{"name":"%s","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+artifacts:
+  files:
+    - imagedefinitions.json
+cache:
+  paths:
+    - '/root/.gradle/caches/**/*'
