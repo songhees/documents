@@ -1,6 +1,8 @@
 package com.batch.spirng_batch.repository.weather;
 
 import com.batch.spirng_batch.entity.Weather;
+import com.batch.spirng_batch.entity.WeatherId;
+
 import jakarta.annotation.Nonnull;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,7 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 // JpaRepository를 확장했으므로 Jpa가 이를 인식함
-public interface WeatherJpaRepository extends JpaRepository<Weather, Long>, WeatherRepository {
+public interface WeatherJpaRepository extends JpaRepository<Weather, WeatherId>, WeatherRepository {
 
     @Nonnull
     @Query("select r from Weather r")

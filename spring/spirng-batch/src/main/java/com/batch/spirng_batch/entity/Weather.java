@@ -2,7 +2,6 @@ package com.batch.spirng_batch.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.BatchSize;
 
 import java.math.BigDecimal;
 
@@ -20,6 +19,7 @@ public class Weather {
 
     private BigDecimal temperature;
 
+    @Setter
     @Enumerated(EnumType.STRING)
     private QcFlag qcFlag;
 }
