@@ -6,15 +6,22 @@ import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.Step;
+import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.repository.JobRepository;
+import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.builder.StepBuilder;
+import org.springframework.batch.core.step.tasklet.MethodInvokingTaskletAdapter;
+import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.item.ItemProcessor;
+import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.database.JpaPagingItemReader;
+import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.dao.TransientDataAccessException;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.transaction.PlatformTransactionManager;
 
@@ -29,7 +36,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class WeatherJob {
     
-    private final JobLauncher jobLauncher;
+    private final JobLauncher syncJobLauncher;
     private final JobRepository jobRepository;
     private final PlatformTransactionManager transactionManager;
 
@@ -43,31 +50,36 @@ public class WeatherJob {
     public void updateRegionStepJob(Job updateWeather) throws Exception {
         JobParameters jobParameter = new JobParametersBuilder()
                     .addString("time", LocalDateTime.now().toString()).toJobParameters();
-        jobLauncher.run(updateWeather, jobParameter);
+        syncJobLauncher.run(updateWeather, jobParameter);
     }
 
     @Bean
-    Job updateWeather(Step validateWeahterStep, Step updateRegionCounStep) throws Exception {
+    Job updateWeather(Step validateWeahterStep, Step updateRegionCountStep) throws Exception {
         return new JobBuilder("updateWeather", jobRepository)
             .start(validateWeahterStep)
-            .next(updateRegionCounStep)
+            .next(updateRegionCountStep)
             .build();
     }
 
     @Bean
     Step validateWeahterStep(JpaPagingItemReader<Weather> weatherReader,
-         ItemProcessor<Weather, Weather> weatherFlagProcessor) {
+        ItemProcessor<Weather, Weather> weatherFlagProcessor,
+        ItemWriter<Weather> weatherFlagWriter) {
         return new StepBuilder("validateWeahterStep", jobRepository)
                     .<Weather, Weather>chunk(10, transactionManager)
                     .reader(weatherReader)
                     .processor(weatherFlagProcessor)
+                    .writer(weatherFlagWriter)
+                    .faultTolerant()
+                    .retry(TransientDataAccessException.class)
+                    .retryLimit(3)
                     .build();
     }
 
     @Bean
-    Step updateRegionCounStep() {
+    Step updateRegionCountStep(MethodInvokingTaskletAdapter regionUpdateTasklet) {
         return new StepBuilder("updateRegionCounStep", jobRepository)
-                .<Weather, Region>chunk(10, transactionManager)
-                .build();
+            .tasklet(regionUpdateTasklet, transactionManager)
+            .build();
     }
 }

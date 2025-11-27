@@ -21,4 +21,5 @@ public interface WeatherJpaRepository extends JpaRepository<Weather, WeatherId>,
     @EntityGraph(attributePaths = {"weatherId.region"}, type = EntityGraph.EntityGraphType.FETCH)
     @Query("select r from Weather r")
     List<Weather> findAllEntityGraph();
+
 }

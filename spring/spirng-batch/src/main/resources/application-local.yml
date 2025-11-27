@@ -10,6 +10,9 @@ spring:
       connection-timeout: 30000
       schema: public
       maximum-pool-size: 5
+  batch:
+    jdbc:
+      initialize-schema: always
 
 batch:
   datasource:    
