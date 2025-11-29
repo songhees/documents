@@ -1,10 +1,8 @@
 package com.batch.spirng_batch.job.dataConfig;
 
-import java.net.SocketTimeoutException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.batch.core.step.tasklet.MethodInvokingTaskletAdapter;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.context.annotation.Bean;
@@ -14,7 +12,7 @@ import org.springframework.retry.backoff.ExponentialBackOffPolicy;
 import org.springframework.retry.policy.SimpleRetryPolicy;
 import org.springframework.retry.support.RetryTemplate;
 
-import com.batch.spirng_batch.repository.region.RegionJpaRepository;
+import com.batch.spirng_batch.service.RegionService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Configuration
 public class RegionDataConfig {
-    private final RegionJpaRepository regionJpaRepository;
+    private final RegionService regionService;
 
     @Bean
     RetryTemplate regionRetryTemplate() {
@@ -50,7 +48,7 @@ public class RegionDataConfig {
     Tasklet regionUpdateTasklet(RetryTemplate regionRetryTemplate) {
         return (contribution, chunkContext) -> {     
             regionRetryTemplate.execute(context -> {
-                regionJpaRepository.updateRegionCount();
+                regionService.updateRegionCount();
                 return null;
             });
             return RepeatStatus.FINISHED;
