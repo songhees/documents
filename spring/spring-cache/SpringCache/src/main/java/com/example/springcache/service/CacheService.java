@@ -31,6 +31,7 @@ public class CacheService {
     @CachePut(key = "'test'")
     public List<SimpleVO> modifySimpleVO(SimpleVO simpleVO) {
         List<SimpleVO> list = mapper.modifySimpleVO(simpleVO);
+
         return list;
     }
 

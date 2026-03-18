@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.song.springwebsocket.domain.FileVO;
 import org.song.springwebsocket.service.CommonService;
 import org.springframework.context.event.EventListener;
+import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;

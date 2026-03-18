@@ -6,9 +6,11 @@ import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.Step;
+import org.springframework.batch.core.configuration.annotation.JobScope;
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.repository.JobRepository;
+import org.springframework.batch.core.repository.support.SimpleJobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.core.step.tasklet.MethodInvokingTaskletAdapter;
 import org.springframework.batch.item.ItemProcessor;
@@ -56,6 +58,7 @@ public class WeatherJob {
     }
 
     @Bean
+    @JobScope
     Step validateWeahterStep(JpaPagingItemReader<Weather> weatherReader,
         ItemProcessor<Weather, Weather> weatherFlagProcessor,
         ItemWriter<Weather> weatherFlagWriter) {
@@ -71,6 +74,7 @@ public class WeatherJob {
     }
 
     @Bean
+    @JobScope
     Step updateRegionCountStep(MethodInvokingTaskletAdapter regionUpdateTasklet) {
         return new StepBuilder("updateRegionCounStep", jobRepository)
             .tasklet(regionUpdateTasklet, transactionManager)
