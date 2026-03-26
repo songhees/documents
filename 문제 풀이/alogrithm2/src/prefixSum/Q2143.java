@@ -1,7 +1,6 @@
 package prefixSum;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class Q2143 {
