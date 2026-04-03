@@ -6,6 +6,132 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Q2775",
+            "request": "launch",
+            "mainClass": "simulation.bronze.Q2775",
+            "projectName": "alogrithm2_9b8fe17c"
+        },
+        {
+            "type": "java",
+            "name": "Q10798",
+            "request": "launch",
+            "mainClass": "simulation.bronze.Q10798",
+            "projectName": "alogrithm2_9b8fe17c"
+        },
+        {
+            "type": "java",
+            "name": "Q1259",
+            "request": "launch",
+            "mainClass": "simulation.bronze.Q1259",
+            "projectName": "alogrithm2_9b8fe17c"
+        },
+        {
+            "type": "java",
+            "name": "Q10757",
+            "request": "launch",
+            "mainClass": "simulation.bronze.Q10757",
+            "projectName": "alogrithm2_9b8fe17c"
+        },
+        {
+            "type": "java",
+            "name": "Q1924",
+            "request": "launch",
+            "mainClass": "simulation.bronze.Q1924",
+            "projectName": "alogrithm2_9b8fe17c"
+        },
+        {
+            "type": "java",
+            "name": "Q11005",
+            "request": "launch",
+            "mainClass": "simulation.bronze.Q11005",
+            "projectName": "alogrithm2_9b8fe17c"
+        },
+        {
+            "type": "java",
+            "name": "Q9506",
+            "request": "launch",
+            "mainClass": "simulation.bronze.Q9506",
+            "projectName": "alogrithm2_9b8fe17c"
+        },
+        {
+            "type": "java",
+            "name": "Q1009",
+            "request": "launch",
+            "mainClass": "simulation.bronze.Q1009",
+            "projectName": "alogrithm2_9b8fe17c"
+        },
+        {
+            "type": "java",
+            "name": "Q2444",
+            "request": "launch",
+            "mainClass": "simulation.bronze.Q2444",
+            "projectName": "alogrithm2_9b8fe17c"
+        },
+        {
+            "type": "java",
+            "name": "Q5597",
+            "request": "launch",
+            "mainClass": "simulation.bronze.Q5597",
+            "projectName": "alogrithm2_9b8fe17c"
+        },
+        {
+            "type": "java",
+            "name": "Q1110",
+            "request": "launch",
+            "mainClass": "simulation.bronze.Q1110",
+            "projectName": "alogrithm2_9b8fe17c"
+        },
+        {
+            "type": "java",
+            "name": "Q2908",
+            "request": "launch",
+            "mainClass": "simulation.bronze.Q2908",
+            "projectName": "alogrithm2_9b8fe17c"
+        },
+        {
+            "type": "java",
+            "name": "Q1157",
+            "request": "launch",
+            "mainClass": "simulation.bronze.Q1157",
+            "projectName": "alogrithm2_9b8fe17c"
+        },
+        {
+            "type": "java",
+            "name": "Q1152",
+            "request": "launch",
+            "mainClass": "simulation.bronze.Q1152",
+            "projectName": "alogrithm2_9b8fe17c"
+        },
+        {
+            "type": "java",
+            "name": "Q10818",
+            "request": "launch",
+            "mainClass": "simulation.bronze.Q10818",
+            "projectName": "alogrithm2_9b8fe17c"
+        },
+        {
+            "type": "java",
+            "name": "Q2438",
+            "request": "launch",
+            "mainClass": "simulation.bronze.Q2438",
+            "projectName": "alogrithm2_9b8fe17c"
+        },
+        {
+            "type": "java",
+            "name": "Q14502",
+            "request": "launch",
+            "mainClass": "simulation.Q14502",
+            "projectName": "alogrithm2_9b8fe17c"
+        },
+        {
+            "type": "java",
+            "name": "Q1463",
+            "request": "launch",
+            "mainClass": "dp.Q1463",
+            "projectName": "alogrithm2_9b8fe17c"
+        },
+        {
+            "type": "java",
             "name": "Q1935",
             "request": "launch",
             "mainClass": "dataStructure.Q1935",
