@@ -6,6 +6,55 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Q2578",
+            "request": "launch",
+            "mainClass": "simulation.sliver.Q2578",
+            "projectName": "alogrithm2_9b8fe17c"
+        },
+        {
+            "type": "java",
+            "name": "Q1547",
+            "request": "launch",
+            "mainClass": "simulation.bronze.Q1547",
+            "projectName": "alogrithm2_9b8fe17c"
+        },
+        {
+            "type": "java",
+            "name": "Q10811",
+            "request": "launch",
+            "mainClass": "simulation.bronze.Q10811",
+            "projectName": "alogrithm2_9b8fe17c"
+        },
+        {
+            "type": "java",
+            "name": "Q10813",
+            "request": "launch",
+            "mainClass": "simulation.bronze.Q10813",
+            "projectName": "alogrithm2_9b8fe17c"
+        },
+        {
+            "type": "java",
+            "name": "Q10810",
+            "request": "launch",
+            "mainClass": "simulation.bronze.Q10810",
+            "projectName": "alogrithm2_9b8fe17c"
+        },
+        {
+            "type": "java",
+            "name": "Q2941",
+            "request": "launch",
+            "mainClass": "simulation.sliver.Q2941",
+            "projectName": "alogrithm2_9b8fe17c"
+        },
+        {
+            "type": "java",
+            "name": "Q1316",
+            "request": "launch",
+            "mainClass": "simulation.sliver.Q1316",
+            "projectName": "alogrithm2_9b8fe17c"
+        },
+        {
+            "type": "java",
             "name": "Q2775",
             "request": "launch",
             "mainClass": "simulation.bronze.Q2775",
